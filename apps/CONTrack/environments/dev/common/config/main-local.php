@@ -3,7 +3,8 @@ return [
 	'components' => [
 		'db' => [
 			'class' => 'yii\db\Connection',
-			'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+      //CHANGED MVW 02/25/14: Changed yii2advanced to CONTrack
+			'dsn' => 'mysql:host=localhost;dbname=CONTrack',
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',

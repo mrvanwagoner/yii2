@@ -1,8 +1,8 @@
 {
-	"name": "yiisoft/yii2-app-advanced",
-	"description": "Yii 2 Advanced Application Template",
-	"keywords": ["yii", "framework", "advanced", "application template"],
-	"homepage": "http://www.yiiframework.com/",
+	"name": "CONTrack",
+	"description": "Construction Tracking System",
+	"keywords": ["yii", "framework", "advanced", "application template, construction, tracking, management, draw, payment, inspection"],
+	"homepage": "http://www.cpntrack.loc/",
 	"type": "project",
 	"license": "BSD-3-Clause",
 	"support": {

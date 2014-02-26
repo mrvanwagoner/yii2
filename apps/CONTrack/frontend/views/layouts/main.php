@@ -26,7 +26,8 @@ AppAsset::register($this);
 	<div class="wrap">
 		<?php
 			NavBar::begin([
-				'brandLabel' => 'My Company',
+        //CHANGED MVY 02/25/14: Changed My Company to CONTrack
+				'brandLabel' => 'CONTrack',
 				'brandUrl' => Yii::$app->homeUrl,
 				'options' => [
 					'class' => 'navbar-inverse navbar-fixed-top',
