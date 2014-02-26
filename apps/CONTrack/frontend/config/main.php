@@ -10,6 +10,12 @@ return [
 	'id' => 'app-frontend',
 	'basePath' => dirname(__DIR__),
 	'controllerNamespace' => 'frontend\controllers',
+  //CHANGED MVW 02/25/14: Added Gii module. See https://github.com/yiisoft/yii2/blob/master/docs/guide/gii.md
+	'modules' => [
+    'gii' => [
+      'class' => 'yii\gii\Module',
+    ],
+	],
 	'components' => [
 		'user' => [
 			'identityClass' => 'common\models\User',

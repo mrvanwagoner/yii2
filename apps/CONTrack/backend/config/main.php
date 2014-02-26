@@ -11,7 +11,12 @@ return [
 	'basePath' => dirname(__DIR__),
 	'preload' => ['log'],
 	'controllerNamespace' => 'backend\controllers',
-	'modules' => [],
+  //CHANGED MVW 02/25/14: Added Gii. See https://github.com/yiisoft/yii2/blob/master/docs/guide/gii.md
+	'modules' => [
+    'gii' => [
+      'class' => 'yii\gii\Module',
+    ],
+	],
 	'components' => [
 		'user' => [
 			'identityClass' => 'common\models\User',
