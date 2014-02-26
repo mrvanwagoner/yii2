@@ -27,6 +27,11 @@ return [
 		'errorHandler' => [
 			'errorAction' => 'site/error',
 		],
+    //CHANGED MVW 02/25/14: Works with CONTrack/.htaccess, common/components/Request.php, and backend/config/main.php. See http://aaronfrancis.com/blog/2014/1/9/hosting-an-advanced-yii2-application-on-heroku
+    'request'=>[
+        'class' => 'common\components\Request',
+        'web'=> '/frontend/web'
+    ],
 	],
 	'params' => $params,
 ];
