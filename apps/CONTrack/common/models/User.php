@@ -5,6 +5,7 @@ use yii\db\ActiveRecord;
 use yii\helpers\Security;
 use yii\web\IdentityInterface;
 
+//CHANGED MVW 02/27/14: Change created_at and updated_at from integer
 /**
  * User model
  *
@@ -16,6 +17,7 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property integer $role
  * @property integer $status
+ * //FIXME Change from integet to datetime. Fix TimestampBehavior
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
@@ -54,6 +56,7 @@ class User extends ActiveRecord implements IdentityInterface
 	{
 		return [
 			'timestamp' => [
+        //FIXME Change TimestampBehavior from generating an integer to datetime
 				'class' => 'yii\behaviors\TimestampBehavior',
 				'attributes' => [
 					ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],

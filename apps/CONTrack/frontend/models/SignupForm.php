@@ -10,6 +10,7 @@ use Yii;
  */
 class SignupForm extends Model
 {
+  //FIXME username is email
 	public $username;
 	public $email;
 	public $password;
@@ -20,6 +21,7 @@ class SignupForm extends Model
 	public function rules()
 	{
 		return [
+      //FIXME username is email
 			['username', 'filter', 'filter' => 'trim'],
 			['username', 'required'],
 			['username', 'string', 'min' => 2, 'max' => 255],

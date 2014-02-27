@@ -15,4 +15,5 @@ modules:
             dsn: ''
             user: ''
             password: ''
+# FIXME Create dump.sql file.
             dump: tests/_data/dump.sql

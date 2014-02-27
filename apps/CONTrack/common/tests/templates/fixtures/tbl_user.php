@@ -3,6 +3,7 @@
 use yii\helpers\Security;
 
 return [
+    //FIXME Change fields to match db columns
 	'username' => 'userName',
 	'auth_key' => function ($fixture, $faker, $index) {
 		$fixture['auth_key'] = Security::generateRandomKey();

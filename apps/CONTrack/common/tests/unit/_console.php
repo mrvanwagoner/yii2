@@ -8,7 +8,8 @@ return yii\helpers\ArrayHelper::merge(
 	[
 		'components' => [
 			'db' => [
-				'dsn' => 'mysql:host=localhost;dbname=yii2_advanced_unit',
+        //CHANGED MVW 02/26/14: Was 'yii2_advanced...'
+				'dsn' => 'mysql:host=localhost;dbname=CONTrack_unit',
 			],
 		],
 	]

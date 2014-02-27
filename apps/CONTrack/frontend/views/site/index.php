@@ -2,11 +2,13 @@
 /**
  * @var yii\web\View $this
  */
-$this->title = 'My Yii Application';
+//CHANGED MVW 02/26/14: Changed from My Yii Application. This shows in Browser tab.
+$this->title = 'CONTrack';
 ?>
 <div class="site-index">
 
 	<div class="jumbotron">
+    <? //FIXME Change the following HOME PAGE content?>
 		<h1>Congratulations!</h1>
 
 		<p class="lead">You have successfully created your Yii-powered application.</p>
@@ -18,6 +20,7 @@ $this->title = 'My Yii Application';
 
 		<div class="row">
 			<div class="col-lg-4">
+        <? //FIXME Change the following HOME PAGE content?>
 				<h2>Heading</h2>
 
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et

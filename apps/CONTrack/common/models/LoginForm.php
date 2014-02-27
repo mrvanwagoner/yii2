@@ -22,6 +22,7 @@ class LoginForm extends Model
 	{
 		return [
 			// username and password are both required
+      //FIXME username is email
 			[['username', 'password'], 'required'],
 			// rememberMe must be a boolean value
 			['rememberMe', 'boolean'],
@@ -51,6 +52,7 @@ class LoginForm extends Model
 	 */
 	public function login()
 	{
+    //FIXME don't use remember me? per YiiBook
 		if ($this->validate()) {
 			return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
 		} else {

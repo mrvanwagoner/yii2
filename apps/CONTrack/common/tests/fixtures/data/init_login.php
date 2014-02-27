@@ -2,6 +2,7 @@
 
 return [
 	[
+    //FIXME Have fields match db columns
 		'username' => 'erau',
 		'auth_key' => 'tUu1qHcde0diwUol3xeI-18MuHkkprQI',
 		// password_0

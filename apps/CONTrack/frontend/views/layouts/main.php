@@ -39,7 +39,8 @@ AppAsset::register($this);
 				['label' => 'Contact', 'url' => ['/site/contact']],
 			];
 			if (Yii::$app->user->isGuest) {
-				$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+        //CHANGED MVW 02/26/14: Was Signup
+				$menuItems[] = ['label' => 'Enroll', 'url' => ['/site/signup']];
 				$menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
 			} else {
 				$menuItems[] = ['label' => 'Logout (' . Yii::$app->user->identity->username .')' , 'url' => ['/site/logout']];
@@ -62,8 +63,10 @@ AppAsset::register($this);
 	
 	<footer class="footer">
 		<div class="container">
-		<p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-		<p class="pull-right"><?= Yii::powered() ?></p>
+    <? //CHANGED MVW 02/26/24: From My Company ?>
+		<p class="pull-left">&copy; Dutch Web Development <?= date('Y') ?></p>
+    <? //CHANGED MVW 02/26/24: Delete powered() ?>
+    <p class="pull-right"><?//= Yii::powered() ?></p>
 		</div>
 	</footer>
 
