@@ -1,7 +1,7 @@
 {
 	"name": "CONTrack",
 	"description": "Construction Tracking System",
-	"keywords": ["yii", "framework", "advanced", "application template, construction, tracking, management, draw, payment, inspection"],
+	"keywords": ["yii2", "framework", "advanced", "application template, construction, tracking, management, draw, payment, inspection"],
 	"homepage": "http://www.cpntrack.loc/",
 	"type": "project",
 	"license": "BSD-3-Clause",
