@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use yii\helpers\ArrayHelper; //CHANGED MVW 03/06/14. Needed for list functions
+
 /**
  * This is the model class for table "tbl_picklist".
  *
@@ -92,7 +94,7 @@ class Picklist extends \yii\db\ActiveRecord
 	{
 		return [
 			'id' => 'ID',
-			'is_active' => 'Is Active',
+			'is_active' => 'Active?',
 			'tenant_id' => 'Tenant ID',
 			'tenant_dbu' => 'Tenant Dbu',
 			'type' => 'Type',
@@ -102,18 +104,18 @@ class Picklist extends \yii\db\ActiveRecord
 			'hierarchy' => 'Hierarchy',
 			'sort_order' => 'Sort Order',
 			'code_id' => 'Code ID',
-			'is_tenant' => 'Is Tenant',
-			'is_company' => 'Is Company',
-			'is_person' => 'Is Person',
-			'is_role' => 'Is Role',
-			'is_customer' => 'Is Customer',
-			'is_provider' => 'Is Provider',
-			'is_license' => 'Is License',
-			'is_transaction' => 'Is Transaction',
-			'is_project' => 'Is Project',
+			'is_tenant' => 'Is Tenant?',
+			'is_company' => 'Is Company?',
+			'is_person' => 'Is Person?',
+			'is_role' => 'Is Role?',
+			'is_customer' => 'Is Customer?',
+			'is_provider' => 'Is Provide?r',
+			'is_license' => 'Is License?',
+			'is_transaction' => 'Is Transaction?',
+			'is_project' => 'Is Project?',
 			'is_loan' => 'Is Loan?',
-			'is_commercial' => 'Is Commercial',
-			'is_residential' => 'Is Residential',
+			'is_commercial' => 'Is Commercial?',
+			'is_residential' => 'Is Residential?',
 			'note' => 'Note',
 			'create_time' => 'Create Time',
 			'created_by_entity_id' => 'Created By Entity ID',
@@ -321,4 +323,90 @@ class Picklist extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(TaskRecurrence::className(), ['week_period_picklist_id' => 'id']);
 	}
+  
+  //CHANGED MVW 03/06/14. Added
+  public static function listTenantTypes()
+  {
+    $query = (new \yii\db\Query())
+      ->select('id, description')
+      ->from('tbl_picklist')
+      ->where([
+        'is_active' => 1,
+        'type' => 'Type',
+        'is_tenant' => 1,
+        ])
+      ->orderBy('description')
+      ->all();
+
+    return ArrayHelper::map($query, 'id', 'description');
+    // return ArrayHelper::map(Picklist::find()->where(['is_active'=>1,'type'=>'Type', 'is_tenant'=>1])->all(), 'id', 'description' );//CHANGED This works too
+  }
+
+  //CHANGED MVW 03/06/14. Added. See listTenantTyupes for additional notes
+  public static function listCredit()
+  {
+    $query = (new \yii\db\Query())
+      ->select('id, description')
+      ->from('tbl_picklist')
+      ->where([
+        'is_active' => 1,
+        'type' => 'Credit',
+        // 'is_tenant' => 1,
+        ])
+      ->orderBy('description')
+      ->all();
+
+    return ArrayHelper::map($query, 'id', 'description');
+  }
+
+  //CHANGED MVW 03/06/14. Added. See listTenantTyupes for additional notes
+  public static function listOrder()
+  {
+    $query = (new \yii\db\Query())
+      ->select('id, description')
+      ->from('tbl_picklist')
+      ->where([
+        'is_active' => 1,
+        'type' => 'Order',
+        // 'is_tenant' => 1,
+        ])
+      // ->orderBy('description')
+      ->all();
+
+    return ArrayHelper::map($query, 'id', 'description');
+  }
+
+  //CHANGED MVW 03/06/14. Added. See listTenantTyupes for additional notes
+  public static function listEthnicity()
+  {
+    $query = (new \yii\db\Query())
+      ->select('id, description')
+      ->from('tbl_picklist')
+      ->where([
+        'is_active' => 1,
+        'type' => 'Ethnicity',
+        // 'is_tenant' => 1,
+        ])
+      // ->OrderBy('description')
+      ->all();
+
+    return ArrayHelper::map($query, 'id', 'description');
+  }
+
+  //CHANGED MVW 03/06/14. Added. See listTenantTyupes for additional notes
+  public static function listNeed()
+  {
+    $query = (new \yii\db\Query())
+      ->select('id, description')
+      ->from('tbl_picklist')
+      ->where([
+        'is_active' => 1,
+        'type' => 'Need',
+        // 'is_tenant' => 1,
+        ])
+      // ->OrderBy('description')
+      ->all();
+
+    return ArrayHelper::map($query, 'id', 'description');
+  }
 }
