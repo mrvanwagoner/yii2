@@ -1,7 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use common\components\Custom;
+use backend\models\Picklist;
+use backend\models\Entity;
 
 /**
  * @var yii\web\View $this
@@ -14,93 +18,93 @@ use yii\widgets\ActiveForm;
 
 	<?php $form = ActiveForm::begin(); ?>
 
-		<?= $form->field($model, 'is_active')->textInput() ?>
+		<?= $form->field($model, 'is_active')->checkbox() ?>
 
-		<?= $form->field($model, 'is_tenant')->textInput() ?>
+		<?= $form->field($model, 'is_tenant')->checkbox() ?>
 
-		<?= $form->field($model, 'is_user')->textInput() ?>
+		<?= $form->field($model, 'is_user')->checkbox() ?>
 
-		<?= $form->field($model, 'is_provider')->textInput() ?>
+		<?= $form->field($model, 'is_provider')->checkbox() ?>
 
-		<?= $form->field($model, 'is_customer')->textInput() ?>
+		<?= $form->field($model, 'is_customer')->checkbox() ?>
 
-		<?= $form->field($model, 'tenant_type_picklist_id')->textInput(['maxlength' => 11]) ?>
+		<?= $form->field($model, 'tenant_type_picklist_id')->dropDownList(Picklist::listTenantTypes(), ['prompt'=>'Select from list...']) //FIXME create dynamic function that creates list based on field name ?>
 
-		<?= $form->field($model, 'is_tenant_enabled')->textInput() ?>
+		<?= $form->field($model, 'is_tenant_enabled')->checkbox() ?>
 
-		<?= $form->field($model, 'is_track_customers')->textInput() ?>
+		<?= $form->field($model, 'is_track_customers')->checkbox() ?>
 
-		<?= $form->field($model, 'is_track_providers')->textInput() ?>
+		<?= $form->field($model, 'is_track_providers')->checkbox() ?>
 
-		<?= $form->field($model, 'is_track_employees')->textInput() ?>
+		<?= $form->field($model, 'is_track_employees')->checkbox() ?>
 
-		<?= $form->field($model, 'is_track_projects')->textInput() ?>
+		<?= $form->field($model, 'is_track_projects')->checkbox() ?>
 
-		<?= $form->field($model, 'is_track_transactions')->textInput() ?>
+		<?= $form->field($model, 'is_track_transactions')->checkbox() ?>
 
-		<?= $form->field($model, 'is_track_campaigns')->textInput() ?>
+		<?= $form->field($model, 'is_track_campaigns')->checkbox() ?>
 
-		<?= $form->field($model, 'is_track_content')->textInput() ?>
+		<?= $form->field($model, 'is_track_content')->checkbox() ?>
 
-		<?= $form->field($model, 'is_branded')->textInput() ?>
+		<?= $form->field($model, 'is_branded')->checkbox() ?>
 
 		<?= $form->field($model, 'logo_document_id')->textInput(['maxlength' => 11]) ?>
 
-		<?= $form->field($model, 'is_user_enabled')->textInput() ?>
+		<?= $form->field($model, 'is_user_enabled')->checkbox() ?>
 
 		<?= $form->field($model, 'current_role_id')->textInput(['maxlength' => 11]) ?>
 
 		<?= $form->field($model, 'x_sign_in_count')->textInput() ?>
 
-		<?= $form->field($model, 'is_provider_approved')->textInput() ?>
+		<?= $form->field($model, 'is_provider_approved')->checkbox() ?>
 
-		<?= $form->field($model, 'is_1099_eligible')->textInput() ?>
+		<?= $form->field($model, 'is_1099_eligible')->checkbox() ?>
 
-		<?= $form->field($model, 'is_material_only')->textInput() ?>
+		<?= $form->field($model, 'is_material_only')->checkbox() ?>
 
-		<?= $form->field($model, 'is_track_license')->textInput() ?>
+		<?= $form->field($model, 'is_track_license')->checkbox() ?>
 
-		<?= $form->field($model, 'is_track_insurance')->textInput() ?>
+		<?= $form->field($model, 'is_track_insurance')->checkbox() ?>
 
-		<?= $form->field($model, 'sponsor_entity_id')->textInput(['maxlength' => 11]) ?>
+		<?= $form->field($model, 'sponsor_entity_id')->dropDownList(Entity::listActiveTenants(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-		<?= $form->field($model, 'credit_picklist_id')->textInput(['maxlength' => 11]) ?>
+		<?= $form->field($model, 'credit_picklist_id')->dropDownList(Picklist::listCredit(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-		<?= $form->field($model, 'order_picklist_id')->textInput(['maxlength' => 11]) ?>
+		<?= $form->field($model, 'order_picklist_id')->dropDownList(Picklist::listOrder(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-		<?= $form->field($model, 'is_renter')->textInput() ?>
+		<?= $form->field($model, 'is_renter')->checkbox() ?>
 
 		<?= $form->field($model, 'years_school')->textInput() ?>
 
 		<?= $form->field($model, 'retirement_age')->textInput() ?>
 
-		<?= $form->field($model, 'ethnicity_picklist_id')->textInput(['maxlength' => 11]) ?>
+		<?= $form->field($model, 'ethnicity_picklist_id')->dropDownList(Picklist::listEthnicity(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-		<?= $form->field($model, 'is_us_citizen')->textInput() ?>
+		<?= $form->field($model, 'is_us_citizen')->checkbox() ?>
 
-		<?= $form->field($model, 'is_us_veteran')->textInput() ?>
+		<?= $form->field($model, 'is_us_veteran')->checkbox() ?>
 
-		<?= $form->field($model, 'is_disabled')->textInput() ?>
+		<?= $form->field($model, 'is_disabled')->checkbox() ?>
 
-		<?= $form->field($model, 'customer_need_picklist_id')->textInput(['maxlength' => 11]) ?>
+		<?= $form->field($model, 'customer_need_picklist_id')->dropDownList(Picklist::listNeed(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-		<?= $form->field($model, 'created_by_entity_id')->textInput(['maxlength' => 11]) ?>
+		<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-		<?= $form->field($model, 'updated_by_entity_id')->textInput(['maxlength' => 11]) ?>
+		<?= $form->field($model, 'updated_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-		<?= $form->field($model, 'type')->textInput() ?>
+		<?= $form->field($model, 'type')->dropDownList(Custom::listEnum($model, 'type')) //CHANGED MVW 03/06/14. Creates dropdown list from the ENUM values.?>
 
 		<?= $form->field($model, 'signature')->textarea(['rows' => 6]) ?>
 
-		<?= $form->field($model, 'organization_type')->textInput() ?>
+		<?= $form->field($model, 'organization_type')->dropDownList(Custom::listEnum($model, 'organization_type')) ?>
 
-		<?= $form->field($model, 'employment_status')->textInput() ?>
+		<?= $form->field($model, 'employment_status')->dropDownList(Custom::listEnum($model, 'employment_status')) ?>
 
-		<?= $form->field($model, 'gender')->textInput() ?>
+		<?= $form->field($model, 'gender')->dropDownList(Custom::listEnum($model, 'gender')) ?>
 
-		<?= $form->field($model, 'marital_status')->textInput() ?>
+		<?= $form->field($model, 'marital_status')->dropDownList(Custom::listEnum($model, 'marital_status')) ?>
 
-		<?= $form->field($model, 'military_status')->textInput() ?>
+		<?= $form->field($model, 'military_status')->dropDownList(Custom::listEnum($model, 'military_status')) ?>
 
 		<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
 
@@ -144,9 +148,9 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'equity')->textInput(['maxlength' => 19]) ?>
 
-		<?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
+		<?= $form->field($model, 'name')->textInput(['maxlength' => 255])->hint('Please enter Company or Last Name') //FIXME Conditional by type ?>
 
-		<?= $form->field($model, 'contact')->textInput(['maxlength' => 255]) ?>
+		<?= $form->field($model, 'contact')->textInput(['maxlength' => 255])->hint('Please enter Contact Name or First Name') //FIXME Conditional by type ?>
 
 		<?= $form->field($model, 'aka')->textInput(['maxlength' => 255]) ?>
 
@@ -162,7 +166,7 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'username')->textInput(['maxlength' => 255]) ?>
 
-		<?= $form->field($model, 'password_hash')->textInput(['maxlength' => 255]) ?>
+		<?= $form->field($model, 'password_hash')->passwordInput()//CHANGED MVW 03/06/14 ?>
 
 		<?= $form->field($model, 'password_reset_token')->textInput(['maxlength' => 255]) ?>
 

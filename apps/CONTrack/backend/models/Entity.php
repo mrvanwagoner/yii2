@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use yii\helpers\ArrayHelper; //CHANGED MVW 03/06/14. Needed for list functions
+
 /**
  * This is the model class for table "tbl_entity".
  *
@@ -181,7 +183,7 @@ class Entity extends \yii\db\ActiveRecord
 	{
 		return [
 			'id' => 'ID',
-			'is_active' => 'Is Active',
+			'is_active' => 'Active?',
 			'type' => 'Type',
 			'name' => 'Name',
 			'contact' => 'Contact',
@@ -191,29 +193,29 @@ class Entity extends \yii\db\ActiveRecord
 			'suffix' => 'Suffix',
 			'previous_name' => 'Previous Name',
 			'signature' => 'Signature',
-			'is_tenant' => 'Is Tenant',
-			'is_user' => 'Is User',
-			'is_provider' => 'Is Provider',
-			'is_customer' => 'Is Customer',
-			'tenant_type_picklist_id' => 'Tenant Type Picklist ID',
-			'is_tenant_enabled' => 'Is Tenant Enabled',
+			'is_tenant' => 'Is Tenant?',
+			'is_user' => 'Is User?',
+			'is_provider' => 'Is Provider?',
+			'is_customer' => 'Is Customer?',
+			'tenant_type_picklist_id' => 'Tenant Type',
+			'is_tenant_enabled' => 'Is Tenant Enabled?',
 			'db_username' => 'Db Username',
 			'db_password' => 'Db Password',
-			'is_track_customers' => 'Is Track Customers',
-			'is_track_providers' => 'Is Track Providers',
-			'is_track_employees' => 'Is Track Employees',
-			'is_track_projects' => 'Is Track Projects',
-			'is_track_transactions' => 'Is Track Transactions',
-			'is_track_campaigns' => 'Is Track Campaigns',
-			'is_track_content' => 'Is Track Content',
-			'is_branded' => 'Is Branded',
+			'is_track_customers' => 'Track Customers?',
+			'is_track_providers' => 'Track Providers?',
+			'is_track_employees' => 'Track Employees?',
+			'is_track_projects' => 'Track Projects?',
+			'is_track_transactions' => 'Track Transactions?/',
+			'is_track_campaigns' => 'Track Campaigns?',
+			'is_track_content' => 'Track Content?',
+			'is_branded' => 'Is Tenant Branded?',
 			'slogan' => 'Slogan',
 			'logo_document_id' => 'Logo Document ID',
-			'is_user_enabled' => 'Is User Enabled',
+			'is_user_enabled' => 'Is User Enabled?',
 			'username' => 'Username',
 			'auth_key' => 'Auth Key',
-			'password_hash' => 'Password Hash',
-			'password_reset_token' => 'Password Reset  Token',
+			'password_hash' => 'Password',
+			'password_reset_token' => 'Password Reset Token',
 			'salt' => 'Salt',
 			'current_role_id' => 'Current Role ID',
 			'last_sign_in_time' => 'Last Sign In Time',
@@ -223,14 +225,14 @@ class Entity extends \yii\db\ActiveRecord
 			'x_current_sign_in_time' => 'X Current Sign In Time',
 			'x_current_sign_in_ip' => 'X Current Sign In Ip',
 			'x_last_sign_in_ip' => 'X Last Sign In Ip',
-			'is_provider_approved' => 'Is Provider Approved',
+			'is_provider_approved' => 'Is Provider Approved?',
 			'organization_type' => 'Organization Type',
-			'is_1099_eligible' => 'Is 1099 Eligible',
-			'is_material_only' => 'Is Material Only',
-			'is_track_license' => 'Is Track License',
-			'is_track_insurance' => 'Is Track Insurance',
-			'sponsor_entity_id' => 'Sponsor Entity ID',
-			'credit_picklist_id' => 'Credit Picklist ID',
+			'is_1099_eligible' => 'Is 1099 Eligible?',
+			'is_material_only' => 'Is Material Only?',
+			'is_track_license' => 'Track License?',
+			'is_track_insurance' => 'Track Insurance?',
+			'sponsor_entity_id' => 'Sponsor',
+			'credit_picklist_id' => 'Credit',
 			'credit_score' => 'Credit Score',
 			'total_income' => 'Total Income',
 			'housing_expense' => 'Housing Expense',
@@ -243,8 +245,8 @@ class Entity extends \yii\db\ActiveRecord
 			'long_term_liabilities' => 'Long Term Liabilities',
 			'total_liabilities' => 'Total Liabilities',
 			'equity' => 'Equity',
-			'order_picklist_id' => 'Order Picklist ID',
-			'is_renter' => 'Is Renter',
+			'order_picklist_id' => 'Debt Payoff Order',
+			'is_renter' => 'Is Renting',
 			'years_school' => 'Years School',
 			'employment_status' => 'Employment Status',
 			'occupation' => 'Occupation',
@@ -257,20 +259,20 @@ class Entity extends \yii\db\ActiveRecord
 			'date_anniversary' => 'Date Anniversary',
 			'gender' => 'Gender',
 			'marital_status' => 'Marital Status',
-			'ethnicity_picklist_id' => 'Ethnicity Picklist ID',
-			'is_us_citizen' => 'Is Us Citizen',
+			'ethnicity_picklist_id' => 'Ethnicity',
+			'is_us_citizen' => 'Is Us Citizen?',
 			'military_status' => 'Military Status',
-			'is_us_veteran' => 'Is Us Veteran',
-			'is_disabled' => 'Is Disabled',
+			'is_us_veteran' => 'Is Us Veteran?',
+			'is_disabled' => 'Is Disabled?',
 			'description_disability' => 'Description Disability',
 			'dependents' => 'Dependents',
 			'dependent_ages' => 'Dependent Ages',
-			'customer_need_picklist_id' => 'Customer Need Picklist ID',
+			'customer_need_picklist_id' => 'Customer Need',
 			'folder_location' => 'Folder Location',
 			'note' => 'Note',
-			'create_time' => 'Create Time',
+			'create_time' => 'Created',
 			'created_by_entity_id' => 'Created By Entity ID',
-			'update_time' => 'Update Time',
+			'update_time' => 'Update',
 			'updated_by_entity_id' => 'Updated By Entity ID',
 		];
 	}
@@ -650,4 +652,63 @@ class Entity extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(TaskRecurrence::className(), ['updated_by_entity_id' => 'id']);
 	}
+
+  //CHANGED MVW 12/11/13: Extended name. i.e. to be used in drop down list. http://stackoverflow.com/questions/12812062/in-yii-framework-how-can-i-combine-two-columns-and-show-as-display-string-in-dro
+  //FIXME This is not working??? (see listActiveUsers)
+  public function getFullName() 
+  {
+    // $entity = new Entity;
+    // return $entity->contact.' '.$entity->name; //FIXME If Type = Company vs. Person AND/OR Nickname
+    if ($this->aka == null) return $this->contact.' '.$this->name;
+    else return $this->aka.' '.$this->name; //FIXME If Type = Company vs. Person AND/OR Nickname
+  }
+
+  //CHANGED MVW 03/06/14: Extended name. i.e. to be used in drop down list. http://www.yiiframework.com/forum/index.php/topic/7461-adding-columns-into-query/
+  public Static function listActiveTenants()
+  {
+    $query = (new \yii\db\Query())
+      ->select('id, name, contact, middle_name')
+      ->from('tbl_entity')
+      ->where([
+        'is_active' => 1,
+        'is_tenant' => 1,
+        // 'type' => 'Person',
+        // 'is_tenant' => 1,
+        ])
+       ->OrderBy('name')
+      ->all();
+
+    return ArrayHelper::map($query, 'id', 'name');
+    // return ArrayHelper::map($query, 'id', $entity->getFullName());
+  }
+
+  //CHANGED MVW 03/06/14: Extended name. i.e. to be used in drop down list. http://www.yiiframework.com/forum/index.php/topic/7461-adding-columns-into-query/
+  //FIXME to use fullname
+  public static function listActiveUsers()
+  {
+    // $query = (new \yii\db\Query())
+      // ->select('id, name, contact, middle_name', Entity::getFullName())
+      // ->select('id, name, contact, middle_name')
+      // ->from('tbl_entity')
+      // ->where([
+      //   'is_active' => 1,
+      //   'is_user' => 1,
+      //   'type' => 'Person',
+      //   // 'is_tenant' => 1,
+      //   ])
+      //  ->OrderBy('name')
+      // ->all();
+
+    // return ArrayHelper::map($query, 'id', Entity::getFullName());
+    // return ArrayHelper::map($query, 'id', 'contact');
+    // return ArrayHelper::map($query, 'id', 'fullName');
+
+
+    $query = Entity::find()->where(['is_active'=>1, 'type'=>'Person', 'is_user'=>1])->all();
+    return ArrayHelper::map($query , 'id', 'fullName');
+
+
+
+
+  }
 }
