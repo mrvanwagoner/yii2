@@ -7,6 +7,7 @@
 
 namespace yii\apidoc\templates\html;
 
+use yii\apidoc\helpers\ApiMarkdown;
 use yii\apidoc\models\MethodDoc;
 use yii\apidoc\models\PropertyDoc;
 use yii\apidoc\models\ClassDoc;
@@ -148,7 +149,7 @@ class ApiRenderer extends BaseApiRenderer implements ViewContextInterface
 				$class = $this->apiContext->classes[$class->parentClass];
 				$parents[] = $this->createTypeLink($class);
 			} else {
-				$parents[] = $class->parentClass; // TODO link to php.net
+				$parents[] = $this->createTypeLink($class->parentClass);
 				break;
 			}
 		}
@@ -167,7 +168,7 @@ class ApiRenderer extends BaseApiRenderer implements ViewContextInterface
 			if(isset($this->apiContext->interfaces[$interface])) {
 				$interfaces[] = $this->createTypeLink($this->apiContext->interfaces[$interface]);
 			} else {
-				$interfaces[] = $interface; // TODO link to php.net
+				$interfaces[] = $this->createTypeLink($interface);
 			}
 		}
 		return implode(', ', $interfaces);
@@ -185,7 +186,7 @@ class ApiRenderer extends BaseApiRenderer implements ViewContextInterface
 			if(isset($this->apiContext->traits[$trait])) {
 				$traits[] = $this->createTypeLink($this->apiContext->traits[$trait]);
 			} else {
-				$traits[] = $trait; // TODO link to php.net
+				$traits[] = $this->createTypeLink($trait);
 			}
 		}
 		return implode(', ', $traits);
@@ -203,7 +204,7 @@ class ApiRenderer extends BaseApiRenderer implements ViewContextInterface
 			if(isset($this->apiContext->classes[$class])) {
 				$classes[] = $this->createTypeLink($this->apiContext->classes[$class]);
 			} else {
-				$classes[] = $class; // TODO link to php.net
+				$classes[] = $this->createTypeLink($class);
 			}
 		}
 		return implode(', ', $classes);
@@ -225,7 +226,8 @@ class ApiRenderer extends BaseApiRenderer implements ViewContextInterface
 			}
 			return implode('<br />', $sig);
 		}
-		return $this->createTypeLink($property->types) . ' ' . $property->name . ' = ' . ($property->defaultValue === null ? 'null' : $property->defaultValue);
+		return $this->createTypeLink($property->types) . ' ' . $this->createSubjectLink($property, $property->name) . ' '
+				. ApiMarkdown::highlight('= ' . ($property->defaultValue === null ? 'null' : $property->defaultValue), 'php');
 	}
 
 	/**
@@ -244,9 +246,8 @@ class ApiRenderer extends BaseApiRenderer implements ViewContextInterface
 
 		return ($method->isReturnByReference ? '<b>&</b>' : '')
 			. ($method->returnType === null ? 'void' : $this->createTypeLink($method->returnTypes))
-			. ' ' . $this->createSubjectLink($method, $method->name) . '( '
-			. implode(', ', $params)
-			. ' )';
+			. ' ' . $this->createSubjectLink($method, $method->name)
+			. ApiMarkdown::highlight('( ' . implode(', ', $params) . ' )', 'php');
 	}
 
 	public function generateApiUrl($typeName)

@@ -70,7 +70,7 @@ class ApiMarkdown extends GithubMarkdown
 		if (!empty($language)) {
 			$block['language'] = $language;
 		}
-		for($i = $current + 1, $count = count($lines); $i < $count; $i++) {
+		for ($i = $current + 1, $count = count($lines); $i < $count; $i++) {
 			if (rtrim($line = $lines[$i]) !== $fence) {
 				$block['content'][] = $line;
 			} else {
@@ -93,7 +93,7 @@ class ApiMarkdown extends GithubMarkdown
 		}
 	}
 
-	protected function highlight($code, $language)
+	public static function highlight($code, $language)
 	{
 		if ($language !== 'php') {
 			return htmlspecialchars($code, ENT_NOQUOTES, 'UTF-8');
@@ -179,6 +179,7 @@ class ApiMarkdown extends GithubMarkdown
 					$offset
 				];
 			}
+
 			if ($context !== null) {
 				// Collection resolves relative types
 				$object = (new Collection([$object], $context->phpDocContext))->__toString();
@@ -186,6 +187,11 @@ class ApiMarkdown extends GithubMarkdown
 			if (($type = static::$renderer->apiContext->getType($object)) !== null) {
 				return [
 					static::$renderer->createTypeLink($type, null, $title),
+					$offset
+				];
+			} elseif (strpos($typeLink = static::$renderer->createTypeLink($object, null, $title), '<a href') !== false) {
+				return [
+					$typeLink,
 					$offset
 				];
 			}
@@ -202,7 +208,7 @@ class ApiMarkdown extends GithubMarkdown
 	}
 
 	/**
-	 * @inheritDocs
+	 * @inheritDoc
 	 */
 	protected function renderHeadline($block)
 	{
@@ -218,7 +224,7 @@ class ApiMarkdown extends GithubMarkdown
 	 *
 	 * @param string $content
 	 * @param TypeDoc $context
-	 * @param bool $paragraph
+	 * @param boolean $paragraph
 	 * @return string
 	 */
 	public static function process($content, $context = null, $paragraph = false)
