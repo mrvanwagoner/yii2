@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "542a68a194e85bc461755b9d1ae7b176",
+    "hash": "41d4e33767eebfba2869ec9973945693",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -110,17 +110,58 @@
             "time": "2013-11-30 08:25:19"
         },
         {
+            "name": "kartik-v/bootstrap-star-rating",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-star-rating.git",
+                "reference": "2603050a50f6175db91cbd91dcf797b580df2314"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/2603050a50f6175db91cbd91dcf797b580df2314",
+                "reference": "2603050a50f6175db91cbd91dcf797b580df2314",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A simple yet powerful JQuery star rating plugin for Bootstrap.",
+            "homepage": "https://github.com/kartik-v/bootstrap-star-rating",
+            "keywords": [
+                "Rating",
+                "bootstrap",
+                "jquery",
+                "star"
+            ],
+            "time": "2014-03-05 15:54:01"
+        },
+        {
             "name": "kartik-v/yii2-helpers",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-helpers.git",
-                "reference": "249e5148dcce832ba0a6ae867b527fb0e60e45c1"
+                "reference": "a25783be1c38ac3c4d474734383df411a3869938"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-helpers/zipball/249e5148dcce832ba0a6ae867b527fb0e60e45c1",
-                "reference": "249e5148dcce832ba0a6ae867b527fb0e60e45c1",
+                "url": "https://api.github.com/repos/kartik-v/yii2-helpers/zipball/a25783be1c38ac3c4d474734383df411a3869938",
+                "reference": "a25783be1c38ac3c4d474734383df411a3869938",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +195,97 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2014-02-24 02:45:48"
+            "time": "2014-03-08 08:55:39"
+        },
+        {
+            "name": "kartik-v/yii2-widgets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widgets.git",
+                "reference": "d402d82544808c5439781b0f07921e0f4d34830c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/d402d82544808c5439781b0f07921e0f4d34830c",
+                "reference": "d402d82544808c5439781b0f07921e0f4d34830c",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-star-rating": "dev-master",
+                "yiisoft/yii2": "dev-master",
+                "yiisoft/yii2-bootstrap": "dev-master"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Collection of useful widgets for Yii Framework 2.0 extending functionalities for Bootstrap",
+            "homepage": "https://github.com/kartik-v/yii2-widgets",
+            "keywords": [
+                "extension",
+                "form",
+                "widget",
+                "yii2"
+            ],
+            "time": "2014-03-09 17:32:24"
+        },
+        {
+            "name": "smarty/smarty",
+            "version": "dev-trunk",
+            "source": {
+                "type": "svn",
+                "url": "http://smarty-php.googlecode.com/svn",
+                "reference": "/trunk/@4816"
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "distribution/libs/Smarty.class.php",
+                    "distribution/libs/SmartyBC.class.php",
+                    "distribution/libs/sysplugins/smarty_security.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Monte Ohrt",
+                    "email": "monte@ohrt.com"
+                },
+                {
+                    "name": "Uwe Tews",
+                    "email": "uwe.tews@googlemail.com"
+                },
+                {
+                    "name": "Rodney Rehm",
+                    "email": "rodney.rehm@medialize.de"
+                }
+            ],
+            "description": "Smarty - the compiling PHP template engine",
+            "homepage": "http://www.smarty.net",
+            "keywords": [
+                "templating"
+            ],
+            "time": "2014-03-09 00:03:08"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -213,12 +344,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "429fc9331e9c74a77f575d136351630e1271cd3d"
+                "reference": "7b386a566f6f199698f200d9dff4b8cf5da3ed07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/429fc9331e9c74a77f575d136351630e1271cd3d",
-                "reference": "429fc9331e9c74a77f575d136351630e1271cd3d",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/7b386a566f6f199698f200d9dff4b8cf5da3ed07",
+                "reference": "7b386a566f6f199698f200d9dff4b8cf5da3ed07",
                 "shasum": ""
             },
             "type": "library",
@@ -247,7 +378,7 @@
                 "bootstrap",
                 "css"
             ],
-            "time": "2014-02-25 03:10:23"
+            "time": "2014-02-26 03:40:15"
         },
         {
             "name": "yiisoft/jquery",
@@ -278,12 +409,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "f71e2ae840e6579be2395550fc2ac94e9fc7daa3"
+                "reference": "5801a913dfdda60b8926752ca1a44fcdc2360a1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f71e2ae840e6579be2395550fc2ac94e9fc7daa3",
-                "reference": "f71e2ae840e6579be2395550fc2ac94e9fc7daa3",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5801a913dfdda60b8926752ca1a44fcdc2360a1f",
+                "reference": "5801a913dfdda60b8926752ca1a44fcdc2360a1f",
                 "shasum": ""
             },
             "require": {
@@ -347,7 +478,7 @@
                 "framework",
                 "yii"
             ],
-            "time": "2014-02-25 21:43:31"
+            "time": "2014-02-26 13:18:24"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -437,6 +568,50 @@
                 "yii"
             ],
             "time": "2014-01-12 18:16:31"
+        },
+        {
+            "name": "yiisoft/yii2-smarty",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-smarty.git",
+                "reference": "9123649c8287db65826327ca924db4a697ce61f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-smarty/zipball/9123649c8287db65826327ca924db4a697ce61f2",
+                "reference": "9123649c8287db65826327ca924db4a697ce61f2",
+                "shasum": ""
+            },
+            "require": {
+                "smarty/smarty": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii\\smarty\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Makarov",
+                    "email": "sam@rmcreative.ru",
+                    "homepage": "http://rmcreative.ru/",
+                    "role": "Core framework development"
+                }
+            ],
+            "description": "The Smarty integration for the Yii framework",
+            "keywords": [
+                "renderer",
+                "smarty",
+                "yii2"
+            ],
+            "time": "2014-02-27 16:37:08"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -609,12 +784,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "72cc844251a5f56a322d17833bbc7837043eb7e3"
+                "reference": "6184a001f02bc89c8d7baf18023deaa69e0efeb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/72cc844251a5f56a322d17833bbc7837043eb7e3",
-                "reference": "72cc844251a5f56a322d17833bbc7837043eb7e3",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/6184a001f02bc89c8d7baf18023deaa69e0efeb0",
+                "reference": "6184a001f02bc89c8d7baf18023deaa69e0efeb0",
                 "shasum": ""
             },
             "require": {
@@ -646,7 +821,7 @@
                 "gii",
                 "yii"
             ],
-            "time": "2014-02-24 12:12:33"
+            "time": "2014-02-26 22:22:15"
         }
     ],
     "aliases": [
@@ -654,7 +829,8 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "kartik-v/yii2-helpers": 20
+        "kartik-v/yii2-helpers": 20,
+        "kartik-v/yii2-widgets": 20
     },
     "platform": {
         "php": ">=5.4.0"

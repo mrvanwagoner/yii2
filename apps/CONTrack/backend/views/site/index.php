@@ -8,7 +8,7 @@ use kartik\widgets\SideNav;
 
 $this->title = 'CONTrack'; //CHANGED MVW 02/26/14: Changed from My Yii Application. This shows in Browser tab.
 ?>
-<div class="site-index">
+ <div class="site-index">
 
 	<div class="jumbotron">
 		<h2>CONTrack - Construction Tracking System</h2><!-- CHANGED MVW 03/08/14 -->

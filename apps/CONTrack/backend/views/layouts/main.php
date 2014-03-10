@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use kartik\widgets\SideNav;
 
 /**
  * @var \yii\web\View $this
@@ -69,7 +70,7 @@ AppAsset::register($this);
           <li style="display:inline;padding-right:15px;"><a href="/admin/document/">Documents</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/email/">Email</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/entity/">Entities</a></li>
-          <li style="display:inline;padding-right:15px;"><a href="/admin/phone/">Phone</a></li>
+<!--          <li style="display:inline;padding-right:15px;"><a href="/admin/phone/">Phone</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/picklist/">Picklist</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/project/">Projects</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/project-team/">Project Team</a></li>
@@ -77,7 +78,33 @@ AppAsset::register($this);
           <li style="display:inline;padding-right:15px;"><a href="/admin/relationship/">Relationships</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/role/">Roles</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/task/">Tasks</a></li>              
-        </ul>
+        </ul>-->
+        
+        <?php
+        echo SideNav::widget([
+	'type' => SideNav::TYPE_DEFAULT,
+	'heading' => 'Options',
+	'items' => [
+		[
+			'url' => '#',
+			'label' => 'Home',
+			'icon' => 'home'
+		],
+		[
+			'label' => 'Help',
+			'icon' => 'question-sign',
+			'items' => [
+				['label' => 'About', 'icon'=>'info-sign', 'url'=>'#'],
+				['label' => 'Contact', 'icon'=>'phone', 'url'=>'#'],
+			],
+		],
+	],
+]);
+        
+        
+        
+        ?>
+        
     </div><!-- end sidenav -->
 		<?= $content ?>
 		</div>
