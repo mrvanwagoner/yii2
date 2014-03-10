@@ -87,6 +87,13 @@ interface ActiveRecordInterface
 	public function getOldPrimaryKey($asArray = false);
 
 	/**
+	 * Returns a value indicating whether the given set of attributes represents the primary key for this model
+	 * @param array $keys the set of attributes to check
+	 * @return boolean whether the given set of attributes represents the primary key for this model
+	 */
+	public static function isPrimaryKey($keys);
+
+	/**
 	 * Creates an [[ActiveQueryInterface|ActiveQuery]] instance for query purpose.
 	 *
 	 * This method is usually ment to be used like this:
@@ -265,9 +272,10 @@ interface ActiveRecordInterface
 	 * (normally this would be a relational [[ActiveQuery]] object).
 	 * It can be declared in either the ActiveRecord class itself or one of its behaviors.
 	 * @param string $name the relation name
+	 * @param boolean $throwException whether to throw exception if the relation does not exist.
 	 * @return ActiveQueryInterface the relational query object
 	 */
-	public function getRelation($name);
+	public function getRelation($name, $throwException = true);
 
 	/**
 	 * Establishes the relationship between two records.

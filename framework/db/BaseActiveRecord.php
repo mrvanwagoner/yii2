@@ -19,7 +19,7 @@ use yii\base\InvalidCallException;
 /**
  * ActiveRecord is the base class for classes representing relational data in terms of objects.
  *
- * @include @yii/db/ActiveRecord.md
+ * See [[yii\db\ActiveRecord]] for a concrete implementation.
  *
  * @property array $dirtyAttributes The changed attribute values (name-value pairs). This property is
  * read-only.
@@ -303,12 +303,10 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 	{
 		if ($this->hasAttribute($name)) {
 			unset($this->_attributes[$name]);
-		} else {
-			if (isset($this->_related[$name])) {
-				unset($this->_related[$name]);
-			} else {
-				parent::__unset($name);
-			}
+		} elseif (array_key_exists($name, $this->_related)) {
+			unset($this->_related[$name]);
+		} elseif ($this->getRelation($name, false) === null) {
+			parent::__unset($name);
 		}
 	}
 
@@ -344,7 +342,7 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 	 */
 	public function hasOne($class, $link)
 	{
-		/** @var ActiveRecord $class */
+		/** @var ActiveRecordInterface $class */
 		return $class::createQuery([
 			'modelClass' => $class,
 			'primaryModel' => $this,
@@ -385,7 +383,7 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 	 */
 	public function hasMany($class, $link)
 	{
-		/** @var ActiveRecord $class */
+		/** @var ActiveRecordInterface $class */
 		return $class::createQuery([
 			'modelClass' => $class,
 			'primaryModel' => $this,
@@ -398,7 +396,7 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 	 * Populates the named relation with the related records.
 	 * Note that this method does not check if the relation exists or not.
 	 * @param string $name the relation name (case-sensitive)
-	 * @param ActiveRecord|array|null $records the related records to be populated into the relation.
+	 * @param ActiveRecordInterface|array|null $records the related records to be populated into the relation.
 	 */
 	public function populateRelation($name, $records)
 	{
@@ -938,7 +936,7 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 	 * Returns a value indicating whether the given active record is the same as the current one.
 	 * The comparison is made by comparing the table names and the primary key values of the two active records.
 	 * If one of the records [[isNewRecord|is new]] they are also considered not equal.
-	 * @param ActiveRecord $record record to compare to
+	 * @param ActiveRecordInterface $record record to compare to
 	 * @return boolean whether the two active records refer to the same row in the same database table.
 	 */
 	public function equals($record)
@@ -1065,20 +1063,30 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 	 * A relation is defined by a getter method which returns an [[ActiveQueryInterface]] object.
 	 * It can be declared in either the Active Record class itself or one of its behaviors.
 	 * @param string $name the relation name
-	 * @return ActiveQueryInterface|ActiveQuery the relational query object
+	 * @param boolean $throwException whether to throw exception if the relation does not exist.
+	 * @return ActiveQueryInterface|ActiveQuery the relational query object. If the relation does not exist
+	 * and `$throwException` is false, null will be returned.
 	 * @throws InvalidParamException if the named relation does not exist.
 	 */
-	public function getRelation($name)
+	public function getRelation($name, $throwException = true)
 	{
 		$getter = 'get' . $name;
 		try {
 			// the relation could be defined in a behavior
 			$relation = $this->$getter();
 		} catch (UnknownMethodException $e) {
-			throw new InvalidParamException(get_class($this) . ' has no relation named "' . $name . '".', 0, $e);
+			if ($throwException) {
+				throw new InvalidParamException(get_class($this) . ' has no relation named "' . $name . '".', 0, $e);
+			} else {
+				return null;
+			}
 		}
 		if (!$relation instanceof ActiveQueryInterface) {
-			throw new InvalidParamException(get_class($this) . ' has no relation named "' . $name . '".');
+			if ($throwException) {
+				throw new InvalidParamException(get_class($this) . ' has no relation named "' . $name . '".');
+			} else {
+				return null;
+			}
 		}
 
 		if (method_exists($this, $getter)) {
@@ -1086,7 +1094,11 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 			$method = new \ReflectionMethod($this, $getter);
 			$realName = lcfirst(substr($method->getName(), 3));
 			if ($realName !== $name) {
-				throw new InvalidParamException('Relation names are case sensitive. ' . get_class($this) . " has a relation named \"$realName\" instead of \"$name\".");
+				if ($throwException) {
+					throw new InvalidParamException('Relation names are case sensitive. ' . get_class($this) . " has a relation named \"$realName\" instead of \"$name\".");
+				} else {
+					return null;
+				}
 			}
 		}
 
@@ -1106,7 +1118,7 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 	 * Note that this method requires that the primary key value is not null.
 	 *
 	 * @param string $name the case sensitive name of the relationship
-	 * @param ActiveRecord $model the model to be linked with the current one.
+	 * @param ActiveRecordInterface $model the model to be linked with the current one.
 	 * @param array $extraColumns additional column values to be saved into the pivot table.
 	 * This parameter is only meaningful for a relationship involving a pivot table
 	 * (i.e., a relation set with [[ActiveRelationTrait::via()]] or `[[ActiveQuery::viaTable()]]`.)
@@ -1141,8 +1153,8 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 				$columns[$k] = $v;
 			}
 			if (is_array($relation->via)) {
-				/** @var $viaClass ActiveRecord */
-				/** @var $record ActiveRecord */
+				/** @var $viaClass ActiveRecordInterface */
+				/** @var $record ActiveRecordInterface */
 				$record = new $viaClass();
 				foreach ($columns as $column => $value) {
 					$record->$column = $value;
@@ -1193,7 +1205,7 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 	 * Otherwise, the foreign key will be set null and the model will be saved without validation.
 	 *
 	 * @param string $name the case sensitive name of the relationship.
-	 * @param ActiveRecord $model the model to be unlinked from the current one.
+	 * @param ActiveRecordInterface $model the model to be unlinked from the current one.
 	 * @param boolean $delete whether to delete the model that contains the foreign key.
 	 * If false, the model's foreign key will be set null and saved.
 	 * If true, the model containing the foreign key will be deleted.
@@ -1221,7 +1233,7 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 				$columns[$b] = $model->$a;
 			}
 			if (is_array($relation->via)) {
-				/** @var $viaClass ActiveRecord */
+				/** @var $viaClass ActiveRecordInterface */
 				if ($delete) {
 					$viaClass::deleteAll($columns);
 				} else {
@@ -1233,6 +1245,7 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 				}
 			} else {
 				/** @var $viaTable string */
+				/** @var Command $command */
 				$command = static::getDb()->createCommand();
 				if ($delete) {
 					$command->delete($viaTable, $columns)->execute();
@@ -1265,7 +1278,7 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 		if (!$relation->multiple) {
 			unset($this->_related[$name]);
 		} elseif (isset($this->_related[$name])) {
-			/** @var ActiveRecord $b */
+			/** @var ActiveRecordInterface $b */
 			foreach ($this->_related[$name] as $a => $b) {
 				if ($model->getPrimaryKey() == $b->getPrimaryKey()) {
 					unset($this->_related[$name][$a]);
@@ -1345,5 +1358,42 @@ abstract class BaseActiveRecord extends Model implements ActiveRecordInterface
 		}
 
 		return $this->generateAttributeLabel($attribute);
+	}
+
+	/**
+	 * @inheritdoc
+	 *
+	 * The default implementation returns the names of the columns whose values have been populated into this record.
+	 */
+	public function fields()
+	{
+		$fields = array_keys($this->_attributes);
+		return array_combine($fields, $fields);
+	}
+
+	/**
+	 * @inheritdoc
+	 *
+	 * The default implementation returns the names of the relations that have been populated into this record.
+	 */
+	public function extraFields()
+	{
+		$fields = array_keys($this->getRelatedRecords());
+		return array_combine($fields, $fields);
+	}
+
+	/**
+	 * Sets the element value at the specified offset to null.
+	 * This method is required by the SPL interface `ArrayAccess`.
+	 * It is implicitly called when you use something like `unset($model[$offset])`.
+	 * @param mixed $offset the offset to unset element
+	 */
+	public function offsetUnset($offset)
+	{
+		if (property_exists($this, $offset)) {
+			$this->$offset = null;
+		} else {
+			unset($this->$offset);
+		}
 	}
 }
