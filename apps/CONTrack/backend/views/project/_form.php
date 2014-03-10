@@ -156,7 +156,7 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'cost_ti')->textInput(['maxlength' => 19]) ?>
 
-		<?= $form->field($model, 'cost_ff&e')->textInput(['maxlength' => 19]) ?>
+		<?= $form->field($model, 'cost_ffe')->textInput(['maxlength' => 19]) ?>
 
 		<?= $form->field($model, 'location_factor')->textInput(['maxlength' => 5]) ?>
 

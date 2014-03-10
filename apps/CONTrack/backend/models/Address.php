@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use yii\helpers\ArrayHelper; //CHANGED MVW 03/08/14
+
 /**
  * This is the model class for table "tbl_address".
  *
@@ -215,4 +217,17 @@ class Address extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(ProjectHasAddress::className(), ['address_id' => 'id']);
 	}
+
+  //CHANGED MVW 03/08/14: Extended address. i.e. to be used in drop down list.   public function getFullName() 
+  public function getFullAddress()
+  {
+    return $this->address1.', '.$this->city.', '.$this->state.', '.$this->postal_code;
+  }
+
+
+  public static function listActiveAddresses() //CHANGED MVW 03/08/14
+  {
+    $query = Address::find()->where(['is_active'=>1])->all();
+    return ArrayHelper::map($query , 'id', 'fullAddress');
+  }
 }

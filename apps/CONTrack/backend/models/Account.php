@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use yii\helpers\ArrayHelper; //CHANGED MVW 03/07/14
+
 /**
  * This is the model class for table "tbl_account".
  *
@@ -15,7 +17,7 @@ namespace backend\models;
  * @property string $description
  * @property string $location
  * @property string $account_picklist_id
- * @property string $status_transaction_picklist_id
+ * @property string $transaction_status_picklist_id
  * @property string $parent_account_id
  * @property integer $is_track_transactions
  * @property string $provider_entity_id
@@ -79,7 +81,7 @@ class Account extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['is_active', 'tenant_id', 'account_picklist_id', 'status_transaction_picklist_id', 'parent_account_id', 'is_track_transactions', 'provider_entity_id', 'gl_code_id', 'project_id', 'is_reported', 'is_bold', 'is_asset', 'is_liability', 'address_id', 'is_paid_by_close', 'months_to_pay', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
+			[['is_active', 'tenant_id', 'account_picklist_id', 'transaction_status_picklist_id', 'parent_account_id', 'is_track_transactions', 'provider_entity_id', 'gl_code_id', 'project_id', 'is_reported', 'is_bold', 'is_asset', 'is_liability', 'address_id', 'is_paid_by_close', 'months_to_pay', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
 			[['tenant_id', 'create_time', 'update_time'], 'required'],
 			[['type', 'budget_impact', 'comment_budget', 'note'], 'string'],
 			[['date_established', 'date_ref', 'date_maturity', 'create_time', 'update_time'], 'safe'],
@@ -97,39 +99,39 @@ class Account extends \yii\db\ActiveRecord
 	{
 		return [
 			'id' => 'ID',
-			'is_active' => 'Is Active',
+			'is_active' => 'Active?',
 			'tenant_id' => 'Tenant ID',
-			'tenant_dbu' => 'Tenant Dbu',
+			'tenant_dbu' => 'Tenant DBU',
 			'type' => 'Type',
 			'account_number' => 'Account Number',
 			'date_established' => 'Date Established',
 			'description' => 'Description',
 			'location' => 'Location',
-			'account_picklist_id' => 'Account Picklist ID',
-			'status_transaction_picklist_id' => 'Status Transaction Picklist ID',
-			'parent_account_id' => 'Parent Account ID',
-			'is_track_transactions' => 'Is Track Transactions',
-			'provider_entity_id' => 'Provider Entity ID',
-			'gl_code_id' => 'Gl Code ID',
-			'project_id' => 'Project ID',
+			'account_picklist_id' => 'Account',
+			'transaction_status_picklist_id' => 'Status',
+			'parent_account_id' => 'Parent Account',
+			'is_track_transactions' => 'Track Transactions?',
+			'provider_entity_id' => 'Provider',
+			'gl_code_id' => 'GL Account',
+			'project_id' => 'Project',
 			'ref_number' => 'Ref Number',
 			'date_ref' => 'Date Ref',
 			'budget_impact' => 'Budget Impact',
 			'gross_amount' => 'Gross Amount',
 			'adjustment' => 'Adjustment',
 			'net_amount' => 'Net Amount',
-			'is_reported' => 'Is Reported',
+			'is_reported' => 'Report?',
 			'comment_budget' => 'Comment Budget',
-			'is_bold' => 'Is Bold',
+			'is_bold' => 'Bold?',
 			'beginning_balance' => 'Beginning Balance',
 			'current_balance' => 'Current Balance',
-			'is_asset' => 'Is Asset',
-			'is_liability' => 'Is Liability',
+			'is_asset' => 'Asset?',
+			'is_liability' => 'Liability?',
 			'date_maturity' => 'Date Maturity',
 			'face_amount' => 'Face Amount',
 			'current_value' => 'Current Value',
-			'address_id' => 'Address ID',
-			'is_paid_by_close' => 'Is Paid By Close',
+			'address_id' => 'Address',
+			'is_paid_by_close' => 'Paid By Close?',
 			'rate_interest' => 'Rate Interest',
 			'payment_min' => 'Payment Min',
 			'months_to_pay' => 'Months To Pay',
@@ -138,9 +140,9 @@ class Account extends \yii\db\ActiveRecord
 			'model' => 'Model',
 			'note' => 'Note',
 			'create_time' => 'Create Time',
-			'created_by_entity_id' => 'Created By Entity ID',
+			'created_by_entity_id' => 'Created By',
 			'update_time' => 'Update Time',
-			'updated_by_entity_id' => 'Updated By Entity ID',
+			'updated_by_entity_id' => 'Updated By',
 		];
 	}
 
@@ -211,9 +213,9 @@ class Account extends \yii\db\ActiveRecord
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getStatusTransactionPicklist()
+	public function getTransactionStatusPicklist()
 	{
-		return $this->hasOne(Picklist::className(), ['id' => 'status_transaction_picklist_id']);
+		return $this->hasOne(Picklist::className(), ['id' => 'transaction_status_picklist_id']);
 	}
 
 	/**
@@ -231,4 +233,23 @@ class Account extends \yii\db\ActiveRecord
 	{
 		return $this->hasOne(Entity::className(), ['id' => 'updated_by_entity_id']);
 	}
+
+  public static function listActiveAccounts() //CHANGED MVW 03/08/14
+  {
+    $query = (new \yii\db\Query())
+      ->select('id','description')
+      ->from('tbl_account')
+      ->where([
+        'is_active' => 1,
+        'description' => !'empty',
+        // 'type' => 'Person',
+        // 'is_tenant' => 1,
+        ])
+      ->distinct(true) //FIXME Need to select id and description but unique on description
+      ->OrderBy('description')
+      ->all();
+
+    // $query = Account::find()->where(['is_active'=>1, 'description' => !'empty'])->all();
+    return ArrayHelper::map($query , 'id', 'description');
+  }
 }

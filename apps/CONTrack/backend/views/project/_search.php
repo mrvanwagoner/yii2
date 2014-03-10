@@ -171,7 +171,7 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'cost_ti') ?>
 
-		<?php // echo $form->field($model, 'cost_ff&e') ?>
+		<?php // echo $form->field($model, 'cost_ffe') ?>
 
 		<?php // echo $form->field($model, 'location_factor') ?>
 

@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use yii\helpers\ArrayHelper; //CHANGED MVW 03/08/14
+
 /**
  * This is the model class for table "tbl_code".
  *
@@ -218,4 +220,10 @@ class Code extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(Task::className(), ['code_id' => 'id']);
 	}
+
+  public static function listActiveGlCodes() //CHANGED MVW 03/08/14
+  {
+    $query = Code::find()->where(['is_active'=>1, 'description' => !'empty', 'type' => 'Ledger'])->all();
+    return ArrayHelper::map($query , 'id', 'description');
+  }
 }

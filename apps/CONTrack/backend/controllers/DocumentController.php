@@ -8,6 +8,7 @@ use backend\models\search\DocumentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\VerbFilter;
+use yii\web\UploadedFile; //CHANGED MVW 03/07/14
 
 /**
  * DocumentController implements the CRUD actions for Document model.
@@ -117,4 +118,24 @@ class DocumentController extends Controller
 			throw new NotFoundHttpException('The requested page does not exist.');
 		}
 	}
+
+  //CHANGED MVW 03/07/14: See http://www.yiiframework.com/forum/index.php/topic/51243-imagefile-upload-in-yii2/ and http://www.yiiframework.com/wiki/2/how-to-upload-a-file-using-a-model/
+  public function actionUpload()
+  {
+    $model = new Document;
+    if (!empty($_POST)) 
+    {
+      // $model->file_name = $_POST['Demo']['image'];
+      $model->attributes = $_POST['Item'];
+      $file = UploadedFile::getInstance($model, 'file_name');
+      var_dump($file);
+      // You can then do the following
+      if ($model->save())
+      {
+        $file->saveAs('/Users/Marty/Sites/Yii2/apps/CONTrack/data');//FIXME Create folder based on Tenant
+      }
+      // It's better if you relegate such a code to your model class
+    }
+    return $this->render('upload', ['model'=>$model]);
+  }
 }

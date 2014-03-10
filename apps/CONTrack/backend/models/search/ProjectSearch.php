@@ -88,7 +88,7 @@ class ProjectSearch extends Model
 	public $cost_building;
 	public $cost_soft;
 	public $cost_ti;
-	public $cost_ff&e;
+	public $cost_ffe;
 	public $location_factor;
 	public $inflation_factor;
 	public $sf_cost_site;
@@ -115,7 +115,7 @@ class ProjectSearch extends Model
 		return [
 			[['id', 'is_active', 'tenant_id', 'tenant_dbu', 'is_template', 'is_route', 'address_id', 'construction_classification_id', 'project_status_picklist_id', 'is_track_loan', 'is_track_purchase', 'is_track_cost', 'is_track_compare', 'is_track_qto', 'is_track_schedule', 'is_track_draw', 'is_track_lien', 'is_track_completion', 'is_track_quality', 'sponsor_entity_id', 'client_entity_id', 'lead_picklist_id', 'need_picklist_id', 'purpose_picklist_id', 'loan_classification_id', 'loan_term', 'loan_term_remaining', 'is_first_time', 'is_first_position', 'is_long_term', 'is_waive_escrow', 'is_payment_fixed', 'is_current_on_payments', 'is_pmi', 'is_fsbo', 'is_listing_expired', 'work_week', 'work_day', 'template_project_id', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
 			[['type', 'project_number', 'description', 'property_use', 'date_close', 'date_maturity', 'date_reprice', 'date_balloon', 'date_end_pmi', 'date_purchase', 'date_listing', 'date_start', 'date_finish', 'note', 'create_time', 'update_time'], 'safe'],
-			[['appraised_value', 'loan_amount', 'loan_balance', 'rate_interest', 'points', 'loan_fees', 'down_payment', 'payment_max', 'payment_pi', 'payment_total', 'equity_property', 'subordination_amount', 'cash_out_amount', 'tax_property', 'hazard_insurance', 'amount_pmi', 'selling_price', 'purchase_price', 'gross_rent', 'rate_occupancy', 'cost_land', 'cost_site', 'cost_gc', 'cost_building', 'cost_soft', 'cost_ti', 'cost_ff&e', 'location_factor', 'inflation_factor', 'sf_cost_site', 'sf_cost_building', 'sf_cost_ti', 'sf_cost_total', 'percent_gc', 'percent_permit', 'percent_design', 'percent_bond', 'percent_liability', 'percent_contingency', 'percent_fee', 'percent_soft'], 'number'],
+			[['appraised_value', 'loan_amount', 'loan_balance', 'rate_interest', 'points', 'loan_fees', 'down_payment', 'payment_max', 'payment_pi', 'payment_total', 'equity_property', 'subordination_amount', 'cash_out_amount', 'tax_property', 'hazard_insurance', 'amount_pmi', 'selling_price', 'purchase_price', 'gross_rent', 'rate_occupancy', 'cost_land', 'cost_site', 'cost_gc', 'cost_building', 'cost_soft', 'cost_ti', 'cost_ffe', 'location_factor', 'inflation_factor', 'sf_cost_site', 'sf_cost_building', 'sf_cost_ti', 'sf_cost_total', 'percent_gc', 'percent_permit', 'percent_design', 'percent_bond', 'percent_liability', 'percent_contingency', 'percent_fee', 'percent_soft'], 'number'],
 		];
 	}
 
@@ -202,7 +202,7 @@ class ProjectSearch extends Model
 			'cost_building' => 'Cost Building',
 			'cost_soft' => 'Cost Soft',
 			'cost_ti' => 'Cost Ti',
-			'cost_ff&e' => 'Cost Ff&e',
+			'cost_ffe' => 'Cost ffe',
 			'location_factor' => 'Location Factor',
 			'inflation_factor' => 'Inflation Factor',
 			'sf_cost_site' => 'Sf Cost Site',
@@ -314,7 +314,7 @@ class ProjectSearch extends Model
 		$this->addCondition($query, 'cost_building');
 		$this->addCondition($query, 'cost_soft');
 		$this->addCondition($query, 'cost_ti');
-		$this->addCondition($query, 'cost_ff&e');
+		$this->addCondition($query, 'cost_ffe');
 		$this->addCondition($query, 'location_factor');
 		$this->addCondition($query, 'inflation_factor');
 		$this->addCondition($query, 'sf_cost_site');

@@ -342,7 +342,7 @@ class Picklist extends \yii\db\ActiveRecord
     // return ArrayHelper::map(Picklist::find()->where(['is_active'=>1,'type'=>'Type', 'is_tenant'=>1])->all(), 'id', 'description' );//CHANGED This works too
   }
 
-  //CHANGED MVW 03/06/14. Added. See listTenantTyupes for additional notes
+  //CHANGED MVW 03/06/14. Added. See listTenantTypes for additional notes
   public static function listCredit()
   {
     $query = (new \yii\db\Query())
@@ -359,7 +359,7 @@ class Picklist extends \yii\db\ActiveRecord
     return ArrayHelper::map($query, 'id', 'description');
   }
 
-  //CHANGED MVW 03/06/14. Added. See listTenantTyupes for additional notes
+  //CHANGED MVW 03/06/14. Added. See listTenantTypes for additional notes
   public static function listOrder()
   {
     $query = (new \yii\db\Query())
@@ -376,7 +376,7 @@ class Picklist extends \yii\db\ActiveRecord
     return ArrayHelper::map($query, 'id', 'description');
   }
 
-  //CHANGED MVW 03/06/14. Added. See listTenantTyupes for additional notes
+  //CHANGED MVW 03/06/14. Added. See listTenantTypes for additional notes
   public static function listEthnicity()
   {
     $query = (new \yii\db\Query())
@@ -393,7 +393,7 @@ class Picklist extends \yii\db\ActiveRecord
     return ArrayHelper::map($query, 'id', 'description');
   }
 
-  //CHANGED MVW 03/06/14. Added. See listTenantTyupes for additional notes
+  //CHANGED MVW 03/06/14. Added. See listTenantTypes for additional notes
   public static function listNeed()
   {
     $query = (new \yii\db\Query())

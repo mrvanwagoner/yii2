@@ -39,6 +39,12 @@ return [
       'enablePrettyUrl' => true,
       'showScriptName' => false,
     ],
+    //CHANGED MVW 03/08/14: Added UrlManager for Frontend. See https://github.com/yiisoft/yii2/issues/1578.
+      //To use: Yii::$app->urlManagerFrontEnd->createUrl();
+    'urlManagerFrontEnd' => [
+      'enablePrettyUrl' => true,
+      'showScriptName' => false,
+    ],
     //CHANGED MVW 02/25/14: Works with CONTrack/.htaccess, common/components/Request.php, and frontend/config/main.php. See http://aaronfrancis.com/blog/2014/1/9/hosting-an-advanced-yii2-application-on-heroku
     'request'=>[
         'class' => 'common\components\Request',

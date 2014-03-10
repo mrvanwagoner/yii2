@@ -37,7 +37,7 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'account_picklist_id') ?>
 
-		<?php // echo $form->field($model, 'status_transaction_picklist_id') ?>
+		<?php // echo $form->field($model, 'transaction_status_picklist_id') ?>
 
 		<?php // echo $form->field($model, 'parent_account_id') ?>
 

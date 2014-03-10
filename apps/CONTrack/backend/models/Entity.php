@@ -172,7 +172,8 @@ class Entity extends \yii\db\ActiveRecord
 			[['db_username'], 'string', 'max' => 16],
 			[['db_password'], 'string', 'max' => 1024],
 			[['auth_key'], 'string', 'max' => 32],
-			[['salt'], 'string', 'max' => 40]
+			[['salt'], 'string', 'max' => 40],
+			[['organization_type', 'employment_status', 'gender', 'marital_status', 'military_status'], 'default', 'value' => null],//CHANGED MVW 03/08/14: Needed so ENUM can be created or updated to NULL
 		];
 	}
 
@@ -187,8 +188,8 @@ class Entity extends \yii\db\ActiveRecord
 			'type' => 'Type',
 			'name' => 'Name',
 			'contact' => 'Contact',
-			'aka' => 'Aka',
-			'dba' => 'Dba',
+			'aka' => 'AKA',
+			'dba' => 'DBA',
 			'middle_name' => 'Middle Name',
 			'suffix' => 'Suffix',
 			'previous_name' => 'Previous Name',
@@ -199,8 +200,8 @@ class Entity extends \yii\db\ActiveRecord
 			'is_customer' => 'Is Customer?',
 			'tenant_type_picklist_id' => 'Tenant Type',
 			'is_tenant_enabled' => 'Is Tenant Enabled?',
-			'db_username' => 'Db Username',
-			'db_password' => 'Db Password',
+			'db_username' => 'DB Username',
+			'db_password' => 'DB Password',
 			'is_track_customers' => 'Track Customers?',
 			'is_track_providers' => 'Track Providers?',
 			'is_track_employees' => 'Track Employees?',
@@ -210,14 +211,14 @@ class Entity extends \yii\db\ActiveRecord
 			'is_track_content' => 'Track Content?',
 			'is_branded' => 'Is Tenant Branded?',
 			'slogan' => 'Slogan',
-			'logo_document_id' => 'Logo Document ID',
+			'logo_document_id' => 'Company Logo Document',
 			'is_user_enabled' => 'Is User Enabled?',
 			'username' => 'Username',
 			'auth_key' => 'Auth Key',
 			'password_hash' => 'Password',
 			'password_reset_token' => 'Password Reset Token',
 			'salt' => 'Salt',
-			'current_role_id' => 'Current Role ID',
+			'current_role_id' => 'Current Role',
 			'last_sign_in_time' => 'Last Sign In Time',
 			'x_reset_password_sent_time' => 'X Reset Password Sent Time',
 			'x_remember_created_time' => 'X Remember Created Time',
@@ -225,7 +226,7 @@ class Entity extends \yii\db\ActiveRecord
 			'x_current_sign_in_time' => 'X Current Sign In Time',
 			'x_current_sign_in_ip' => 'X Current Sign In Ip',
 			'x_last_sign_in_ip' => 'X Last Sign In Ip',
-			'is_provider_approved' => 'Is Provider Approved?',
+			'is_provider_approved' => 'Is Approved Provider?',
 			'organization_type' => 'Organization Type',
 			'is_1099_eligible' => 'Is 1099 Eligible?',
 			'is_material_only' => 'Is Material Only?',
@@ -271,9 +272,9 @@ class Entity extends \yii\db\ActiveRecord
 			'folder_location' => 'Folder Location',
 			'note' => 'Note',
 			'create_time' => 'Created',
-			'created_by_entity_id' => 'Created By Entity ID',
+			'created_by_entity_id' => 'Created By',
 			'update_time' => 'Update',
-			'updated_by_entity_id' => 'Updated By Entity ID',
+			'updated_by_entity_id' => 'Updated By',
 		];
 	}
 
@@ -654,7 +655,6 @@ class Entity extends \yii\db\ActiveRecord
 	}
 
   //CHANGED MVW 12/11/13: Extended name. i.e. to be used in drop down list. http://stackoverflow.com/questions/12812062/in-yii-framework-how-can-i-combine-two-columns-and-show-as-display-string-in-dro
-  //FIXME This is not working??? (see listActiveUsers)
   public function getFullName() 
   {
     // $entity = new Entity;
@@ -675,7 +675,7 @@ class Entity extends \yii\db\ActiveRecord
         // 'type' => 'Person',
         // 'is_tenant' => 1,
         ])
-       ->OrderBy('name')
+      ->OrderBy('name')
       ->all();
 
     return ArrayHelper::map($query, 'id', 'name');
@@ -706,9 +706,11 @@ class Entity extends \yii\db\ActiveRecord
 
     $query = Entity::find()->where(['is_active'=>1, 'type'=>'Person', 'is_user'=>1])->all();
     return ArrayHelper::map($query , 'id', 'fullName');
-
-
-
-
   }
+
+  public Static function listActiveProviders() //CHANGED MVW 03/08/14
+  {
+      $query = Entity::find()->where(['is_active'=>1, 'is_provider'=>1])->all();
+      return ArrayHelper::map($query , 'id', 'fullName');
+    }
 }

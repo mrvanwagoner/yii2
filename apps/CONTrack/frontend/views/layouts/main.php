@@ -35,8 +35,9 @@ AppAsset::register($this);
 			]);
 			$menuItems = [
 				['label' => 'Home', 'url' => ['/site/index']],
-				['label' => 'About', 'url' => ['/site/about']],
-				['label' => 'Contact', 'url' => ['/site/contact']],
+				//['label' => 'About', 'url' => ['/site/about']], //CHANGED VJT 03/08/14
+				['label' => 'Admin', 'url' => ['/admin/']],
+				['label' => 'Contact', 'url' => ['/site/contact']], //CHANGED VJT 03/08/14
 			];
 			if (Yii::$app->user->isGuest) {
         //CHANGED MVW 02/26/14: Was Signup

@@ -22,25 +22,26 @@ $this->params['breadcrumbs'][] = $this->title;
 		<?= Html::a('Create Account', ['create'], ['class' => 'btn btn-success']) ?>
 	</p>
 
-	<?php echo GridView::widget([
+	<?php echo GridView::widget([ //CHANGED MVW 03/10/14: See http://yii2-api.yupe.ru/class-yii.grid.GridView.html#$caption
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
+    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/10/14: 'table table-condensed', 'table table-striped', 'table-bordered'
 		'columns' => [
 			['class' => 'yii\grid\SerialColumn'],
 
-			'id',
+      // 'id',
 			'is_active',
-			'tenant_id',
-			'tenant_dbu',
+      // 'tenant_id',
+      // 'tenant_dbu',
 			'type',
-			// 'account_number',
-			// 'date_established',
-			// 'description',
-			// 'location',
+      'account_number',
+      // 'date_established',
+      'description',
+      'location',
 			// 'account_picklist_id',
-			// 'status_transaction_picklist_id',
-			// 'parent_account_id',
-			// 'is_track_transactions',
+			// 'transaction_status_picklist_id',
+      'parent_account_id',
+      // 'is_track_transactions',
 			// 'provider_entity_id',
 			// 'gl_code_id',
 			// 'project_id',
@@ -75,6 +76,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'updated_by_entity_id',
 
 			['class' => 'yii\grid\ActionColumn'],
+      "date_established:date",
+      // "is_track_transactions:checkbox", //CHANGED MVW 03/10/14: Formats: text, currency
 		],
 	]); ?>
 

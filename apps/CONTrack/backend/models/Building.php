@@ -92,9 +92,9 @@ class Building extends \yii\db\ActiveRecord
 	{
 		return [
 			'id' => 'ID',
-			'is_active' => 'Is Active',
+			'is_active' => 'Active?',
 			'tenant_id' => 'Tenant ID',
-			'tenant_dbu' => 'Tenant Dbu',
+			'tenant_dbu' => 'Tenant DB',
 			'construction_classification_id' => 'Construction Classification ID',
 			'building_number' => 'Building Number',
 			'description' => 'Description',

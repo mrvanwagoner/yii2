@@ -105,7 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'cost_building',
 			// 'cost_soft',
 			// 'cost_ti',
-			// 'cost_ff&e',
+			// 'cost_ffe',
 			// 'location_factor',
 			// 'inflation_factor',
 			// 'sf_cost_site',

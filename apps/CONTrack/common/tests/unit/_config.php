@@ -7,10 +7,10 @@ return yii\helpers\ArrayHelper::merge(
 	[
 		'components' => [
 			'db' => [
-        //CHANGED MVW 02/26/14: Was 'yii2_advanced...'
-				'dsn' => 'mysql:host=localhost;dbname=CONTrack_unit',
+				'dsn' => 'mysql:host=localhost;dbname=CONTrack_unit', //CHANGED MVW 02/26/14: Was 'yii2_advanced...'
 			],
-			'id' => 'app-common',
 		],
+		'id' => 'app-common',
+		'basePath' => dirname(__DIR__),
 	]
 );
