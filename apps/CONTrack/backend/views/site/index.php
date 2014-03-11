@@ -1,6 +1,7 @@
 <?php
 
 use kartik\widgets\SideNav;
+use miloschuman\highcharts\Highcharts;
 
 /**
  * @var yii\web\View $this
@@ -16,13 +17,77 @@ $this->title = 'CONTrack'; //CHANGED MVW 02/26/14: Changed from My Yii Applicati
 		<p class="lead">Admin Home Page</p><!-- CHANGED MVW 03/10/14 -->
 
 		<p><a class="btn btn-lg btn-success" href="http://www.contrack.net">Get started with CONTrack</a></p><!--CHANGED VJT 03/10/14 -->
+
+
+
+
+
+<?php echo Highcharts::widget([
+   'options'=>'{
+      "title": { "text": "Inspections" },
+      "xAxis": {
+         "categories": ["January", "February", "March"]
+      },
+      "yAxis": {
+         "title": { "text": "Number of Inspections" }
+      },
+      "series": [
+         { "name": "Jane", "data": [1, 0, 4] },
+         { "name": "John", "data": [5, 7,3] }
+      ]
+   }'
+]);
+?>
+<?php /*?><?php
+use bburim\flot\Chart as Chart;
+
+echo Chart::widget([
+    'data' => [
+        [
+            'label' => 'line', 
+            'data'  => [
+                [1, 1],
+                [2,7],
+                [3,12],
+                [4,32],
+                [5,62],
+                [6,89],
+            ],
+            'lines'  => ['show' => true],
+            'points' => ['show' => true],
+        ],
+        [
+            'label' => 'bars', 
+            'data'  => [
+                [1,12],
+                [2,16],
+                [3,89],
+                [4,44],
+                [5,38],
+            ],
+            'bars' => ['show' => true],
+        ],
+    ],
+    'options' => [
+        'legend' => [
+            'position'          => 'nw',
+            'show'              => true,
+            'margin'            => 10,
+            'backgroundOpacity' => 0.5
+        ],
+    ],
+    'htmlOptions' => [
+        'style' => 'width:400px;height:400px;'
+    ]
+]);
+?><?php */?>
 	</div>
 
 	<div class="body-content">
 
 		<div class="row">
 			<div class="col-lg-4">
-        <? ?>
+        
 				<h2>What is CONTrack?</h2>
 
 				<p><!-- This file is located at: <strong>\backend\views\site\index.php</strong> --><!-- CHANGED MVW 03/08/14-->CONTrack is a construction tracking system that integrates the entire construction process from conception to close-out betwen Owner, Builder, Inspector, and Lender, each accessing the Project with their own secure login. Users can also utilize CONTrack independently of other parties to manage non-integrated Projects of their own.</p><!--CHANGED MVW 03/10/14 -->

@@ -26,7 +26,7 @@ AppAsset::register($this);
 	<div class="wrap">
 		<?php
 			NavBar::begin([
-				'brandLabel' => 'CONTrack', //CHANGED MVY 02/25/14: Changed My Company to CONTrack
+				'brandLabel' => ' ',
 				'brandUrl' => Yii::$app->homeUrl,
 				'options' => [
 					'class' => 'navbar-inverse navbar-fixed-top',
@@ -53,24 +53,27 @@ AppAsset::register($this);
 			NavBar::end();
 		?>
 
-		<div class="container-fluid"><!--CHANGED VJT 03/10/14 -->
+		<div class="container-fluid">
+         
+        
+        
 		<?= Breadcrumbs::widget([
 			'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-		]) ?>
-    <div ><!--CHANGED VJT 3/10/14: add side links div sidenav-->
+		]) ?><br>
+<!--    <div >
       	<ul style="list-style-type:none;margin:0 auto;">
-        	<li style="display:inline;padding-right:15px;"><a href="/admin/account/">Accounts</a></li>
-        	<li style="display:inline;padding-right:15px;"><a href="/admin/address/">Addresses</a></li>
+          <li style="display:inline;padding-right:15px;"><a href="/admin/account/">Accounts</a></li>
+          <li style="display:inline;padding-right:15px;"><a href="/admin/address/">Addresses</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/building/">Buildings</a></li>
-        	<li style="display:inline;padding-right:15px;"><a href="/admin/campaign/">Campaigns</a></li>
+          <li style="display:inline;padding-right:15px;"><a href="/admin/campaign/">Campaigns</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/classification/">Classifications</a></li>
-        	<li style="display:inline;padding-right:15px;"><a href="/admin/code/">Codes</a></li>
+          <li style="display:inline;padding-right:15px;"><a href="/admin/code/">Codes</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/contact/">Contacts</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/correspondence/">Correspondence</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/document/">Documents</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/email/">Email</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/entity/">Entities</a></li>
-<!--          <li style="display:inline;padding-right:15px;"><a href="/admin/phone/">Phone</a></li>
+          <li style="display:inline;padding-right:15px;"><a href="/admin/phone/">Phone</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/picklist/">Picklist</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/project/">Projects</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/project-team/">Project Team</a></li>
@@ -78,38 +81,88 @@ AppAsset::register($this);
           <li style="display:inline;padding-right:15px;"><a href="/admin/relationship/">Relationships</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/role/">Roles</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/task/">Tasks</a></li>              
-        </ul>-->
+        </ul>
+
         
+    </div>--><!-- end inline nav -->
+     <div class="col-sm-3">     
         <?php
         echo SideNav::widget([
 	'type' => SideNav::TYPE_DEFAULT,
-	'heading' => 'Options',
+	'heading' => 'Admin Pages',
 	'items' => [
 		[
-			'url' => '#',
+			'url' => '/admin',
 			'label' => 'Home',
 			'icon' => 'home'
 		],
 		[
-			'label' => 'Help',
-			'icon' => 'question-sign',
+			'label' => 'Account Info',
+			'icon' => 'picture',
 			'items' => [
-				['label' => 'About', 'icon'=>'info-sign', 'url'=>'#'],
-				['label' => 'Contact', 'icon'=>'phone', 'url'=>'#'],
+				['label' => 'Accounts', 'icon'=>'folder-open', 'url'=>'/admin/account'],
+				['label' => 'Addresses', 'icon'=>'tree-deciduous', 'url'=>'/admin/address'],
+				['label' => 'Buildings', 'icon'=>'tower', 'url'=>'/admin/building'],
+				['label' => 'Contacts', 'icon'=>'phone-alt', 'url'=>'/admin/contact'],
+			],
+		],
+		[
+			'label' => 'Codes',
+			'icon' => 'hdd',
+			'items' => [
+				['label' => 'Campaigns', 'icon'=>'tasks', 'url'=>'/admin/campaign'],
+				['label' => 'Classifications', 'icon'=>'list-alt', 'url'=>'/admin/classification'],
+				['label' => 'Codes', 'icon'=>'qrcode', 'url'=>'/admin/code'],
+			],
+		],
+		[
+			'label' => 'Correspondence',
+			'icon' => 'envelope',
+			'items' => [
+				['label' => 'Correspondence', 'icon'=>'send', 'url'=>'/admin/correspondence'],
+				['label' => 'Phone', 'icon'=>'phone', 'url'=>'/admin/phone'],
+				['label' => 'Email', 'icon'=>'envelope', 'url'=>'/admin/email'],
+				['label' => 'Documents', 'icon'=>'file', 'url'=>'/admin/documents'],
+			],
+		],
+		[
+			'label' => 'Entities',
+			'icon' => 'lock',
+			'items' => [
+				['label' => 'Entities', 'icon'=>'briefcase', 'url'=>'/admin/entity'],
+				['label' => 'Relationships', 'icon'=>'th', 'url'=>'/admin/relationship'],
+				['label' => 'Roles', 'icon'=>'user', 'url'=>'/admin/role'],
+			],
+		],
+		[
+			'label' => 'Projects',
+			'icon' => 'th-large',
+			'items' => [
+				['label' => 'Project', 'icon'=>'th-list', 'url'=>'/admin/project'],
+				['label' => 'Project Team', 'icon'=>'th', 'url'=>'/admin/project-team'],
+				['label' => 'Picklist', 'icon'=>'ok', 'url'=>'/admin/picklist'],
+			],
+		],
+		[
+			'label' => 'Tasks',
+			'icon' => 'envelope',
+			'items' => [
+				['label' => 'Tasks', 'icon'=>'list-alt', 'url'=>'/admin/task'],
+				['label' => 'Rates', 'icon'=>'signal', 'url'=>'/admin/rate'],
 			],
 		],
 	],
-]);
-        
-        
-        
+]);       
         ?>
-        
-    </div><!-- end sidenav -->
+        </div>  
+      <div class="col-sm-9">
+    
+    
+    
 		<?= $content ?>
 		</div>
 	</div>
-
+</div>
 	<footer class="footer">
 		<div class="container-fluid"><!--CHANGED VJT 03/10/14 -->
   		<p class="pull-left">&copy; Dutch Web Development <?= date('Y') //CHANGED MVW 02/26/24: From My Company ?></p>
