@@ -54,8 +54,6 @@ AppAsset::register($this);
 		?>
 
 		<div class="container-fluid">
-         
-        
         
 		<?= Breadcrumbs::widget([
 			'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -82,8 +80,6 @@ AppAsset::register($this);
           <li style="display:inline;padding-right:15px;"><a href="/admin/role/">Roles</a></li>
           <li style="display:inline;padding-right:15px;"><a href="/admin/task/">Tasks</a></li>              
         </ul>
-
-        
     </div> --><!-- end inline nav -->
      <div class="col-sm-3">     
         <?php
@@ -94,60 +90,63 @@ AppAsset::register($this);
 		[
 			'url' => '/admin',
 			'label' => 'Home',
-			'icon' => 'home'
-		],
-		[
-			'label' => 'Account Info',
-			'icon' => 'picture',
-			'items' => [
-				['label' => 'Accounts', 'icon'=>'folder-open', 'url'=>'/admin/account'],
-				['label' => 'Addresses', 'icon'=>'tree-deciduous', 'url'=>'/admin/address'],
-				['label' => 'Buildings', 'icon'=>'tower', 'url'=>'/admin/building'],
-				['label' => 'Contacts', 'icon'=>'phone-alt', 'url'=>'/admin/contact'],
-			],
-		],
-		[
-			'label' => 'Codes',
-			'icon' => 'hdd',
-			'items' => [
-				['label' => 'Campaigns', 'icon'=>'tasks', 'url'=>'/admin/campaign'],
-				['label' => 'Classifications', 'icon'=>'list-alt', 'url'=>'/admin/classification'],
-				['label' => 'Codes', 'icon'=>'qrcode', 'url'=>'/admin/code'],
-			],
-		],
-		[
-			'label' => 'Correspondence',
-			'icon' => 'envelope',
-			'items' => [
-				['label' => 'Correspondence', 'icon'=>'send', 'url'=>'/admin/correspondence'],
-				['label' => 'Phone', 'icon'=>'phone', 'url'=>'/admin/phone'],
-				['label' => 'Email', 'icon'=>'envelope', 'url'=>'/admin/email'],
-				['label' => 'Documents', 'icon'=>'file', 'url'=>'/admin/documents'],
-			],
-		],
-		[
-			'label' => 'Entities',
-			'icon' => 'lock',
-			'items' => [
-				['label' => 'Entities', 'icon'=>'briefcase', 'url'=>'/admin/entity'],
-				['label' => 'Relationships', 'icon'=>'th', 'url'=>'/admin/relationship'],
-				['label' => 'Roles', 'icon'=>'user', 'url'=>'/admin/role'],
-			],
+			'icon' => 'home' //FIXME List of icons: http://getbootstrap.com/2.3.2/base-css.html#images, http://glyphicons.com
 		],
 		[
 			'label' => 'Projects',
-			'icon' => 'th-large',
+			'icon' => 'picture', //'icon'=>'th', 'icon' => 'th-large', 'picture'
 			'items' => [
 				['label' => 'Project', 'icon'=>'th-list', 'url'=>'/admin/project'],
-				['label' => 'Project Team', 'icon'=>'th', 'url'=>'/admin/project-team'],
-				['label' => 'Picklist', 'icon'=>'ok', 'url'=>'/admin/picklist'],
+				['label' => 'Addresses', 'icon'=>'tree-deciduous', 'url'=>'/admin/address'],
+				['label' => 'Buildings', 'icon'=>'tower', 'url'=>'/admin/building'],
+				['label' => 'Project Team', 'icon'=>'user', 'url'=>'/admin/project-team'],
+				['label' => 'Tasks', 'icon'=>'list-alt', 'url'=>'/admin/task'], //'icon'=>'list-alt', 'calendar'
 			],
 		],
 		[
-			'label' => 'Tasks',
+			'label' => 'Contacts',
+			'icon' => 'user',  //'user', 'globe'
+			'items' => [
+				['label' => 'Contacts', 'icon'=>'earphone', 'url'=>'/admin/contact'], //'phone'
+				['label' => 'Roles', 'icon'=>'user', 'url'=>'/admin/role'],
+				['label' => 'Entities', 'icon'=>'briefcase', 'url'=>'/admin/entity'], //'briefcase'
+				['label' => 'Relationships', 'icon'=>'random', 'url'=>'/admin/relationship'], //'th', 'globe', 'random'
+				['label' => 'Addresses', 'icon'=>'tree-deciduous', 'url'=>'/admin/address'], //'tree-deciduous', 'tree-conifer'
+				['label' => 'Phone', 'icon'=>'phone-alt', 'url'=>'/admin/phone'],
+				['label' => 'Email', 'icon'=>'envelope', 'url'=>'/admin/email'],
+			],
+		],
+		[
+			'label' => 'Budget/Draws',
+			'icon' => 'usd', //'envelope'. 'music', 'shopping-cart', credit-card
+			'items' => [
+				['label' => 'Accounts', 'icon'=>'folder-open', 'url'=>'/admin/account'],
+			],
+		],
+		[
+			'label' => 'Progress/Inspections',
+			'icon' => 'camera', //'lock', 'unlock', 'search'
+			'items' => [
+				['label' => 'Accounts', 'icon'=>'folder-open', 'url'=>'/admin/account'],
+				['label' => 'Comments', 'icon'=>'pencil', 'url'=>'/admin/documents'],
+				['label' => 'Documents', 'icon'=>'file', 'url'=>'/admin/documents'], //'icon'=>'file'
+			],
+		],
+		[
+			'label' => 'Campaigns',
 			'icon' => 'envelope',
 			'items' => [
-				['label' => 'Tasks', 'icon'=>'list-alt', 'url'=>'/admin/task'],
+				['label' => 'Campaigns', 'icon'=>'tasks', 'url'=>'/admin/campaign'],
+				['label' => 'Correspondence', 'icon'=>'send', 'url'=>'/admin/correspondence'],
+			],
+		],
+		[
+			'label' => 'Support',
+ 			'icon' => 'cog', //'icon' => 'hdd', 'cog', 'wrench'
+			'items' => [
+				['label' => 'Classifications', 'icon'=>'list-alt', 'url'=>'/admin/classification'],
+				['label' => 'Codes', 'icon'=>'qrcode', 'url'=>'/admin/code'],
+				['label' => 'Picklist', 'icon'=>'ok', 'url'=>'/admin/picklist'],
 				['label' => 'Rates', 'icon'=>'signal', 'url'=>'/admin/rate'],
 			],
 		],
@@ -165,7 +164,7 @@ AppAsset::register($this);
 </div>
 	<footer class="footer">
 		<div class="container-fluid"><!--CHANGED VJT 03/10/14 -->
-  		<p class="pull-left">&copy; Dutch Web Development <?= date('Y') //CHANGED MVW 02/26/24: From My Company ?></p>
+  		<p class="pull-left">&copy; Dutch Web Development 1982 - <?= date('Y') //CHANGED MVW 02/26/24: From My Company ?></p>
       <p class="pull-right"><?//= Yii::powered() //CHANGED MVW 02/26/24: Delete powered() ?></p>
 		</div>
 	</footer>
