@@ -27,11 +27,12 @@ use yii\helpers\ArrayHelper; //CHANGED MVW 03/08/14
  * @property integer $is_track_schedule
  * @property integer $is_track_draw
  * @property integer $is_track_lien
- * @property integer $is_track_completion
+ * @property integer $is_track_progress
  * @property integer $is_track_quality
  * @property string $sponsor_entity_id
  * @property string $client_entity_id
  * @property string $lead_picklist_id
+ * @property string $project_document_picklist_id
  * @property string $need_picklist_id
  * @property string $purpose_picklist_id
  * @property string $property_use
@@ -113,6 +114,7 @@ use yii\helpers\ArrayHelper; //CHANGED MVW 03/08/14
  * @property Classification $constructionClassification
  * @property Entity $createdByEntity
  * @property Picklist $leadPicklist
+ * @property Picklist $projectDocumentPicklist
  * @property Picklist $needPicklist
  * @property Picklist $projectStatusPicklist
  * @property Picklist $purposePicklist
@@ -143,7 +145,7 @@ class Project extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['is_active', 'tenant_id', 'tenant_dbu', 'is_template', 'is_route', 'address_id', 'construction_classification_id', 'project_status_picklist_id', 'is_track_loan', 'is_track_purchase', 'is_track_cost', 'is_track_compare', 'is_track_qto', 'is_track_schedule', 'is_track_draw', 'is_track_lien', 'is_track_completion', 'is_track_quality', 'sponsor_entity_id', 'client_entity_id', 'lead_picklist_id', 'need_picklist_id', 'purpose_picklist_id', 'loan_classification_id', 'loan_term', 'loan_term_remaining', 'is_first_time', 'is_first_position', 'is_long_term', 'is_waive_escrow', 'is_payment_fixed', 'is_current_on_payments', 'is_pmi', 'is_fsbo', 'is_listing_expired', 'work_week', 'work_day', 'template_project_id', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
+			[['is_active', 'tenant_id', 'tenant_dbu', 'is_template', 'is_route', 'address_id', 'construction_classification_id', 'project_status_picklist_id', 'is_track_loan', 'is_track_purchase', 'is_track_cost', 'is_track_compare', 'is_track_qto', 'is_track_schedule', 'is_track_draw', 'is_track_lien', 'is_track_progress', 'is_track_quality', 'sponsor_entity_id', 'client_entity_id', 'lead_picklist_id', 'project_document_picklist_id', 'need_picklist_id', 'purpose_picklist_id', 'loan_classification_id', 'loan_term', 'loan_term_remaining', 'is_first_time', 'is_first_position', 'is_long_term', 'is_waive_escrow', 'is_payment_fixed', 'is_current_on_payments', 'is_pmi', 'is_fsbo', 'is_listing_expired', 'work_week', 'work_day', 'template_project_id', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
 			[['tenant_id', 'create_time', 'update_time'], 'required'],
 			[['type', 'property_use', 'note'], 'string'],
 			[['appraised_value', 'loan_amount', 'loan_balance', 'rate_interest', 'points', 'loan_fees', 'down_payment', 'payment_max', 'payment_pi', 'payment_total', 'equity_property', 'subordination_amount', 'cash_out_amount', 'tax_property', 'hazard_insurance', 'amount_pmi', 'selling_price', 'purchase_price', 'gross_rent', 'rate_occupancy', 'cost_land', 'cost_site', 'cost_gc', 'cost_building', 'cost_soft', 'cost_ti', 'cost_ffe', 'location_factor', 'inflation_factor', 'sf_cost_site', 'sf_cost_building', 'sf_cost_ti', 'sf_cost_total', 'percent_gc', 'percent_permit', 'percent_design', 'percent_bond', 'percent_liability', 'percent_contingency', 'percent_fee', 'percent_soft'], 'number'],
@@ -160,34 +162,35 @@ class Project extends \yii\db\ActiveRecord
 	{
 		return [
 			'id' => 'ID',
-			'is_active' => 'Is Active',
+			'is_active' => 'Active?',
 			'tenant_id' => 'Tenant ID',
-			'tenant_dbu' => 'Tenant Dbu',
+			'tenant_dbu' => 'Tenant DBU',
 			'type' => 'Type',
-			'is_template' => 'Is Template',
-			'is_route' => 'Is Route',
+			'is_template' => 'Is Template?',
+			'is_route' => 'Is Route?',
 			'project_number' => 'Project Number',
 			'description' => 'Description',
-			'address_id' => 'Address ID',
-			'construction_classification_id' => 'Construction Classification ID',
-			'project_status_picklist_id' => 'Project Status Picklist ID',
-			'is_track_loan' => 'Is Track Loan',
-			'is_track_purchase' => 'Is Track Purchase',
-			'is_track_cost' => 'Is Track Cost',
-			'is_track_compare' => 'Is Track Compare',
-			'is_track_qto' => 'Is Track Qto',
-			'is_track_schedule' => 'Is Track Schedule',
-			'is_track_draw' => 'Is Track Draw',
-			'is_track_lien' => 'Is Track Lien',
-			'is_track_completion' => 'Is Track Completion',
-			'is_track_quality' => 'Is Track Quality',
-			'sponsor_entity_id' => 'Sponsor Entity ID',
-			'client_entity_id' => 'Client Entity ID',
-			'lead_picklist_id' => 'Lead Picklist ID',
-			'need_picklist_id' => 'Need Picklist ID',
+			'address_id' => 'Address',
+			'construction_classification_id' => 'Construction TYPE',
+			'project_status_picklist_id' => 'Project Status',
+			'is_track_loan' => 'Track Loan?',
+			'is_track_purchase' => 'Track Purchase?',
+			'is_track_cost' => 'Track Cost?',
+			'is_track_compare' => 'Track Compare?',
+			'is_track_qto' => 'Track QTO?',
+			'is_track_schedule' => 'Track Schedule?',
+			'is_track_draw' => 'Track Draws?',
+			'is_track_lien' => 'Track Lien Waivers?',
+			'is_track_progress' => 'Track Progress?',
+			'is_track_quality' => 'Track Quality?',
+			'sponsor_entity_id' => 'Sponsor Entity',
+			'client_entity_id' => 'Client Entity',
+			'lead_picklist_id' => 'Lead Type',
+			'project_document_picklist_id' => 'Draw Type',      
+			'need_picklist_id' => 'Need Picklist',
 			'purpose_picklist_id' => 'Purpose Picklist ID',
 			'property_use' => 'Property Use',
-			'loan_classification_id' => 'Loan Classification ID',
+			'loan_classification_id' => 'Loan Type',
 			'appraised_value' => 'Appraised Value',
 			'loan_amount' => 'Loan Amount',
 			'loan_balance' => 'Loan Balance',
@@ -200,30 +203,30 @@ class Project extends \yii\db\ActiveRecord
 			'date_maturity' => 'Date Maturity',
 			'date_reprice' => 'Date Reprice',
 			'date_balloon' => 'Date Balloon',
-			'is_first_time' => 'Is First Time',
-			'is_first_position' => 'Is First Position',
-			'is_long_term' => 'Is Long Term',
-			'is_waive_escrow' => 'Is Waive Escrow',
+			'is_first_time' => 'First Time Loan?',
+			'is_first_position' => 'First Position?',
+			'is_long_term' => 'Long Term?',
+			'is_waive_escrow' => 'Waive Escrow?',
 			'down_payment' => 'Down Payment',
 			'payment_max' => 'Payment Max',
 			'payment_pi' => 'Payment Pi',
 			'payment_total' => 'Payment Total',
-			'is_payment_fixed' => 'Is Payment Fixed',
-			'is_current_on_payments' => 'Is Current On Payments',
+			'is_payment_fixed' => 'Is Payment Fixed?',
+			'is_current_on_payments' => 'Current On Payments?',
 			'equity_property' => 'Equity Property',
 			'subordination_amount' => 'Subordination Amount',
 			'cash_out_amount' => 'Cash Out Amount',
 			'tax_property' => 'Tax Property',
 			'hazard_insurance' => 'Hazard Insurance',
-			'is_pmi' => 'Is Pmi',
-			'date_end_pmi' => 'Date End Pmi',
-			'amount_pmi' => 'Amount Pmi',
+			'is_pmi' => 'PMI Insurance?',
+			'date_end_pmi' => 'Date End PMI',
+			'amount_pmi' => 'Amount PMI',
 			'date_purchase' => 'Date Purchase',
 			'selling_price' => 'Selling Price',
 			'purchase_price' => 'Purchase Price',
-			'is_fsbo' => 'Is Fsbo',
+			'is_fsbo' => 'FSBO?',
 			'date_listing' => 'Date Listing',
-			'is_listing_expired' => 'Is Listing Expired',
+			'is_listing_expired' => 'Is Listing Expired?',
 			'gross_rent' => 'Gross Rent',
 			'rate_occupancy' => 'Rate Occupancy',
 			'date_start' => 'Date Start',
@@ -232,18 +235,18 @@ class Project extends \yii\db\ActiveRecord
 			'work_day' => 'Work Day',
 			'cost_land' => 'Cost Land',
 			'cost_site' => 'Cost Site',
-			'cost_gc' => 'Cost Gc',
+			'cost_gc' => 'Cost GC',
 			'cost_building' => 'Cost Building',
 			'cost_soft' => 'Cost Soft',
-			'cost_ti' => 'Cost Ti',
-			'cost_ffe' => 'Cost ffe',
+			'cost_ti' => 'Cost TI',
+			'cost_ffe' => 'Cost FF&E',
 			'location_factor' => 'Location Factor',
 			'inflation_factor' => 'Inflation Factor',
-			'sf_cost_site' => 'Sf Cost Site',
-			'sf_cost_building' => 'Sf Cost Building',
-			'sf_cost_ti' => 'Sf Cost Ti',
-			'sf_cost_total' => 'Sf Cost Total',
-			'percent_gc' => 'Percent Gc',
+			'sf_cost_site' => 'SF Cost Site',
+			'sf_cost_building' => 'SF Cost Building',
+			'sf_cost_ti' => 'SF Cost TI',
+			'sf_cost_total' => 'SF Cost Total',
+			'percent_gc' => 'Percent GC',
 			'percent_permit' => 'Percent Permit',
 			'percent_design' => 'Percent Design',
 			'percent_bond' => 'Percent Bond',
@@ -251,12 +254,12 @@ class Project extends \yii\db\ActiveRecord
 			'percent_contingency' => 'Percent Contingency',
 			'percent_fee' => 'Percent Fee',
 			'percent_soft' => 'Percent Soft',
-			'template_project_id' => 'Template Project ID',
+			'template_project_id' => 'Template Project',
 			'note' => 'Note',
 			'create_time' => 'Create Time',
-			'created_by_entity_id' => 'Created By Entity ID',
+			'created_by_entity_id' => 'Created By Entity',
 			'update_time' => 'Update Time',
-			'updated_by_entity_id' => 'Updated By Entity ID',
+			'updated_by_entity_id' => 'Updated By Entity',
 		];
 	}
 
@@ -314,6 +317,14 @@ class Project extends \yii\db\ActiveRecord
 	public function getLeadPicklist()
 	{
 		return $this->hasOne(Picklist::className(), ['id' => 'lead_picklist_id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getProjectDocumentPicklist()
+	{
+		return $this->hasOne(Picklist::className(), ['id' => 'project_document_picklist_id']);
 	}
 
 	/**

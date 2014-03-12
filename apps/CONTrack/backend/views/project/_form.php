@@ -46,7 +46,7 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'is_track_lien')->textInput() ?>
 
-		<?= $form->field($model, 'is_track_completion')->textInput() ?>
+		<?= $form->field($model, 'is_track_progress')->textInput() ?>
 
 		<?= $form->field($model, 'is_track_quality')->textInput() ?>
 
@@ -55,6 +55,8 @@ use yii\widgets\ActiveForm;
 		<?= $form->field($model, 'client_entity_id')->textInput(['maxlength' => 11]) ?>
 
 		<?= $form->field($model, 'lead_picklist_id')->textInput(['maxlength' => 11]) ?>
+
+		<?= $form->field($model, 'project_document_picklist_id')->textInput(['maxlength' => 11]) ?>
 
 		<?= $form->field($model, 'need_picklist_id')->textInput(['maxlength' => 11]) ?>
 

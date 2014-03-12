@@ -1,6 +1,7 @@
 <?php
 
 use kartik\widgets\SideNav;
+use miloschuman\highcharts\Highcharts;
 
 /**
  * @var yii\web\View $this
@@ -16,6 +17,22 @@ $this->title = 'CONTrack'; //CHANGED MVW 02/26/14: Changed from My Yii Applicati
 		<p class="lead">Admin Home Page</p><!-- CHANGED MVW 03/10/14 -->
 
 		<p><a class="btn btn-lg btn-success" href="http://www.contrack.net">Get started with CONTrack</a></p><!--CHANGED VJT 03/10/14 -->
+    <?php echo Highcharts::widget([
+       'options'=>'{
+          "title": { "text": "Inspections" },
+          "xAxis": {
+             "categories": ["January", "February", "March"]
+          },
+          "yAxis": {
+             "title": { "text": "Number of Inspections" }
+          },
+          "series": [
+             { "name": "Jane", "data": [1, 0, 4] },
+             { "name": "John", "data": [5, 7,3] }
+          ]
+       }'
+    ]);
+    ?>
 	</div>
 
 	<div class="body-content">

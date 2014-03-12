@@ -8,7 +8,7 @@ use yii\captcha\Captcha;
  * @var yii\widgets\ActiveForm $form
  * @var \frontend\models\ContactForm $model
  */
-$this->title = 'Contact';
+$this->title = 'Contact Us';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">

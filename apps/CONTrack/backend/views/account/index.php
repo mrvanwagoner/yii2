@@ -16,41 +16,77 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-	<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+	<?php  //CHANGED MVW 03/11/14 Expandable search button. See http://stackoverflow.com/questions/20348666/add-jquery-in-yii-2-0
+  $this->registerJs( //FIXME What to put after yiiGridView: 'update', 'search', and why
+    "
+      $('.search-button').click(function() {
+  	    $('.search-form').toggle();
+  	    return false;
+        });
+      $('.search-form form').submit(function() {
+  	    $('#entity-grid').yiiGridView('search', {
+  		    data: $(this).serialize()
+  	  });
+  	  return false;
+      });
+    ",
+  yii\web\View::POS_END, 'search-form'); //FIXME POS_READY? What is the difference?
+  // $this->registerJs($js, \yii\web\View::POS_READY);
+   ?>
+   <!-- <p>You may optionally enter a comparison operator (
+     <b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b> or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done. </p> -->
+	<p>
+    <?= Html::a('Advanced Search', '#', ['class'=>'search-button']); ?>
+    <div class="search-form" style="display:none">
+    <?php //$this->context->renderPartial('_search', [
+    	//'model'=>$searchModel,
+      //]);
+      echo $this->render('_search', ['model' => $searchModel]); //FIXME Reset button only works prior to search not when reopened
+   ?>
+    </div><!-- search-form -->
+	</p>
+<!-- End of Search Button -->
 
 	<p>
 		<?= Html::a('Create Account', ['create'], ['class' => 'btn btn-success']) ?>
 	</p>
+
 
 	<?php echo GridView::widget([ //CHANGED MVW 03/10/14: See http://yii2-api.yupe.ru/class-yii.grid.GridView.html#$caption
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
     'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/10/14: 'table table-condensed', 'table table-striped', 'table-bordered'
 		'columns' => [
-			['class' => 'yii\grid\SerialColumn'],
+      ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code. // FIXME you may configure additional properties in this array (not sure what...)
+      /* ~~~
+      * var keys = $('#grid').yiiGridView('getSelectedRows');
+      * // keys is an array consisting of the keys associated with the selected rows
+      * ~~~ */
 
+			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/10/14: Formats: text, currency
       // 'id',
-			'is_active',
+      'is_active',
       // 'tenant_id',
       // 'tenant_dbu',
 			'type',
       'account_number',
-      // 'date_established',
+      "date_established:date",
       'description',
       'location',
 			// 'account_picklist_id',
 			// 'transaction_status_picklist_id',
       'parent_account_id',
-      // 'is_track_transactions',
+      // "is_track_transactions:checkbox",
 			// 'provider_entity_id',
 			// 'gl_code_id',
 			// 'project_id',
 			// 'ref_number',
+      // "date_ref:date",
 			// 'date_ref',
 			// 'budget_impact',
-			// 'gross_amount',
-			// 'adjustment',
-			// 'net_amount',
+      // "gross_amount:number",
+      // "adjustment:currency",
+      // "net_amount:currency",
 			// 'is_reported',
 			// 'comment_budget:ntext',
 			// 'is_bold',
@@ -58,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'current_balance',
 			// 'is_asset',
 			// 'is_liability',
-			// 'date_maturity',
+      // "date_maturity:date",
 			// 'face_amount',
 			// 'current_value',
 			// 'address_id',
@@ -75,10 +111,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'update_time',
 			// 'updated_by_entity_id',
 
-			['class' => 'yii\grid\ActionColumn'],
-      "date_established:date",
-      // "is_track_transactions:checkbox", //CHANGED MVW 03/10/14: Formats: text, currency
-		],
-	]); ?>
+			['class' => 'yii\grid\ActionColumn', 'header'=>'Actions'] //CHANGED MVW 03/11/14: View, Update, Delete icons
+    ],
+ 	]); ?>
 
 </div>

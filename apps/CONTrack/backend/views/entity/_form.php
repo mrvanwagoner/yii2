@@ -11,6 +11,7 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
  * @var yii\web\View $this
  * @var backend\models\Entity $model
  * @var yii\widgets\ActiveForm $form
+ * See http://www.yiiframework.com/extension/multimodelform
  */
 ?>
 

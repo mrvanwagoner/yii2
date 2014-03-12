@@ -31,11 +31,12 @@ class ProjectSearch extends Model
 	public $is_track_schedule;
 	public $is_track_draw;
 	public $is_track_lien;
-	public $is_track_completion;
+	public $is_track_progress;
 	public $is_track_quality;
 	public $sponsor_entity_id;
 	public $client_entity_id;
 	public $lead_picklist_id;
+	public $project_document_picklist_id;
 	public $need_picklist_id;
 	public $purpose_picklist_id;
 	public $property_use;
@@ -113,7 +114,7 @@ class ProjectSearch extends Model
 	public function rules()
 	{
 		return [
-			[['id', 'is_active', 'tenant_id', 'tenant_dbu', 'is_template', 'is_route', 'address_id', 'construction_classification_id', 'project_status_picklist_id', 'is_track_loan', 'is_track_purchase', 'is_track_cost', 'is_track_compare', 'is_track_qto', 'is_track_schedule', 'is_track_draw', 'is_track_lien', 'is_track_completion', 'is_track_quality', 'sponsor_entity_id', 'client_entity_id', 'lead_picklist_id', 'need_picklist_id', 'purpose_picklist_id', 'loan_classification_id', 'loan_term', 'loan_term_remaining', 'is_first_time', 'is_first_position', 'is_long_term', 'is_waive_escrow', 'is_payment_fixed', 'is_current_on_payments', 'is_pmi', 'is_fsbo', 'is_listing_expired', 'work_week', 'work_day', 'template_project_id', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
+			[['id', 'is_active', 'tenant_id', 'tenant_dbu', 'is_template', 'is_route', 'address_id', 'construction_classification_id', 'project_status_picklist_id', 'is_track_loan', 'is_track_purchase', 'is_track_cost', 'is_track_compare', 'is_track_qto', 'is_track_schedule', 'is_track_draw', 'is_track_lien', 'is_track_progress', 'is_track_quality', 'sponsor_entity_id', 'client_entity_id', 'lead_picklist_id', 'project_document_picklist_id', 'need_picklist_id', 'purpose_picklist_id', 'loan_classification_id', 'loan_term', 'loan_term_remaining', 'is_first_time', 'is_first_position', 'is_long_term', 'is_waive_escrow', 'is_payment_fixed', 'is_current_on_payments', 'is_pmi', 'is_fsbo', 'is_listing_expired', 'work_week', 'work_day', 'template_project_id', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
 			[['type', 'project_number', 'description', 'property_use', 'date_close', 'date_maturity', 'date_reprice', 'date_balloon', 'date_end_pmi', 'date_purchase', 'date_listing', 'date_start', 'date_finish', 'note', 'create_time', 'update_time'], 'safe'],
 			[['appraised_value', 'loan_amount', 'loan_balance', 'rate_interest', 'points', 'loan_fees', 'down_payment', 'payment_max', 'payment_pi', 'payment_total', 'equity_property', 'subordination_amount', 'cash_out_amount', 'tax_property', 'hazard_insurance', 'amount_pmi', 'selling_price', 'purchase_price', 'gross_rent', 'rate_occupancy', 'cost_land', 'cost_site', 'cost_gc', 'cost_building', 'cost_soft', 'cost_ti', 'cost_ffe', 'location_factor', 'inflation_factor', 'sf_cost_site', 'sf_cost_building', 'sf_cost_ti', 'sf_cost_total', 'percent_gc', 'percent_permit', 'percent_design', 'percent_bond', 'percent_liability', 'percent_contingency', 'percent_fee', 'percent_soft'], 'number'],
 		];
@@ -145,11 +146,12 @@ class ProjectSearch extends Model
 			'is_track_schedule' => 'Is Track Schedule',
 			'is_track_draw' => 'Is Track Draw',
 			'is_track_lien' => 'Is Track Lien',
-			'is_track_completion' => 'Is Track Completion',
+			'is_track_progress' => 'Is Track Completion',
 			'is_track_quality' => 'Is Track Quality',
 			'sponsor_entity_id' => 'Sponsor Entity ID',
 			'client_entity_id' => 'Client Entity ID',
 			'lead_picklist_id' => 'Lead Picklist ID',
+			'project_document_picklist_id' => 'Draw Type',
 			'need_picklist_id' => 'Need Picklist ID',
 			'purpose_picklist_id' => 'Purpose Picklist ID',
 			'property_use' => 'Property Use',
@@ -257,11 +259,12 @@ class ProjectSearch extends Model
 		$this->addCondition($query, 'is_track_schedule');
 		$this->addCondition($query, 'is_track_draw');
 		$this->addCondition($query, 'is_track_lien');
-		$this->addCondition($query, 'is_track_completion');
+		$this->addCondition($query, 'is_track_progress');
 		$this->addCondition($query, 'is_track_quality');
 		$this->addCondition($query, 'sponsor_entity_id');
 		$this->addCondition($query, 'client_entity_id');
 		$this->addCondition($query, 'lead_picklist_id');
+		$this->addCondition($query, 'project_document_picklist_id');
 		$this->addCondition($query, 'need_picklist_id');
 		$this->addCondition($query, 'purpose_picklist_id');
 		$this->addCondition($query, 'property_use', true);

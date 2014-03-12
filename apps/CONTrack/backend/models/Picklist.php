@@ -260,6 +260,8 @@ class Picklist extends \yii\db\ActiveRecord
 		return $this->hasMany(Mapping::className(), ['lead_picklist_id' => 'id']);
 	}
 
+  //FIXME Added column entities.project_document_picklist_id. Need a function here?
+
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */

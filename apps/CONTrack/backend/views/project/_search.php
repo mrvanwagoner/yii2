@@ -57,7 +57,7 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'is_track_lien') ?>
 
-		<?php // echo $form->field($model, 'is_track_completion') ?>
+		<?php // echo $form->field($model, 'is_track_progress') ?>
 
 		<?php // echo $form->field($model, 'is_track_quality') ?>
 
@@ -66,6 +66,8 @@ use yii\widgets\ActiveForm;
 		<?php // echo $form->field($model, 'client_entity_id') ?>
 
 		<?php // echo $form->field($model, 'lead_picklist_id') ?>
+
+		<?php // echo $form->field($model, 'project_document_picklist_id') ?>
 
 		<?php // echo $form->field($model, 'need_picklist_id') ?>
 

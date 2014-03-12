@@ -16,7 +16,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-	<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+	<?php  //CHANGED MVW 03/11/14
+  $this->registerJs("
+      $('.search-button').click(function() {
+  	    $('.search-form').toggle();
+  	    return false;
+        });
+      $('.search-form form').submit(function() {
+  	    $('#entity-grid').yiiGridView('search', {
+  		    data: $(this).serialize()
+  	  });
+  	  return false;
+      });",
+  yii\web\View::POS_END, 'search-form');
+   ?>
+	<p>
+    <?= Html::a('Advanced Search', '#', ['class'=>'search-button']); ?>
+    <div class="search-form" style="display:none">
+    <?php 
+      echo $this->render('_search', ['model' => $searchModel]);
+   ?>
+    </div>
+	</p>
 
 	<p>
 		<?= Html::a('Create Project', ['create'], ['class' => 'btn btn-success']) ?>
@@ -25,18 +46,20 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
+    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/11/14
 		'columns' => [
+      ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/11/14
 			['class' => 'yii\grid\SerialColumn'],
 
-			'id',
+      // 'id',
 			'is_active',
-			'tenant_id',
-			'tenant_dbu',
+      // 'tenant_id',
+      // 'tenant_dbu',
 			'type',
 			// 'is_template',
 			// 'is_route',
-			// 'project_number',
-			// 'description',
+      'project_number',
+      'description',
 			// 'address_id',
 			// 'construction_classification_id',
 			// 'project_status_picklist_id',
@@ -48,11 +71,12 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'is_track_schedule',
 			// 'is_track_draw',
 			// 'is_track_lien',
-			// 'is_track_completion',
+			// 'is_track_progress',
 			// 'is_track_quality',
 			// 'sponsor_entity_id',
 			// 'client_entity_id',
 			// 'lead_picklist_id',
+			// 'project_document_picklist_id',
 			// 'need_picklist_id',
 			// 'purpose_picklist_id',
 			// 'property_use',
@@ -127,7 +151,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'update_time',
 			// 'updated_by_entity_id',
 
-			['class' => 'yii\grid\ActionColumn'],
+			['class' => 'yii\grid\ActionColumn', 'header'=>'Actions'] //CHANGED MVW 03/11/14:
 		],
 	]); ?>
 

@@ -27,7 +27,7 @@ AppAsset::register($this);
 		<?php
 			NavBar::begin([
         //CHANGED MVY 02/25/14: Changed My Company to CONTrack
-				'brandLabel' => 'CONTrack',
+				'brandLabel' => ' ',
 				'brandUrl' => Yii::$app->homeUrl,
 				'options' => [
 					'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,7 +37,7 @@ AppAsset::register($this);
 				['label' => 'Home', 'url' => ['/site/index']],
 				//['label' => 'About', 'url' => ['/site/about']], //CHANGED VJT 03/08/14
 				['label' => 'Admin', 'url' => ['/admin/']],
-				['label' => 'Contact', 'url' => ['/site/contact']], //CHANGED VJT 03/08/14
+				['label' => 'Contact Us', 'url' => ['/site/contact']], //CHANGED VJT 03/08/14
 			];
 			if (Yii::$app->user->isGuest) {
         //CHANGED MVW 02/26/14: Was Signup
@@ -69,7 +69,7 @@ AppAsset::register($this);
 	<footer class="footer">
 		<div class="container">
     <? //CHANGED MVW 02/26/24: From My Company ?>
-		<p class="pull-left">&copy; Dutch Web Development <?= date('Y') ?></p>
+		<p class="pull-left">&copy; Dutch Web Development 1982 - <?= date('Y') ?></p>
     <? //CHANGED MVW 02/26/24: Delete powered() ?>
     <p class="pull-right"><?//= Yii::powered() ?></p>
 		</div>

@@ -133,8 +133,8 @@ class AccountSearch extends Model
 
 		$this->addCondition($query, 'id');
 		$this->addCondition($query, 'is_active');
-		$this->addCondition($query, 'tenant_id');
-		$this->addCondition($query, 'tenant_dbu', true);
+    $this->addCondition($query, 'tenant_id');
+    $this->addCondition($query, 'tenant_dbu', true);
 		$this->addCondition($query, 'type', true);
 		$this->addCondition($query, 'account_number', true);
 		$this->addCondition($query, 'date_established');

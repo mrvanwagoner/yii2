@@ -2,11 +2,30 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use backend\models\Entity;//CHANGED MVW 03//06/14
 
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
+ * @var backend\models\Entity $model
  * @var backend\models\search\EntitySearch $searchModel
+ * See http://stackoverflow.com/questions/20136776/combobox-filter-for-join-tables-using-yii-cgridview
+ * See http://www.yiiframework.com/wiki/281/searching-and-sorting-by-related-model-in-cgridview/
+ * See http://www.yiiframework.com/forum/index.php/topic/49447-how-to-use-filters-in-the-gridview-widget-when-table-relationship-is-present/
+ * See http://stackoverflow.com/questions/20799869/how-to-change-gridview-column-size-in-yii
+ * See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/
+ * See http://www.yiiframework.com/wiki/323/dynamic-parent-and-child-cgridview-on-single-view-using-ajax-to-update-child-gridview-via-controller-after-row-in-parent-gridview-was-clicked
+ * See http://www.yiiframework.com/wiki/597/update-a-part-of-content-using-ajax-when-select-a-gridview-row
+ * See http://www.yiiframework.com/wiki/535/display-status-image-on-cgridview-column
+ * See http://www.yiiframework.com/wiki/385/displaying-sorting-and-filtering-hasmany-manymany-relations-in-cgridview
+ * See http://www.yiiframework.com/wiki/324/cgridview-keep-state-of-page-and-sort
+ * See http://www.yiiframework.com/wiki/545/display-image-on-cgridview-column-and-open-a-fancy-box/
+ * See http://www.yiiframework.com/extension/remember-filters-gridview
+ * See http://www.yiiframework.com/extension/clear-filters-gridview
+ * See http://www.yiiframework.com/extension/sortablegridview
+ * See http://www.yiiframework.com/extension/livegridview
+ * See http://www.yiiframework.com/extension/checkboxprevnextcheckall
+ * See http://www.yiiframework.com/extension/tablesorter
  */
 
 $this->title = 'Entities';
@@ -16,8 +35,36 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-	<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+	<?php  //CHANGED MVW 03/11/14 Expandable search button. See http://stackoverflow.com/questions/20348666/add-jquery-in-yii-2-0
+  $this->registerJs( //FIXME What to put after yiiGridView: 'update', 'search', and why
+    "
+      $('.search-button').click(function() {
+  	    $('.search-form').toggle();
+  	    return false;
+        });
+      $('.search-form form').submit(function() {
+  	    $('#entity-grid').yiiGridView('search', {
+  		    data: $(this).serialize()
+  	  });
+  	  return false;
+      });
+    ",
+  yii\web\View::POS_END, 'search-form'); //FIXME POS_READY? What is the difference?
+  // $this->registerJs($js, \yii\web\View::POS_READY);
+   ?>
+   <!-- <p>You may optionally enter a comparison operator (
+     <b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b> or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done. </p> -->
+	<p>
+    <?= Html::a('Advanced Search', '#', ['class'=>'search-button']); ?>
+    <div class="search-form" style="display:none">
+    <?php //$this->context->renderPartial('_search', [
+    	//'model'=>$searchModel,
+      //]);
+      echo $this->render('_search', ['model' => $searchModel]); //FIXME Reset button only works prior to search not when reopened
+   ?>
+    </div><!-- search-form -->
+	</p>
+<!-- End of Search Button -->
 	<p>
 		<?= Html::a('Create Entity', ['create'], ['class' => 'btn btn-success']) ?>
 	</p>
@@ -25,14 +72,21 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
-		'columns' => [
-			['class' => 'yii\grid\SerialColumn'],
+    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/10/14: 'table table-condensed', 'table table-striped', 'table-bordered'
+		'columns' => [ //CHANGED MVW 03/11/14: Columns placed here are before numbered column
 
-			'id',
-			'is_active',
-			'type',
-			'name',
-			'contact',
+      ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code. // FIXME you may configure additional properties in this array (not sure what...)
+      /* ~~~
+      * var keys = $('#grid').yiiGridView('getSelectedRows');
+      * // keys is an array consisting of the keys associated with the selected rows
+      * ~~~ */
+
+			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/11/14: A sequentially numbered column
+      // 'id',
+      'is_active',
+      'type',
+      'name',
+      'contact',
       // 'aka',
 			// 'dba',
 			// 'middle_name',//FIXME show conditionally
@@ -120,8 +174,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'created_by_entity_id',
 			// 'update_time',
 			// 'updated_by_entity_id',
-
-			['class' => 'yii\grid\ActionColumn'],
+			['class' => 'yii\grid\ActionColumn', 'header'=>'Actions'] //CHANGED MVW 03/11/14: View, Update, Delete icons
 		],
 	]); ?>
 
