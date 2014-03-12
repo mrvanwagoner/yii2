@@ -18,6 +18,8 @@ use yii\web\View;
 
 /**
  *
+ * @property View $view The view instance. This property is read-only.
+ *
  * @author Carsten Brandt <mail@cebe.cc>
  * @since 2.0
  */
@@ -138,14 +140,12 @@ abstract class GuideRenderer extends BaseGuideRenderer
 	}
 
 	/**
-	 * generate link markup
-	 * @param $text
-	 * @param $href
-	 * @return mixed
+	 * @inheritdoc
 	 */
-	protected function generateLink($text, $href)
+	protected function generateLink($text, $href, $options = [])
 	{
-		return Html::a($text, null, ['href' => $href]);
+		$options['href'] = $href;
+		return Html::a($text, null, $options);
 	}
 
 	/**

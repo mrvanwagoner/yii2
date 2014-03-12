@@ -10,8 +10,8 @@ namespace yii\web;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
+use yii\helpers\Url;
 use yii\helpers\FileHelper;
-use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\Security;
 use yii\helpers\StringHelper;
@@ -657,7 +657,7 @@ class Response extends \yii\base\Response
 	 * - a string representing a URL alias (e.g. "@example.com")
 	 * - an array in the format of `[$route, ...name-value pairs...]` (e.g. `['site/index', 'ref' => 1]`).
 	 *   Note that the route is with respect to the whole application, instead of relative to a controller or module.
-	 *   [[Html::url()]] will be used to convert the array into a URL.
+	 *   [[Url::to()]] will be used to convert the array into a URL.
 	 *
 	 * Any relative URL will be converted into an absolute one by prepending it with the host info
 	 * of the current request.
@@ -673,7 +673,7 @@ class Response extends \yii\base\Response
 			// ensure the route is absolute
 			$url[0] = '/' . ltrim($url[0], '/');
 		}
-		$url = Html::url($url);
+		$url = Url::to($url);
 		if (strpos($url, '/') === 0 && strpos($url, '//') !== 0) {
 			$url = Yii::$app->getRequest()->getHostInfo() . $url;
 		}

@@ -18,6 +18,8 @@ use Yii;
  * This command can render documentation stored as markdown files such as the yii guide
  * or your own applications documentation setup.
  *
+ * @author Carsten Brandt <mail@cebe.cc>
+ * @since 2.0
  */
 class GuideController extends BaseController
 {
@@ -109,8 +111,8 @@ class GuideController extends BaseController
 	/**
 	 * @inheritdoc
 	 */
-	public function globalOptions()
+	public function options($id)
 	{
-		return array_merge(parent::globalOptions(), ['apiDocs']);
+		return array_merge(parent::options($id), ['apiDocs']);
 	}
 }

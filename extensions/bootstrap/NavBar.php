@@ -42,13 +42,17 @@ class NavBar extends Widget
 	/**
 	 * @var array the HTML attributes for the widget container tag. The following special options are recognized:
 	 *
-	 * - tag: string, defaults to "nav", the name of the container tag
+	 * - tag: string, defaults to "nav", the name of the container tag.
+	 *
+	 * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
 	 */
 	public $options = [];
 	/**
 	 * @var array the HTML attributes for the container tag. The following special options are recognized:
 	 *
-	 * - tag: string, defaults to "div", the name of the container tag
+	 * - tag: string, defaults to "div", the name of the container tag.
+	 *
+	 * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
 	 */
 	public $containerOptions = [];
 	/**
@@ -57,12 +61,13 @@ class NavBar extends Widget
 	 */
 	public $brandLabel;
 	/**
-	 * @param array|string $url the URL for the brand's hyperlink tag. This parameter will be processed by [[Html::url()]]
+	 * @param array|string $url the URL for the brand's hyperlink tag. This parameter will be processed by [[Url::to()]]
 	 * and will be used for the "href" attribute of the brand link. If not set, [[\yii\web\Application::homeUrl]] will be used.
 	 */
 	public $brandUrl;
 	/**
 	 * @var array the HTML attributes of the brand link.
+	 * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
 	 */
 	public $brandOptions = [];
 	/**
@@ -76,6 +81,7 @@ class NavBar extends Widget
 	public $renderInnerContainer = true;
 	/**
 	 * @var array the HTML attributes of the inner container.
+	 * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
 	 */
 	public $innerContainerOptions = [];
 

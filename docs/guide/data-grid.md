@@ -2,7 +2,7 @@ Data grid
 =========
 
 Data grid or GridView is one of the most powerful Yii widgets. It is extremely useful if you need to quickly build admin
-section of the system. It takes data from [data provider](data-provider.md) and renders each row using a set of columns
+section of the system. It takes data from [data provider](data-providers.md) and renders each row using a set of columns
 presenting data in a form of a table.
 
 Each row of the table represents the data of a single data item, and a column usually represents an attribute of
@@ -12,7 +12,7 @@ Grid view supports both sorting and pagination of the data items. The sorting an
 or normal page request. A benefit of using GridView is that when the user disables JavaScript, the sorting and pagination
 automatically degrade to normal page requests and are still functioning as expected.
 
-The minimal code needed to use CGridView is as follows:
+The minimal code needed to use GridView is as follows:
 
 ```php
 use yii\data\GridView;
@@ -50,12 +50,10 @@ echo GridView::widget([
 		'username',
 		// More complex one.
 		[
-			'class' => 'DataColumn', // can be omitted, default
-			'name' => 'column1',
+			'class' => 'yii\grid\DataColumn', // can be omitted, default
 			'value' => function ($data) {
 				return $data->name;
 			},
-			'type'=>'raw',
 		],
 	],
 ]);
@@ -184,11 +182,6 @@ echo GridView::widget([
 	'columns' => [
 		['class' => 'yii\grid\SerialColumn'], // <-- here
 ```
-
-TODO: rewrite these:
-
-- https://github.com/samdark/a-guide-to-yii-grids-lists-and-data-providers/blob/master/grid-columns.md
-- https://github.com/samdark/a-guide-to-yii-grids-lists-and-data-providers/pull/1
 
 Sorting data
 ------------

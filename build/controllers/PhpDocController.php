@@ -61,11 +61,12 @@ class PhpDocController extends Controller
 				'/extensions/codeception/DbTestCase.php',
 				'/extensions/composer/',
 				'/extensions/gii/components/DiffRendererHtmlInline.php',
+				'/extensions/gii/generators/extension/templates/*',
 				'/extensions/twig/TwigSimpleFileLoader.php',
 				'/framework/BaseYii.php',
 				'/framework/Yii.php',
-				'/tests/',
-				'/vendor/',
+				'tests/',
+				'vendor/',
 			];
 		}
 		$root = FileHelper::normalizePath($root);
@@ -113,9 +114,9 @@ class PhpDocController extends Controller
 	/**
 	 * @inheritdoc
 	 */
-	public function globalOptions()
+	public function options($id)
 	{
-		return array_merge(parent::globalOptions(), ['updateFiles']);
+		return array_merge(parent::options($id), ['updateFiles']);
 	}
 
 	protected function updateClassPropertyDocs($file, $className, $propertyDoc)

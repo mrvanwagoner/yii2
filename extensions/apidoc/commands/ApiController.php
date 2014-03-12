@@ -7,7 +7,6 @@
 
 namespace yii\apidoc\commands;
 
-
 use yii\apidoc\components\BaseController;
 use yii\apidoc\models\Context;
 use yii\apidoc\renderers\ApiRenderer;
@@ -17,8 +16,10 @@ use yii\helpers\Console;
 use yii\helpers\FileHelper;
 
 /**
- * Generate class API documentation
+ * Generate class API documentation.
  *
+ * @author Carsten Brandt <mail@cebe.cc>
+ * @since 2.0
  */
 class ApiController extends BaseController
 {
@@ -154,8 +155,8 @@ class ApiController extends BaseController
 	/**
 	 * @inheritdoc
 	 */
-	public function globalOptions()
+	public function options($id)
 	{
-		return array_merge(parent::globalOptions(), ['template', 'guide']);
+		return array_merge(parent::options($id), ['template', 'guide']);
 	}
-} 
+}

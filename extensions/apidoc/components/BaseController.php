@@ -113,7 +113,7 @@ abstract class BaseController extends Controller
 	}
 
 	/**
-	 * @inheritdoc
+	 * @param string $template
 	 * @return BaseRenderer
 	 */
 	protected abstract function findRenderer($template);
@@ -121,8 +121,8 @@ abstract class BaseController extends Controller
 	/**
 	 * @inheritdoc
 	 */
-	public function globalOptions()
+	public function options($id)
 	{
-		return array_merge(parent::globalOptions(), ['template', 'exclude']);
+		return array_merge(parent::options($id), ['template', 'exclude']);
 	}
 }

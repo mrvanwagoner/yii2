@@ -10,6 +10,7 @@ namespace yii\widgets;
 use Yii;
 use yii\base\Widget;
 use yii\base\Model;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\JsExpression;
@@ -23,7 +24,7 @@ use yii\web\JsExpression;
 class ActiveForm extends Widget
 {
 	/**
-	 * @param array|string $action the form action URL. This parameter will be processed by [[\yii\helpers\Html::url()]].
+	 * @param array|string $action the form action URL. This parameter will be processed by [[\yii\helpers\Url::to()]].
 	 */
 	public $action = '';
 	/**
@@ -33,8 +34,7 @@ class ActiveForm extends Widget
 	public $method = 'post';
 	/**
 	 * @var array the HTML attributes (name-value pairs) for the form tag.
-	 * The values will be HTML-encoded using [[\yii\helpers\Html::encode()]].
-	 * If a value is null, the corresponding attribute will not be rendered.
+	 * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
 	 */
 	public $options = [];
 	/**
@@ -74,7 +74,7 @@ class ActiveForm extends Widget
 	public $enableAjaxValidation = false;
 	/**
 	 * @var array|string the URL for performing AJAX-based validation. This property will be processed by
-	 * [[Html::url()]]. Please refer to [[Html::url()]] for more details on how to configure this property.
+	 * [[Url::to()]]. Please refer to [[Url::to()]] for more details on how to configure this property.
 	 * If this property is not set, it will take the value of the form's action attribute.
 	 */
 	public $validationUrl;
@@ -194,7 +194,7 @@ class ActiveForm extends Widget
 			'ajaxDataType' => $this->ajaxDataType,
 		];
 		if ($this->validationUrl !== null) {
-			$options['validationUrl'] = Html::url($this->validationUrl);
+			$options['validationUrl'] = Url::to($this->validationUrl);
 		}
 		foreach (['beforeSubmit', 'beforeValidate', 'afterValidate'] as $name) {
 			if (($value = $this->$name) !== null) {

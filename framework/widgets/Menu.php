@@ -10,6 +10,7 @@ namespace yii\widgets;
 use Yii;
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\helpers\Html;
 
 /**
@@ -52,7 +53,7 @@ class Menu extends Widget
 	 *
 	 * - label: string, optional, specifies the menu item label. When [[encodeLabels]] is true, the label
 	 *   will be HTML-encoded. If the label is not specified, an empty string will be used.
-	 * - url: string or array, optional, specifies the URL of the menu item. It will be processed by [[Html::url]].
+	 * - url: string or array, optional, specifies the URL of the menu item. It will be processed by [[Url::to]].
 	 *   When this is set, the actual menu item content will be generated using [[linkTemplate]];
 	 *   otherwise, [[labelTemplate]] will be used.
 	 * - visible: boolean, optional, whether this menu item is visible. Defaults to true.
@@ -73,6 +74,8 @@ class Menu extends Widget
 	 * by the "options" set in individual [[items]]. The following special options are recognized:
 	 *
 	 * - tag: string, defaults to "li", the tag name of the item container tags.
+	 *
+	 * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
 	 */
 	public $itemOptions = [];
 	/**
@@ -121,6 +124,8 @@ class Menu extends Widget
 	 * @var array the HTML attributes for the menu's container tag. The following special options are recognized:
 	 *
 	 * - tag: string, defaults to "ul", the tag name of the item container tags.
+	 *
+	 * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
 	 */
 	public $options = [];
 	/**
@@ -218,7 +223,7 @@ class Menu extends Widget
 		if (isset($item['url'])) {
 			$template = ArrayHelper::getValue($item, 'template', $this->linkTemplate);
 			return strtr($template, [
-				'{url}' => Html::url($item['url']),
+				'{url}' => Url::to($item['url']),
 				'{label}' => $item['label'],
 			]);
 		} else {
