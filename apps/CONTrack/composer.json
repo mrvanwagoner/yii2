@@ -21,7 +21,9 @@
 		"kartik-v/yii2-helpers": "dev-master",
 		"kartik-v/yii2-widgets": "dev-master",
 		"yiisoft/yii2-smarty": "*",
-		"miloschuman/yii2-highcharts-widget": "*"
+		"bburim/flot": "dev-master",
+		"miloschuman/yii2-highcharts-widget": "*",
+		"kartik-v/yii2-icons": "dev-master"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",
