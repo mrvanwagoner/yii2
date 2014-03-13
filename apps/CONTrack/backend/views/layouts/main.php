@@ -81,7 +81,7 @@ AppAsset::register($this);
           <li style="display:inline;padding-right:15px;"><a href="/admin/task/">Tasks</a></li>              
         </ul>
     </div> --><!-- end inline nav -->
-     <div class="col-sm-3">     
+     <div class="col-sm-3" role="navigation">     
         <?php
         echo SideNav::widget([
 	'type' => SideNav::TYPE_DEFAULT,
