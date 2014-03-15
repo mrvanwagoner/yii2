@@ -8,7 +8,7 @@ use yii\gii\CodeFile;
 /**
  * @var yii\web\View $this
  * @var yii\gii\Generator $generator
- * @var string $id
+ * @var string $id panel ID
  * @var yii\widgets\ActiveForm $form
  * @var string $results
  * @var boolean $hasError
@@ -62,6 +62,7 @@ foreach ($generator->templates as $name => $path) {
 			]);
 		} elseif (isset($files)) {
 			echo $this->render('view/files', [
+				'id' => $id,
 				'generator' => $generator,
 				'files' => $files,
 				'answers' => $answers,

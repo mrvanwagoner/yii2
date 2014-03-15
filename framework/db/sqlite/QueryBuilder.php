@@ -79,13 +79,20 @@ class QueryBuilder extends \yii\db\QueryBuilder
 				if (!is_array($value) && isset($columnSchemas[$columns[$i]])) {
 					$value = $columnSchemas[$columns[$i]]->typecast($value);
 				}
-				$vs[] = is_string($value) ? $this->db->quoteValue($value) : $value;
+				if (is_string($value)) {
+					$value = $this->db->quoteValue($value);
+				} elseif ($value === false) {
+					$value = 0;
+				} elseif ($value === null) {
+					$value = 'NULL';
+				}
+				$vs[] = $value;
 			}
 			$values[] = implode(', ', $vs);
 		}
 
 		return 'INSERT INTO ' . $this->db->quoteTableName($table)
-		. ' (' . implode(', ', $columns) . ') SELECT ' . implode(' UNION ALL ', $values);
+		. ' (' . implode(', ', $columns) . ') SELECT ' . implode(' UNION SELECT ', $values);
 	}
 
 	/**
