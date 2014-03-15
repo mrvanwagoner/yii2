@@ -17,7 +17,7 @@ $this->title = 'CONTrack'; //CHANGED MVW 02/26/14: Changed from My Yii Applicati
 		<p class="lead">Admin Home Page</p><!-- CHANGED MVW 03/10/14 -->
 
 		<p><a class="btn btn-lg btn-success" href="http://www.contrack.net">Get started with CONTrack</a></p><!--CHANGED VJT 03/10/14 -->
-<<<<<<< HEAD
+
     <?php echo Highcharts::widget([
        'options'=>'{
           "title": { "text": "Inspections" },
@@ -34,28 +34,8 @@ $this->title = 'CONTrack'; //CHANGED MVW 02/26/14: Changed from My Yii Applicati
        }'
     ]);
     ?>
-=======
 
 
-
-
-
-<?php echo Highcharts::widget([
-   'options'=>'{
-      "title": { "text": "Inspections" },
-      "xAxis": {
-         "categories": ["January", "February", "March"]
-      },
-      "yAxis": {
-         "title": { "text": "Number of Inspections" }
-      },
-      "series": [
-         { "name": "Jane", "data": [1, 0, 4] },
-         { "name": "John", "data": [5, 7,3] }
-      ]
-   }'
-]);
-?>
 <?php /*?><?php
 use bburim\flot\Chart as Chart;
 
@@ -99,7 +79,7 @@ echo Chart::widget([
     ]
 ]);
 ?><?php */?>
->>>>>>> 6dc80aea58851e49863afacfe118d79fa00a5d4f
+<!--6dc80aea58851e49863afacfe118d79fa00a5d4f-->
 	</div>
 
 	<div class="body-content">

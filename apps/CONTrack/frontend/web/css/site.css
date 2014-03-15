@@ -13,7 +13,42 @@ body {
 .wrap > .container {
     padding: 70px 15px 20px;
 }
-
+.navbar-inverse {
+  /* CHANGE background-color: #222;*/
+  background-color: #004482;
+  border-color: #080808;
+}
+.navbar-inverse .navbar-brand {
+  /*color: #999;*/
+	background: url("http://contrack.net/images/logos/logo-CONTrack-grey3-small.png") no-repeat !important;
+    width: 270px;
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: #fff;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-text {
+  /*color: #999;*/
+	color: #ffffff;
+}
+.navbar-inverse .navbar-nav > li > a {
+  /*color: #fff;*/
+  color: #60a4e2;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #fff;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  /*color: #fff;*/
+  color: #70b4f2;	
+ /* background-color: #080808;*/
+  background-color: #2064a2;
+}
 .footer {
 	height: 60px;
 	background-color: #f5f5f5;
