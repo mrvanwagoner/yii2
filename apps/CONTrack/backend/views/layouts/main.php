@@ -109,11 +109,11 @@ AppAsset::register($this);
 			'items' => [
 				['label' => 'Contacts', 'icon'=>'earphone', 'url'=>'/admin/contact'], //'phone'
 				['label' => 'Roles', 'icon'=>'user', 'url'=>'/admin/role'],
-				['label' => 'Entities', 'icon'=>'briefcase', 'url'=>'/admin/entity'], //'briefcase'
-				['label' => 'Relationships', 'icon'=>'random', 'url'=>'/admin/relationship'], //'th', 'globe', 'random'
 				['label' => 'Addresses', 'icon'=>'tree-deciduous', 'url'=>'/admin/address'], //'tree-deciduous', 'tree-conifer'
 				['label' => 'Phone', 'icon'=>'phone-alt', 'url'=>'/admin/phone'],
 				['label' => 'Email', 'icon'=>'envelope', 'url'=>'/admin/email'],
+				['label' => 'Entities', 'icon'=>'briefcase', 'url'=>'/admin/entity'], //'briefcase'
+				['label' => 'Relationships', 'icon'=>'random', 'url'=>'/admin/relationship'], //'th', 'globe', 'random'
 			],
 		],
 		[
@@ -128,8 +128,8 @@ AppAsset::register($this);
 			'icon' => 'camera', //'lock', 'unlock', 'search'
 			'items' => [
 				['label' => 'Accounts', 'icon'=>'folder-open', 'url'=>'/admin/account'],
-				['label' => 'Comments', 'icon'=>'pencil', 'url'=>'/admin/documents'],
-				['label' => 'Documents', 'icon'=>'file', 'url'=>'/admin/documents'], //'icon'=>'file'
+				['label' => 'Comments', 'icon'=>'pencil', 'url'=>'/admin/document'],
+				['label' => 'Documents', 'icon'=>'file', 'url'=>'/admin/document'], //'icon'=>'file'
 			],
 		],
 		[

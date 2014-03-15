@@ -16,7 +16,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-	<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+	<?php  //CHANGED MVW 03/11/14
+  $this->registerJs("
+      $('.search-button').click(function() {
+  	    $('.search-form').toggle();
+  	    return false;
+        });
+      $('.search-form form').submit(function() {
+  	    $('#entity-grid').yiiGridView('search', {
+  		    data: $(this).serialize()
+  	  });
+  	  return false;
+      });",
+  yii\web\View::POS_END, 'search-form');
+   ?>
+	<p>
+    <?= Html::a('Advanced Search', '#', ['class'=>'search-button']); ?>
+    <div class="search-form" style="display:none">
+    <?php 
+      echo $this->render('_search', ['model' => $searchModel]);
+   ?>
+    </div>
+	</p>
 
 	<p>
 		<?= Html::a('Create Document', ['create'], ['class' => 'btn btn-success']) ?>
@@ -25,10 +46,12 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
+    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/11/14
 		'columns' => [
+      ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/11/14
 			['class' => 'yii\grid\SerialColumn'],
 
-			'id',
+      // 'id',
 			'is_active',
       // 'tenant_id',
       // 'tenant_dbu',
@@ -58,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'update_time',
 			// 'updated_by_entity_id',
 
-			['class' => 'yii\grid\ActionColumn'],
+			['class' => 'yii\grid\ActionColumn', 'header'=>'Actions'] //CHANGED MVW 03/11/14:
 		],
 	]); ?>
 
