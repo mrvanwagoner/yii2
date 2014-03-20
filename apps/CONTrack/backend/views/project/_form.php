@@ -19,6 +19,8 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 
 	<?php $form = ActiveForm::begin(); ?>
 
+    <H2>Project Info</H2><!-- CHANGED MVW 03/20/14 -->
+
     <!-- <?= $form->field($model, 'is_active')->checkbox() //CHANGED MVW 03/08/14 ?> -->
 
     <!-- <?= $form->field($model, 'tenant_id')->textInput(['maxlength' => 11]) //FIXME Only visible to System Admin and System Staff ?> -->
@@ -71,11 +73,7 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 
     <!-- <?= $form->field($model, 'is_route')->textInput() ?> -->
 
-		<?= $form->field($model, 'project_document_picklist_id')->dropDownList(Custom::picklist('Document', 'is_project'),['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
-
-		<?= $form->field($model, 'percent_retainage')->textInput(['maxlength' => 19]) ?>
-
-		<?= $form->field($model, 'percent_variance')->textInput(['maxlength' => 19]) ?>
+    <H2>Loan Info</H2><!-- CHANGED MVW 03/20/14 -->
 
     <!-- <?= $form->field($model, 'need_picklist_id')->textInput(['maxlength' => 11]) ?> -->
 
@@ -185,6 +183,16 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 
     <!-- <?= $form->field($model, 'amount_pmi')->textInput(['maxlength' => 19]) ?> -->
 
+    <H2>Draw Info</H2><!-- CHANGED MVW 03/20/14 -->
+
+		<?= $form->field($model, 'project_document_picklist_id')->dropDownList(Custom::picklist('Document', 'is_project'),['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
+
+		<?= $form->field($model, 'percent_retainage')->textInput(['maxlength' => 19]) ?>
+
+		<?= $form->field($model, 'percent_variance')->textInput(['maxlength' => 19]) ?>
+
+    <!-- <H2>Sales Info</H2> CHANGED MVW 03/20/14 -->
+
     <!-- <?= $form->field($model, 'date_purchase')->textInput() ?> -->
 
     <!-- <?= $form->field($model, 'selling_price')->textInput(['maxlength' => 19]) ?> -->
@@ -201,9 +209,39 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 
     <!-- <?= $form->field($model, 'rate_occupancy')->textInput(['maxlength' => 5]) ?> -->
 
-    <!-- <?= $form->field($model, 'date_start')->textInput() ?> -->
+    <H2>Schedule Info</H2> <!-- CHANGED MVW 03/20/14 -->
 
-    <!-- <?= $form->field($model, 'date_finish')->textInput() ?> -->
+    <?= $form->field($model, 'date_start')->widget(DatePicker::classname(), [ //CHANGED MVW 03/06/14
+      // 'name' => 'date_received'
+      'type' => DatePicker::TYPE_COMPONENT_APPEND,
+      // 'value' => '01/29/2014',
+      'size' => 'md',//'sm','md','lg'
+      'options' => [
+        'placeholder' => 'Enter date...',
+        // 'readonly' => true,
+      ],
+      'pluginOptions' => [
+        'autoclose'=>true,
+        // 'format' => 'dd-M-yyyy'
+        'format' => 'yyyy-mm-dd'
+      ]
+    ]); ?>
+
+    <?= $form->field($model, 'date_finish')->widget(DatePicker::classname(), [ //CHANGED MVW 03/06/14
+      // 'name' => 'date_received'
+      'type' => DatePicker::TYPE_COMPONENT_APPEND,
+      // 'value' => '01/29/2014',
+      'size' => 'md',//'sm','md','lg'
+      'options' => [
+        'placeholder' => 'Enter date...',
+        // 'readonly' => true,
+      ],
+      'pluginOptions' => [
+        'autoclose'=>true,
+        // 'format' => 'dd-M-yyyy'
+        'format' => 'yyyy-mm-dd'
+      ]
+    ]); ?>
 
     <!-- <?= $form->field($model, 'date_finish_estimated')->textInput(['maxlength' => 255]) ?> -->
 
@@ -214,6 +252,8 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
     <!-- <?= $form->field($model, 'work_week')->textInput() ?> -->
 
     <!-- <?= $form->field($model, 'work_day')->textInput() ?> -->
+
+    <!-- <H2>Cost Info</H2> CHANGED MVW 03/20/14 -->
 
     <!-- <?= $form->field($model, 'cost_land')->textInput(['maxlength' => 19]) ?> -->
 
@@ -271,14 +311,28 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 
     <!-- <?= $form->field($model, 'template_project_id')->textInput(['maxlength' => 11]) ?> -->
 
-    <!-- <?= $form->field($model, 'folder')->textInput(['maxlength' => 255]) ?> -->
+    <H2>System Info</H2><!-- CHANGED MVW 03/08/14 -->
 
-    <!-- <?= $form->field($model, 'date_archive')->textInput() ?> -->
+    <?= $form->field($model, 'folder')->textInput(['maxlength' => 255]) ?>
+
+    <?= $form->field($model, 'date_archive')->widget(DatePicker::classname(), [ //CHANGED MVW 03/06/14 -->
+      // 'name' => 'date_received'
+      'type' => DatePicker::TYPE_COMPONENT_APPEND,
+      // 'value' => '01/29/2014',
+      'size' => 'md',//'sm','md','lg'
+      'options' => [
+        'placeholder' => 'Enter date...',
+        // 'readonly' => true,
+      ],
+      'pluginOptions' => [
+        'autoclose'=>true,
+        // 'format' => 'dd-M-yyyy'
+        'format' => 'yyyy-mm-dd'
+      ]
+    ]); ?>
 
 		<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
 
-    <H2>System Info</H2><!-- CHANGED MVW 03/08/14 -->
- 
 		<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
 		<?= $form->field($model, 'create_time')->textInput() //FIXME Autoupdate ?>

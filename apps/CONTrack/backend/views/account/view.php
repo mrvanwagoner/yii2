@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
  * @var backend\models\Account $model
  */
 
-$this->title = $model->id;
+$this->title = $model->description; //CHANGED MVW 03/20/14: from id
 $this->params['breadcrumbs'][] = ['label' => 'Accounts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -7,9 +7,9 @@ use yii\helpers\Html;
  * @var backend\models\Account $model
  */
 
-$this->title = 'Update Account: ' . $model->id;
+$this->title = 'Update Account: ' . $model->description; //CHANGED MVW 03/20/14: from id
 $this->params['breadcrumbs'][] = ['label' => 'Accounts', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->description, 'url' => ['view', 'id' => $model->id]]; //CHANGED MVW 03/20/14: from id
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="account-update">
