@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	</p>
 
 	<?php echo GridView::widget([
-		'dataProvider' => $dataProvider,
+		'dataProvider' => $dataProvider,    
 		'filterModel' => $searchModel,
     'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/11/14
 		'columns' => [

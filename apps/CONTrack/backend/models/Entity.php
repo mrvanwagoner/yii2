@@ -654,8 +654,7 @@ class Entity extends \yii\db\ActiveRecord
 		return $this->hasMany(TaskRecurrence::className(), ['updated_by_entity_id' => 'id']);
 	}
 
-  //CHANGED MVW 12/11/13: Extended name. i.e. to be used in drop down list. http://stackoverflow.com/questions/12812062/in-yii-framework-how-can-i-combine-two-columns-and-show-as-display-string-in-dro
-  public function getFullName() 
+  public function getFullName() //CHANGED MVW 12/11/13: Extended name. i.e. to be used in drop down list. http://stackoverflow.com/questions/12812062/in-yii-framework-how-can-i-combine-two-columns-and-show-as-display-string-in-dro
   {
     // $entity = new Entity;
     // return $entity->contact.' '.$entity->name; //FIXME If Type = Company vs. Person AND/OR Nickname
@@ -663,8 +662,7 @@ class Entity extends \yii\db\ActiveRecord
     else return $this->aka.' '.$this->name; //FIXME If Type = Company vs. Person AND/OR Nickname
   }
 
-  //CHANGED MVW 03/06/14: Extended name. i.e. to be used in drop down list. http://www.yiiframework.com/forum/index.php/topic/7461-adding-columns-into-query/
-  public Static function listActiveTenants()
+  public Static function listActiveTenants() //CHANGED MVW 03/06/14
   {
     $query = (new \yii\db\Query())
       ->select('id, name, contact, middle_name')
@@ -673,7 +671,6 @@ class Entity extends \yii\db\ActiveRecord
         'is_active' => 1,
         'is_tenant' => 1,
         // 'type' => 'Person',
-        // 'is_tenant' => 1,
         ])
       ->OrderBy('name')
       ->all();
@@ -682,9 +679,7 @@ class Entity extends \yii\db\ActiveRecord
     // return ArrayHelper::map($query, 'id', $entity->getFullName());
   }
 
-  //CHANGED MVW 03/06/14: Extended name. i.e. to be used in drop down list. http://www.yiiframework.com/forum/index.php/topic/7461-adding-columns-into-query/
-  //FIXME to use fullname
-  public static function listActiveUsers()
+  public static function listActiveUsers() //CHANGED MVW 03/06/14: Extended name. i.e. to be used in drop down list. http://www.yiiframework.com/forum/index.php/topic/7461-adding-columns-into-query/
   {
     // $query = (new \yii\db\Query())
       // ->select('id, name, contact, middle_name', Entity::getFullName())
@@ -702,15 +697,32 @@ class Entity extends \yii\db\ActiveRecord
     // return ArrayHelper::map($query, 'id', Entity::getFullName());
     // return ArrayHelper::map($query, 'id', 'contact');
     // return ArrayHelper::map($query, 'id', 'fullName');
-
-
     $query = Entity::find()->where(['is_active'=>1, 'type'=>'Person', 'is_user'=>1])->all();
     return ArrayHelper::map($query , 'id', 'fullName');
   }
 
   public Static function listActiveProviders() //CHANGED MVW 03/08/14
   {
-      $query = Entity::find()->where(['is_active'=>1, 'is_provider'=>1])->all();
-      return ArrayHelper::map($query , 'id', 'fullName');
-    }
+    $query = Entity::find()->where(['is_active'=>1, 'is_provider'=>1])->all();
+    return ArrayHelper::map($query , 'id', 'fullName');
+  }
+
+  public static function listActiveEntities() //CHANGED MVW 03/08/14
+  {
+    $query = (new \yii\db\Query())
+      ->select('id','name', 'contact')
+      ->from('tbl_entity')
+      ->where([
+        'is_active' => 1,
+        // 'description' => !'empty',
+        // 'type' => 'Person',
+        // 'is_tenant' => 1,
+        ])
+      // ->distinct(true) //FIXME Need to select id and description but unique on description
+      ->OrderBy('name')
+      ->all();
+
+    // $query = Entity::find()->where(['is_active'=>1])->all(); //CHANGED MVW 03/20/14: This does what the above does
+    return ArrayHelper::map($query , 'id', 'fullName');
+  }
 }

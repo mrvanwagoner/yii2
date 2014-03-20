@@ -31,7 +31,7 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 
 		<?= $form->field($model, 'account_number')->textInput(['maxlength' => 45]) ?>
 
-		<?= $form->field($model, 'date_established')->widget(DatePicker::classname(), [
+		<?= $form->field($model, 'date_established')->widget(DatePicker::classname(), [ //CHANGED MVW 03/06/14
       // 'name' => 'date_received'
       'type' => DatePicker::TYPE_COMPONENT_APPEND,
       // 'value' => '01/29/2014',

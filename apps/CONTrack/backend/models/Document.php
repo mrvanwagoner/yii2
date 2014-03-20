@@ -168,9 +168,13 @@ class Document extends \yii\db\ActiveRecord
 		return $this->hasMany(TaskHasDocument::className(), ['document_id' => 'id']);
 	}
 
-  //CHANGED MVW 03/07/14
-  //FIXME Update tbl_documents.is_file=>1
-  public static function listFileDocuments()
+  public static function listActiveDocuments() //CHANGED MVW 03/20/14
+  {
+    $query = Document::find()->where(['is_active'=>1])->all();
+    return ArrayHelper::map($query , 'id', 'description');
+  }
+
+  public static function listFileDocuments() //CHANGED MVW 03/07/14 //FIXME Update tbl_documents.is_file=>1
   {
     $query = Document::find()->where(['is_active'=>1, 'is_file'=>1])->all();
     return ArrayHelper::map($query , 'id', 'description');

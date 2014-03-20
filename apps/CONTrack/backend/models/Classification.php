@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use yii\helpers\ArrayHelper; //CHANGED MVW 03/07/14
+
 /**
  * This is the model class for table "tbl_classification".
  *
@@ -148,4 +150,16 @@ class Classification extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(Project::className(), ['construction_classification_id' => 'id']);
 	}
+
+  public Static function listActiveConstructionClassifications() //CHANGED MVW 03/20/14
+  {
+    $query = Classification::find()->where(['is_active'=>1, 'type'=>'Construction'])->all();
+    return ArrayHelper::map($query , 'id', 'description');
+  }
+
+  public Static function listActiveLoanClassifications() //CHANGED MVW 03/20/14
+  {
+    $query = Classification::find()->where(['is_active'=>1, 'type'=>'Loan'])->all();
+    return ArrayHelper::map($query , 'id', 'description');
+  }
 }

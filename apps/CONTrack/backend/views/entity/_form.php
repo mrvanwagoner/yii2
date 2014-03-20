@@ -62,7 +62,7 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
     <H3>Address</H3>
     <H3>URL</H3>
 
-		<?php if ($model->type == 'Person' && $model->is_customer)  //CHANGED MVW 03/06/14
+		<?php if ($model->type == 'Person' && $model->is_customer) //CHANGED MVW 03/06/14
     { // Is Person AND is Customer
       echo '<H2>Customer Info</H2>';
       echo '<H3>Personal Info</H3>';

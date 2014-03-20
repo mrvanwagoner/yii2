@@ -65,22 +65,21 @@ $this->params['breadcrumbs'][] = $this->title;
     </div><!-- search-form -->
 	</p>
 <!-- End of Search Button -->
+
 	<p>
 		<?= Html::a('Create Entity', ['create'], ['class' => 'btn btn-success']) ?>
 	</p>
 
-	<?php echo GridView::widget([
+	<?php echo GridView::widget([ //CHANGED MVW 03/10/14: See http://yii2-api.yupe.ru/class-yii.grid.GridView.html#$caption
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
     'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/10/14: 'table table-condensed', 'table table-striped', 'table-bordered'
-		'columns' => [ //CHANGED MVW 03/11/14: Columns placed here are before numbered column
-
+		'columns' => [
       ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code. // FIXME you may configure additional properties in this array (not sure what...)
       /* ~~~
       * var keys = $('#grid').yiiGridView('getSelectedRows');
       * // keys is an array consisting of the keys associated with the selected rows
       * ~~~ */
-
 			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/11/14: A sequentially numbered column
       // 'id',
       'is_active',
@@ -174,6 +173,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'created_by_entity_id',
 			// 'update_time',
 			// 'updated_by_entity_id',
+
 			['class' => 'yii\grid\ActionColumn', 'header'=>'Actions'] //CHANGED MVW 03/11/14: View, Update, Delete icons
 		],
 	]); ?>

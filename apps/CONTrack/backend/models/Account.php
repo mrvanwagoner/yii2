@@ -249,7 +249,7 @@ class Account extends \yii\db\ActiveRecord
       ->OrderBy('description')
       ->all();
 
-    // $query = Account::find()->where(['is_active'=>1, 'description' => !'empty'])->all();
+    // $query = Account::find()->where(['is_active'=>1, 'description' => !'empty'])->all(); //CHANGED MVW 03/08/14: This does what the above does
     return ArrayHelper::map($query , 'id', 'description');
   }
 }

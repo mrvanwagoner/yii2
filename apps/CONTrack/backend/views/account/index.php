@@ -62,8 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
       * var keys = $('#grid').yiiGridView('getSelectedRows');
       * // keys is an array consisting of the keys associated with the selected rows
       * ~~~ */
-
-			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/10/14: Formats: text, currency
+			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/11/14: A sequentially numbered column
       // 'id',
       'is_active',
       // 'tenant_id',

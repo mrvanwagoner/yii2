@@ -29,29 +29,25 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'is_template') ?>
 
-		<?php // echo $form->field($model, 'is_route') ?>
-
 		<?php // echo $form->field($model, 'project_number') ?>
 
 		<?php // echo $form->field($model, 'description') ?>
 
-		<?php // echo $form->field($model, 'address_id') ?>
+		<?php // echo $form->field($model, 'comment') ?>
+
+		<?php // echo $form->field($model, 'x_address_id') ?>
 
 		<?php // echo $form->field($model, 'construction_classification_id') ?>
 
 		<?php // echo $form->field($model, 'project_status_picklist_id') ?>
 
+		<?php // echo $form->field($model, 'sponsor_entity_id') ?>
+
+		<?php // echo $form->field($model, 'client_entity_id') ?>
+
+		<?php // echo $form->field($model, 'lead_picklist_id') ?>
+
 		<?php // echo $form->field($model, 'is_track_loan') ?>
-
-		<?php // echo $form->field($model, 'is_track_purchase') ?>
-
-		<?php // echo $form->field($model, 'is_track_cost') ?>
-
-		<?php // echo $form->field($model, 'is_track_compare') ?>
-
-		<?php // echo $form->field($model, 'is_track_qto') ?>
-
-		<?php // echo $form->field($model, 'is_track_schedule') ?>
 
 		<?php // echo $form->field($model, 'is_track_draw') ?>
 
@@ -61,13 +57,25 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'is_track_quality') ?>
 
-		<?php // echo $form->field($model, 'sponsor_entity_id') ?>
+		<?php // echo $form->field($model, 'is_track_cost') ?>
 
-		<?php // echo $form->field($model, 'client_entity_id') ?>
+		<?php // echo $form->field($model, 'is_track_compare') ?>
 
-		<?php // echo $form->field($model, 'lead_picklist_id') ?>
+		<?php // echo $form->field($model, 'is_track_history') ?>
+
+		<?php // echo $form->field($model, 'is_track_qto') ?>
+
+		<?php // echo $form->field($model, 'is_track_schedule') ?>
+
+		<?php // echo $form->field($model, 'is_track_purchase') ?>
+
+		<?php // echo $form->field($model, 'is_route') ?>
 
 		<?php // echo $form->field($model, 'project_document_picklist_id') ?>
+
+		<?php // echo $form->field($model, 'percent_retainage') ?>
+
+		<?php // echo $form->field($model, 'percent_variance') ?>
 
 		<?php // echo $form->field($model, 'need_picklist_id') ?>
 
@@ -75,11 +83,21 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'property_use') ?>
 
+		<?php // echo $form->field($model, 'loan_number') ?>
+
+		<?php // echo $form->field($model, 'account_number') ?>
+
 		<?php // echo $form->field($model, 'loan_classification_id') ?>
+
+		<?php // echo $form->field($model, 'can_pull_credit') ?>
+
+		<?php // echo $form->field($model, 'can_lock_loan') ?>
 
 		<?php // echo $form->field($model, 'appraised_value') ?>
 
 		<?php // echo $form->field($model, 'loan_amount') ?>
+
+		<?php // echo $form->field($model, 'ltv') ?>
 
 		<?php // echo $form->field($model, 'loan_balance') ?>
 
@@ -88,6 +106,8 @@ use yii\widgets\ActiveForm;
 		<?php // echo $form->field($model, 'loan_term_remaining') ?>
 
 		<?php // echo $form->field($model, 'rate_interest') ?>
+
+		<?php // echo $form->field($model, 'is_rate_fixed') ?>
 
 		<?php // echo $form->field($model, 'points') ?>
 
@@ -121,13 +141,13 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'is_current_on_payments') ?>
 
-		<?php // echo $form->field($model, 'equity_property') ?>
+		<?php // echo $form->field($model, 'equity_in_property') ?>
 
 		<?php // echo $form->field($model, 'subordination_amount') ?>
 
 		<?php // echo $form->field($model, 'cash_out_amount') ?>
 
-		<?php // echo $form->field($model, 'tax_property') ?>
+		<?php // echo $form->field($model, 'property_tax') ?>
 
 		<?php // echo $form->field($model, 'hazard_insurance') ?>
 
@@ -157,17 +177,35 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'date_finish') ?>
 
+		<?php // echo $form->field($model, 'date_finish_estimated') ?>
+
+		<?php // echo $form->field($model, 'benchmarks') ?>
+
+		<?php // echo $form->field($model, 'damages') ?>
+
 		<?php // echo $form->field($model, 'work_week') ?>
 
 		<?php // echo $form->field($model, 'work_day') ?>
 
 		<?php // echo $form->field($model, 'cost_land') ?>
 
+		<?php // echo $form->field($model, 'cost_design') ?>
+
+		<?php // echo $form->field($model, 'cost_permit') ?>
+
 		<?php // echo $form->field($model, 'cost_site') ?>
 
 		<?php // echo $form->field($model, 'cost_gc') ?>
 
 		<?php // echo $form->field($model, 'cost_building') ?>
+
+		<?php // echo $form->field($model, 'cost_bond') ?>
+
+		<?php // echo $form->field($model, 'cost_insurance') ?>
+
+		<?php // echo $form->field($model, 'cost_contingency') ?>
+
+		<?php // echo $form->field($model, 'cost_fee') ?>
 
 		<?php // echo $form->field($model, 'cost_soft') ?>
 
@@ -195,7 +233,7 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'percent_bond') ?>
 
-		<?php // echo $form->field($model, 'percent_liability') ?>
+		<?php // echo $form->field($model, 'percent_insurance') ?>
 
 		<?php // echo $form->field($model, 'percent_contingency') ?>
 
@@ -204,6 +242,10 @@ use yii\widgets\ActiveForm;
 		<?php // echo $form->field($model, 'percent_soft') ?>
 
 		<?php // echo $form->field($model, 'template_project_id') ?>
+
+		<?php // echo $form->field($model, 'folder') ?>
+
+		<?php // echo $form->field($model, 'date_archive') ?>
 
 		<?php // echo $form->field($model, 'note') ?>
 

@@ -58,20 +58,20 @@ class ProjectTeam extends \yii\db\ActiveRecord
 	{
 		return [
 			'id' => 'ID',
-			'is_active' => 'Is Active',
-			'project_id' => 'Project ID',
-			'entity_id' => 'Entity ID',
-			'type_picklist_id' => 'Type Picklist ID',
-			'is_client' => 'Is Client',
-			'is_partner' => 'Is Partner',
-			'is_sales_rep' => 'Is Sales Rep',
-			'is_schedule_visible' => 'Is Schedule Visible',
+			'is_active' => 'Active?',
+			'project_id' => 'Project',
+			'entity_id' => 'Entity',
+			'type_picklist_id' => 'Type',
+			'is_client' => 'Is Client?',
+			'is_partner' => 'Is Partner?',
+			'is_sales_rep' => 'Is Sales Rep?',
+			'is_schedule_visible' => 'Make Schedule Visible?',
 			'service_status' => 'Service Status',
 			'note' => 'Note',
 			'create_time' => 'Create Time',
-			'created_by_entity_id' => 'Created By Entity ID',
+			'created_by_entity_id' => 'Created By',
 			'update_time' => 'Update Time',
-			'updated_by_entity_id' => 'Updated By Entity ID',
+			'updated_by_entity_id' => 'Updated By',
 		];
 	}
 
