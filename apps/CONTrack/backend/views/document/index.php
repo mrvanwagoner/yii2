@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
-    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/11/14
+    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered table-hover'], //CHANGED MVW 03/11/14
 		'columns' => [
       ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/11/14
 			['class' => 'yii\grid\SerialColumn'],

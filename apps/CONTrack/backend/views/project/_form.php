@@ -22,9 +22,9 @@ use yii\helpers\ArrayHelper;
 
 	<?php $form = ActiveForm::begin(); ?>
  
- <div>   
 
-<?= yii\bootstrap\Tabs::widget([
+
+<?php /*?><?= yii\bootstrap\Tabs::widget([
 
 	'items' => [
 	[
@@ -54,8 +54,8 @@ use yii\helpers\ArrayHelper;
 	]);
 
 ?>
-
-<?= yii\jui\Accordion::widget([
+<?php */?>
+<?php /*?><?= yii\jui\Accordion::widget([
     'items' => [
         [
             'header' => '<i class="fa fa-folder-open fa-fw"></i> Project Info',
@@ -83,9 +83,9 @@ use yii\helpers\ArrayHelper;
     'clientOptions' => ['collapsible' => false],
 ]);
   
-  ?>
+  ?><?php */?>
 
-</div>
+
   
   
   

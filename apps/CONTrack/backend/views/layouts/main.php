@@ -8,6 +8,7 @@ use kartik\widgets\SideNav;
 use kartik\icons\Icon;
 Icon::map($this);
 
+
 /**
  * @var \yii\web\View $this
  * @var string $content

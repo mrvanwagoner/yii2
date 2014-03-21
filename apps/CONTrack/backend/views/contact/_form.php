@@ -16,11 +16,36 @@ use backend\models\Email; //CHANGED MVW 03/20/14
  */
 ?>
 
-<div class="contact-form">
+<div class="contact-form col-lg-12">
 
 	<?php $form = ActiveForm::begin(); ?>
+    
+    <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-user fa-fw"></i> Update Contact
+            	<div class="pull-right">
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu pull-right">
+                                        <li><a href="#">Budget</a>
+                                        </li>
+                                        <li><a href="#">Draws</a>
+                                        </li>
+                                        <li><a href="/admin/contact/">Contacts</a></li>
+                                        <li><a href="/admin/project/">Project</a>
+                                        </li>
+                                    </ul>
+                                  </div>
+                       </div>
+    			</div><!-- end panel-heading -->
 
-		<?= $form->field($model, 'is_active')->checkbox() //CHANGED MVW 03/08/14 ?>
+ 	 <div class="panel-body">
+<div class="contact-form col-lg-6">
+
+
 
     <!-- <?= $form->field($model, 'tenant_id')->textInput(['maxlength' => 11]) //FIXME Only visible to System Admin and System Staff ?> -->
 
@@ -36,6 +61,15 @@ use backend\models\Email; //CHANGED MVW 03/20/14
 
 		<?= $form->field($model, 'status_picklist_id')->dropDownList(Custom::picklist('Status', null),['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
 
+		<?= $form->field($model, 'account_number')->textInput(['maxlength' => 45]) ?>
+
+		<?= $form->field($model, 'is_active')->checkbox() //CHANGED MVW 03/08/14 ?>
+
+		<?= $form->field($model, 'is_employee')->checkbox() //CHANGED MVW 03/08/14 ?>
+
+</div>
+<div class="contact-form col-lg-6">
+
 		<?= $form->field($model, 'address_id')->dropDownList(Address::listActiveAddresses(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
 
 		<?= $form->field($model, 'phone_id')->dropDownList(Phone::listActivePhones(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/20/14 ?>
@@ -48,17 +82,16 @@ use backend\models\Email; //CHANGED MVW 03/20/14
 
 		<?= $form->field($model, 'contact_method_person_task_picklist_id')->dropDownList(Custom::picklist('Task', 'is_person'),['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
 
+
 		<?= $form->field($model, 'is_ok_to_email')->checkbox() //CHANGED MVW 03/08/14 ?>
 
 		<?= $form->field($model, 'is_ok_to_text')->checkbox() //CHANGED MVW 03/08/14 ?>
-
-		<?= $form->field($model, 'is_employee')->checkbox() //CHANGED MVW 03/08/14 ?>
 
     <!-- <?= $form->field($model, 'sponsor_entity_id')->textInput(['maxlength' => 11]) ?> -->
 
     <!-- <?= $form->field($model, 'is_preferred')->textInput() ?> -->
 
-		<?= $form->field($model, 'account_number')->textInput(['maxlength' => 45]) ?>
+
 
     <!-- <?= $form->field($model, 'sales_rep_entity_id')->textInput(['maxlength' => 11]) ?> -->
 
@@ -138,22 +171,26 @@ use backend\models\Email; //CHANGED MVW 03/20/14
 
     <!-- <?= $form->field($model, 'date_grade_assigned')->textInput() ?> -->
 
-    <H2>System Info</H2><!-- CHANGED MVW 03/08/14 -->
+    <!--<H2>System Info</H2>--><!-- CHANGED MVW 03/08/14 -->
 
-		<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
+		<!--<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>-->
  
-		<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
+		<!--<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
 		<?= $form->field($model, 'create_time')->textInput() //FIXME Autoupdate ?>
 
 		<?= $form->field($model, 'updated_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-		<?= $form->field($model, 'update_time')->textInput() //FIXME Autoupdate ?>
+		<?= $form->field($model, 'update_time')->textInput() //FIXME Autoupdate ?>-->
 
-		<div class="form-group">
+		<div class="form-group pull-right">
 			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 		</div>
 
 	<?php ActiveForm::end(); ?>
 
-</div>
+            	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+
+ 
+</div><!-- end col-lg-6 --> 
