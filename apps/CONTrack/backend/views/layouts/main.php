@@ -5,6 +5,8 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use kartik\widgets\SideNav;
+use kartik\icons\Icon;
+Icon::map($this);
 
 /**
  * @var \yii\web\View $this
@@ -35,7 +37,7 @@ AppAsset::register($this);
 			$menuItems = [
 				['label' => 'Home', 'url' => ['/site/index']],
 				['label' => 'Main', 'url' => ['../']], //CHANGED VJT 03/10/14
-				['label' => 'Admin Pages', 'url' => ['/entity']] //CHANGED VJT 03/10/14,
+				['label' => 'Admin Pages', 'url' => ['/project']] //CHANGED VJT 03/10/14,
       ];
 			if (Yii::$app->user->isGuest) {
 				$menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -54,6 +56,7 @@ AppAsset::register($this);
 		?>
 
 		<div class="container-fluid">
+        <div class="row-fluid">
         
 		<?= Breadcrumbs::widget([
 			'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -81,7 +84,7 @@ AppAsset::register($this);
           <li style="display:inline;padding-right:15px;"><a href="/admin/task/">Tasks</a></li>              
         </ul>
     </div> --><!-- end inline nav -->
-     <div class="col-sm-3" role="navigation">     
+     <div class="col-lg-3" role="navigation">     
         <?php
         echo SideNav::widget([
 	'type' => SideNav::TYPE_DEFAULT,
@@ -154,14 +157,13 @@ AppAsset::register($this);
 ]);       
         ?>
         </div>  
-      <div class="col-sm-9">
-    
-    
+      <div class="col-lg-9">  
     
 		<?= $content ?>
-		</div>
-	</div>
-</div>
+		</div><!-- end col-sm-9 -->
+        </div><!-- end row-fluid -->
+	</div><!-- end container-fluid -->
+</div><!-- end wrap -->
 	<footer class="footer">
 		<div class="container-fluid"><!--CHANGED VJT 03/10/14 -->
   		<p class="pull-left">&copy; Dutch Web Development 1982 - <?= date('Y') //CHANGED MVW 02/26/24: From My Company ?></p>
