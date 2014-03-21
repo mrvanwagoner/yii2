@@ -21,7 +21,7 @@ body {
 }
 .navbar-inverse {
   /* CHANGE background-color: #222;*/
-  background-color: #004482;
+  background-color: #024681;
   border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
@@ -55,6 +55,11 @@ body {
   color: #70b4f2;	
  /* background-color: #080808;*/
   background-color: #2064a2;
+}
+.panel-default > .panel-heading {
+    background-color: #3276B1;
+    border-color: #DDDDDD;
+    color: #FFFFFF;
 }
 .footer {
 	height: 60px;

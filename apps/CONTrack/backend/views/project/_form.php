@@ -8,6 +8,7 @@ use backend\models\Classification; //CHANGED MVW 03/20/14
 use backend\models\Document;//CHANGED MVW 03//06/14
 use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 
+
 /**
  * @var yii\web\View $this
  * @var backend\models\Project $model
@@ -15,11 +16,36 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
  */
 ?>
 
-<div class="project-form">
+<div class="project-form col-lg-6">
 
 	<?php $form = ActiveForm::begin(); ?>
+    
+    
+    
+    
+    <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-folder-open fa-fw"></i> Project Info
+            	<div class="pull-right">
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu pull-right">
+                                        <li><a href="#">Budget</a>
+                                        </li>
+                                        <li><a href="#">Draws</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="/admin/project-team/">Project Team</a>
+                                        </li>
+                                    </ul>
+                                  </div>
+                       </div>
+    			</div><!-- end panel-heading -->
 
-    <H2>Project Info</H2><!-- CHANGED MVW 03/20/14 -->
+ 	 <div class="panel-body">
 
     <!-- <?= $form->field($model, 'is_active')->checkbox() //CHANGED MVW 03/08/14 ?> -->
 
@@ -72,8 +98,222 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
     <!-- <?= $form->field($model, 'is_track_purchase')->textInput() ?> -->
 
     <!-- <?= $form->field($model, 'is_route')->textInput() ?> -->
+    
 
-    <H2>Loan Info</H2><!-- CHANGED MVW 03/20/14 -->
+ 	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+    
+ 
+     <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-money fa-fw"></i> Schedule Info
+            	<!--<div class="pull-right">
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu pull-right">
+                                        <li><a href="#">Budget</a>
+                                        </li>
+                                        <li><a href="#">Draws</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="/admin/project-team/">Project Team</a>
+                                        </li>
+                                    </ul>
+                                  </div>
+                       </div>-->
+    			</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">
+
+    <?= $form->field($model, 'date_start')->widget(DatePicker::classname(), [ //CHANGED MVW 03/06/14
+      // 'name' => 'date_received'
+      'type' => DatePicker::TYPE_COMPONENT_APPEND,
+      // 'value' => '01/29/2014',
+      'size' => 'md',//'sm','md','lg'
+      'options' => [
+        'placeholder' => 'Enter date...',
+        // 'readonly' => true,
+      ],
+      'pluginOptions' => [
+        'autoclose'=>true,
+        // 'format' => 'dd-M-yyyy'
+        'format' => 'yyyy-mm-dd'
+      ]
+    ]); ?>
+
+    <?= $form->field($model, 'date_finish')->widget(DatePicker::classname(), [ //CHANGED MVW 03/06/14
+      // 'name' => 'date_received'
+      'type' => DatePicker::TYPE_COMPONENT_APPEND,
+      // 'value' => '01/29/2014',
+      'size' => 'md',//'sm','md','lg'
+      'options' => [
+        'placeholder' => 'Enter date...',
+        // 'readonly' => true,
+      ],
+      'pluginOptions' => [
+        'autoclose'=>true,
+        // 'format' => 'dd-M-yyyy'
+        'format' => 'yyyy-mm-dd'
+      ]
+    ]); ?>
+
+    <!-- <?= $form->field($model, 'date_finish_estimated')->textInput(['maxlength' => 255]) ?> -->
+
+    <!-- <?= $form->field($model, 'benchmarks')->textarea(['rows' => 6]) ?> -->
+
+    <!-- <?= $form->field($model, 'damages')->textarea(['rows' => 6]) ?> -->
+
+    <!-- <?= $form->field($model, 'work_week')->textInput() ?> -->
+
+    <!-- <?= $form->field($model, 'work_day')->textInput() ?> -->
+
+    <!-- <H2>Cost Info</H2> CHANGED MVW 03/20/14 -->
+
+    <!-- <?= $form->field($model, 'cost_land')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_design')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_permit')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_site')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_gc')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_building')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_bond')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_insurance')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_contingency')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_fee')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_soft')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_ti')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'cost_ffe')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'location_factor')->textInput(['maxlength' => 5]) ?> -->
+
+    <!-- <?= $form->field($model, 'inflation_factor')->textInput(['maxlength' => 5]) ?> -->
+
+    <!-- <?= $form->field($model, 'sf_cost_site')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'sf_cost_building')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'sf_cost_ti')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'sf_cost_total')->textInput(['maxlength' => 19]) ?> -->
+
+    <!-- <?= $form->field($model, 'percent_gc')->textInput(['maxlength' => 5]) ?> -->
+
+    <!-- <?= $form->field($model, 'percent_permit')->textInput(['maxlength' => 5]) ?> -->
+
+    <!-- <?= $form->field($model, 'percent_design')->textInput(['maxlength' => 5]) ?> -->
+
+    <!-- <?= $form->field($model, 'percent_bond')->textInput(['maxlength' => 5]) ?> -->
+
+    <!-- <?= $form->field($model, 'percent_insurance')->textInput(['maxlength' => 5]) ?> -->
+
+    <!-- <?= $form->field($model, 'percent_contingency')->textInput(['maxlength' => 5]) ?> -->
+
+    <!-- <?= $form->field($model, 'percent_fee')->textInput(['maxlength' => 5]) ?> -->
+
+    <!-- <?= $form->field($model, 'percent_soft')->textInput(['maxlength' => 5]) ?> -->
+
+    <!-- <?= $form->field($model, 'template_project_id')->textInput(['maxlength' => 11]) ?> -->
+         	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+ 
+ 
+ 
+ 
+ 
+    
+<!--    <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-folder-open fa-fw"></i> System Info
+            	<div class="pull-right">
+
+
+ 	 <div class="panel-body">  -->  
+    
+
+
+  <!--  <?= $form->field($model, 'folder')->textInput(['maxlength' => 255]) ?>-->
+
+  <?php /*?> <?= $form->field($model, 'date_archive')->widget(DatePicker::classname(), [ //CHANGED MVW 03/06/14 -->
+      // 'name' => 'date_received'
+      'type' => DatePicker::TYPE_COMPONENT_APPEND,
+      // 'value' => '01/29/2014',
+      'size' => 'md',//'sm','md','lg'
+      'options' => [
+        'placeholder' => 'Enter date...',
+        // 'readonly' => true,
+      ],
+      'pluginOptions' => [
+        'autoclose'=>true,
+        // 'format' => 'dd-M-yyyy'
+        'format' => 'yyyy-mm-dd'
+      ]
+    ]); ?><?php */?>
+
+		<?php /*?><?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
+
+		<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
+
+		<?= $form->field($model, 'create_time')->textInput() //FIXME Autoupdate ?>
+
+		<?= $form->field($model, 'updated_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
+
+		<?= $form->field($model, 'update_time')->textInput() //FIXME Autoupdate ?><?php */?>
+        
+       <!-- </div>--><!-- end panel-body -->
+   <!--</div>--><!-- end panel --> 
+
+		<div class="form-group">
+			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?> 
+            
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/admin/budget/" class="btn btn-success" role="button">Budgets</a> <a href="/admin/draw/" class="btn btn-success" role="button">Draws</a> <a href="/admin/project-team/" class="btn btn-success" role="button">Project Team</a> 
+		</div>
+
+	<?php ActiveForm::end(); ?>
+    
+    
+
+</div><!-- end col-lg-6 -->
+    
+<div class="col-lg-6">
+ <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-money fa-fw"></i> Loan Info
+            	<!--<div class="pull-right">
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu pull-right">
+                                        <li><a href="#">Budget</a>
+                                        </li>
+                                        <li><a href="#">Draws</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="/admin/project-team/">Project Team</a>
+                                        </li>
+                                    </ul>
+                                  </div>
+                       </div>-->
+    			</div><!-- end panel-heading -->
+
+   <!-- <H2>Project Info</H2>-->
+ 	 <div class="panel-body">
+
 
     <!-- <?= $form->field($model, 'need_picklist_id')->textInput(['maxlength' => 11]) ?> -->
 
@@ -182,8 +422,34 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
     <!-- <?= $form->field($model, 'date_end_pmi')->textInput() ?> -->
 
     <!-- <?= $form->field($model, 'amount_pmi')->textInput(['maxlength' => 19]) ?> -->
+     	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+   
+   
+    <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-money fa-fw"></i> Draw Info
+            	<div class="pull-right">
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu pull-right">
+                                        <li><a href="#">Budget</a>
+                                        </li>
+                                        <li><a href="#">Draws</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="/admin/project-team/">Project Team</a>
+                                        </li>
+                                    </ul>
+                                  </div>
+                       </div>
+    			</div><!-- end panel-heading -->
 
-    <H2>Draw Info</H2><!-- CHANGED MVW 03/20/14 -->
+ 	 <div class="panel-body">
+
 
 		<?= $form->field($model, 'project_document_picklist_id')->dropDownList(Custom::picklist('Document', 'is_project'),['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
 
@@ -208,143 +474,9 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
     <!-- <?= $form->field($model, 'gross_rent')->textInput(['maxlength' => 19]) ?> -->
 
     <!-- <?= $form->field($model, 'rate_occupancy')->textInput(['maxlength' => 5]) ?> -->
+         	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+   
 
-    <H2>Schedule Info</H2> <!-- CHANGED MVW 03/20/14 -->
-
-    <?= $form->field($model, 'date_start')->widget(DatePicker::classname(), [ //CHANGED MVW 03/06/14
-      // 'name' => 'date_received'
-      'type' => DatePicker::TYPE_COMPONENT_APPEND,
-      // 'value' => '01/29/2014',
-      'size' => 'md',//'sm','md','lg'
-      'options' => [
-        'placeholder' => 'Enter date...',
-        // 'readonly' => true,
-      ],
-      'pluginOptions' => [
-        'autoclose'=>true,
-        // 'format' => 'dd-M-yyyy'
-        'format' => 'yyyy-mm-dd'
-      ]
-    ]); ?>
-
-    <?= $form->field($model, 'date_finish')->widget(DatePicker::classname(), [ //CHANGED MVW 03/06/14
-      // 'name' => 'date_received'
-      'type' => DatePicker::TYPE_COMPONENT_APPEND,
-      // 'value' => '01/29/2014',
-      'size' => 'md',//'sm','md','lg'
-      'options' => [
-        'placeholder' => 'Enter date...',
-        // 'readonly' => true,
-      ],
-      'pluginOptions' => [
-        'autoclose'=>true,
-        // 'format' => 'dd-M-yyyy'
-        'format' => 'yyyy-mm-dd'
-      ]
-    ]); ?>
-
-    <!-- <?= $form->field($model, 'date_finish_estimated')->textInput(['maxlength' => 255]) ?> -->
-
-    <!-- <?= $form->field($model, 'benchmarks')->textarea(['rows' => 6]) ?> -->
-
-    <!-- <?= $form->field($model, 'damages')->textarea(['rows' => 6]) ?> -->
-
-    <!-- <?= $form->field($model, 'work_week')->textInput() ?> -->
-
-    <!-- <?= $form->field($model, 'work_day')->textInput() ?> -->
-
-    <!-- <H2>Cost Info</H2> CHANGED MVW 03/20/14 -->
-
-    <!-- <?= $form->field($model, 'cost_land')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_design')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_permit')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_site')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_gc')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_building')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_bond')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_insurance')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_contingency')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_fee')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_soft')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_ti')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'cost_ffe')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'location_factor')->textInput(['maxlength' => 5]) ?> -->
-
-    <!-- <?= $form->field($model, 'inflation_factor')->textInput(['maxlength' => 5]) ?> -->
-
-    <!-- <?= $form->field($model, 'sf_cost_site')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'sf_cost_building')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'sf_cost_ti')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'sf_cost_total')->textInput(['maxlength' => 19]) ?> -->
-
-    <!-- <?= $form->field($model, 'percent_gc')->textInput(['maxlength' => 5]) ?> -->
-
-    <!-- <?= $form->field($model, 'percent_permit')->textInput(['maxlength' => 5]) ?> -->
-
-    <!-- <?= $form->field($model, 'percent_design')->textInput(['maxlength' => 5]) ?> -->
-
-    <!-- <?= $form->field($model, 'percent_bond')->textInput(['maxlength' => 5]) ?> -->
-
-    <!-- <?= $form->field($model, 'percent_insurance')->textInput(['maxlength' => 5]) ?> -->
-
-    <!-- <?= $form->field($model, 'percent_contingency')->textInput(['maxlength' => 5]) ?> -->
-
-    <!-- <?= $form->field($model, 'percent_fee')->textInput(['maxlength' => 5]) ?> -->
-
-    <!-- <?= $form->field($model, 'percent_soft')->textInput(['maxlength' => 5]) ?> -->
-
-    <!-- <?= $form->field($model, 'template_project_id')->textInput(['maxlength' => 11]) ?> -->
-
-    <H2>System Info</H2><!-- CHANGED MVW 03/08/14 -->
-
-    <?= $form->field($model, 'folder')->textInput(['maxlength' => 255]) ?>
-
-    <?= $form->field($model, 'date_archive')->widget(DatePicker::classname(), [ //CHANGED MVW 03/06/14 -->
-      // 'name' => 'date_received'
-      'type' => DatePicker::TYPE_COMPONENT_APPEND,
-      // 'value' => '01/29/2014',
-      'size' => 'md',//'sm','md','lg'
-      'options' => [
-        'placeholder' => 'Enter date...',
-        // 'readonly' => true,
-      ],
-      'pluginOptions' => [
-        'autoclose'=>true,
-        // 'format' => 'dd-M-yyyy'
-        'format' => 'yyyy-mm-dd'
-      ]
-    ]); ?>
-
-		<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
-
-		<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
-
-		<?= $form->field($model, 'create_time')->textInput() //FIXME Autoupdate ?>
-
-		<?= $form->field($model, 'updated_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
-
-		<?= $form->field($model, 'update_time')->textInput() //FIXME Autoupdate ?>
-
-		<div class="form-group">
-			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-		</div>
-
-	<?php ActiveForm::end(); ?>
-
-</div>
+ 
+</div><!-- end col-lg-6 --> 
