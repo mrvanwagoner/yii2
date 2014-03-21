@@ -1,4 +1,4 @@
-<?php
+<a href="update.php" id="" title="update">update</a><?php
 
 use yii\helpers\Html;
 
@@ -7,9 +7,9 @@ use yii\helpers\Html;
  * @var backend\models\Contact $model
  */
 
-$this->title = 'Update Contact: ' . $model->id;
+$this->title = 'Contact: ' .$model->entityFullName; //CHANGED MVW 03/20/14: from 'Update Contact: ' . $model->id
 $this->params['breadcrumbs'][] = ['label' => 'Contacts', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->type, 'url' => ['view', 'id' => $model->id]]; //CHANGED MVW 03/20/14: from id //FIXME OR description
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="contact-update">

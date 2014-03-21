@@ -28,7 +28,7 @@ use backend\models\Entity;//CHANGED MVW 03//06/14
  * See http://www.yiiframework.com/extension/tablesorter
  */
 
-$this->title = 'Entities';
+$this->title = 'Entity List'; //CHANGED MVW 03/20/14
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="entity-index">

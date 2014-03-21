@@ -120,4 +120,18 @@ class Team extends \yii\db\ActiveRecord
 	{
 		return $this->hasOne(Entity::className(), ['id' => 'updated_by_entity_id']);
 	}
+
+  public function getEntityFullName() //CHANGED MVW 03/20/14: Extended name. //FIXME similar to Entity::getFullName and Contact::getEntityFullName
+  {
+    if($this->entity->type == 'Company')
+    {
+      if ($this->entity->aka == null) return $this->entity->name;
+      else return $this->entity->aka;
+    }
+    else
+    {
+      if ($this->entity->aka == null) return $this->entity->contact.' '.$this->entity->name;
+      else return $this->entity->aka.' '.$this->entity->name;
+    }
+  }
 }

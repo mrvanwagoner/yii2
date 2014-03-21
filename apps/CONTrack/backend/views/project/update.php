@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var backend\models\Project $model
  */
 
-$this->title = 'Update Project: ' . $model->description; //CHANGED MVW 03/20/14: from id
+$this->title = $model->description; //CHANGED MVW 03/20/14: from 'Update Project: ' . $model->id
 $this->params['breadcrumbs'][] = ['label' => 'Projects', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->description, 'url' => ['view', 'id' => $model->id]]; //CHANGED MVW 03/20/14: from id
 $this->params['breadcrumbs'][] = 'Update';

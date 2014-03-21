@@ -52,8 +52,8 @@ use yii\helpers\ArrayHelper; //CHANGED MVW 03/07/14
  * @property integer $is_named_insured
  * @property string $date_first_contact
  * @property string $percent_close_out
- * @property integer $ok_to_email
- * @property integer $ok_to_text
+ * @property integer $is_ok_to_email
+ * @property integer $is_ok_to_text
  * @property string $comment_differentiation
  * @property string $builder_type
  * @property integer $Jobs_per_year
@@ -112,23 +112,24 @@ class Contact extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['is_active', 'tenant_id', 'entity_id', 'type_picklist_id', 'status_picklist_id', 'address_id', 'phone_id', 'mobile_phone_id', 'fax_phone_id', 'email_id', 'contact_method_person_task_picklist_id', 'is_employee', 'trainer_entity_id', 'is_full_time', 'is_eligible_for_rehire', 'grade', 'sponsor_entity_id', 'is_preferred', 'sales_rep_entity_id', 'service_rep_entity_id', 'lead_picklist_id', 'provider_terms_picklist_id', 'payment_method_provider_task_picklist_id', 'refer_score', 'is_named_insured', 'ok_to_email', 'ok_to_text', 'Jobs_per_year', 'is_spec_builder', 'number_of_models', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
+			[['is_active', 'tenant_id', 'entity_id', 'type_picklist_id', 'status_picklist_id', 'address_id', 'phone_id', 'mobile_phone_id', 'fax_phone_id', 'email_id', 'contact_method_person_task_picklist_id', 'is_employee', 'trainer_entity_id', 'is_full_time', 'is_eligible_for_rehire', 'grade', 'sponsor_entity_id', 'is_preferred', 'sales_rep_entity_id', 'service_rep_entity_id', 'lead_picklist_id', 'provider_terms_picklist_id', 'payment_method_provider_task_picklist_id', 'refer_score', 'is_named_insured', 'is_ok_to_email', 'is_ok_to_text', 'Jobs_per_year', 'is_spec_builder', 'number_of_models', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
 			[['tenant_id', 'entity_id'], 'required'],
 			[['type', 'builder_type', 'loan_in_name', 'note'], 'string'],
 			[['date_hire', 'date_modified', 'date_rehire', 'date_terminated', 'date_grade_assigned', 'date_sales_rep_assigned', 'date_service_rep_assigned', 'date_first_contact', 'create_time', 'update_time'], 'safe'],
 			[['commission_percent', 'commission_amount', 'credit_limit', 'percent_close_out', 'terms_points', 'terms_rate'], 'number'],
 			[['tenant_dbu'], 'string', 'max' => 16],
 			[['description', 'salary', 'wage', 'refer_comment', 'comment_differentiation', 'avg_value', 'current_lender_source', 'sales_source'], 'string', 'max' => 255],
-			[['account_number'], 'string', 'max' => 45]
+			[['account_number'], 'string', 'max' => 45],
+      [['builder_type', 'loan_in_name', ], 'default', 'value' => null],//CHANGED MVW 03/08/14: Needed so ENUM can be created or updated to NULL
 		];
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	public function attributeLabels()
+	public function attributeLabels() //CHANGED MVW 03/08/13
 	{
-		return [ //CHANGED MVW 03/14/14
+		return [
 			'id' => 'ID',
 			'is_active' => 'Active?',
 			'tenant_id' => 'Tenant ID',
@@ -174,8 +175,8 @@ class Contact extends \yii\db\ActiveRecord
 			'is_named_insured' => 'Is Named Insured?',
 			'date_first_contact' => 'Date First Contact',
 			'percent_close_out' => 'Percent Close Out',
-			'ok_to_email' => 'OK To Email',
-			'ok_to_text' => 'OK To Text',
+			'is_ok_to_email' => 'OK To Email',
+			'is_ok_to_text' => 'OK To Text',
 			'comment_differentiation' => 'Comment Differentiation',
 			'builder_type' => 'Builder Type',
 			'Jobs_per_year' => 'Jobs Per Year',
@@ -387,9 +388,42 @@ class Contact extends \yii\db\ActiveRecord
 		return $this->hasMany(ContactRole::className(), ['contact_id' => 'id']);
 	}
 
+  public function getEntityFullName() //CHANGED MVW 03/20/14: Extended name. //FIXME similar to Entity::getFullName
+  {
+    if($this->entity->type == 'Company')
+    {
+      if ($this->entity->aka == null) return $this->entity->name;
+      else return $this->entity->aka;
+    }
+    else
+    {
+      if ($this->entity->aka == null) return $this->entity->contact.' '.$this->entity->name;
+      else return $this->entity->aka.' '.$this->entity->name;
+    }
+  }
+
+  public static function listActiveContacts() //CHANGED MVW 03/08/14
+  {
+    // $query = (new \yii\db\Query())
+    //   ->select('id','description')
+    //   ->from('tbl_contact')
+    //   ->where([
+    //     'is_active' => 1,
+    //     'description' => !'empty',
+    //     // 'type' => 'Person',
+    //     // 'is_tenant' => 1,
+    //     ])
+    //   ->distinct(true) //FIXME Need to select id and description but unique on description
+    //   ->OrderBy('description')
+    //   ->all();
+
+    $query = Contact::find()->where(['is_active'=>1])->all(); //CHANGED MVW 03/08/14: This does what the above does
+    return ArrayHelper::map($query , 'id', 'entityFullName');
+  }
+
   public Static function listMyContacts() //CHANGED MVW 03/20/14. //FIXME This needs work. Make dynamic based on User
   {
-    $query = Contact::find()->where(['is_active'=>1, 'tenant_id'=>2, 'description' => !'empty'])->all();//, 'tenant_id'=>2 || 3 || 5, 'description' => !'empty'
-    return ArrayHelper::map($query , 'id', 'description');
+    $query = Contact::find()->where(['is_active'=>1, 'tenant_id'=>2])->all();
+    return ArrayHelper::map($query , 'id', 'entityFullName');
   }
 }

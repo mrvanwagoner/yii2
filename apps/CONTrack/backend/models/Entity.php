@@ -656,10 +656,16 @@ class Entity extends \yii\db\ActiveRecord
 
   public function getFullName() //CHANGED MVW 12/11/13: Extended name. i.e. to be used in drop down list. http://stackoverflow.com/questions/12812062/in-yii-framework-how-can-i-combine-two-columns-and-show-as-display-string-in-dro
   {
-    // $entity = new Entity;
-    // return $entity->contact.' '.$entity->name; //FIXME If Type = Company vs. Person AND/OR Nickname
-    if ($this->aka == null) return $this->contact.' '.$this->name;
-    else return $this->aka.' '.$this->name; //FIXME If Type = Company vs. Person AND/OR Nickname
+    if($this->type == 'Company')
+    {
+      if ($this->aka == null) return $this->name;
+      else return $this->aka;
+    }
+    else
+    {
+      if ($this->aka == null) return $this->contact.' '.$this->name;
+      else return $this->aka.' '.$this->name;
+    }
   }
 
   public Static function listActiveTenants() //CHANGED MVW 03/06/14
@@ -709,7 +715,7 @@ class Entity extends \yii\db\ActiveRecord
 
   public Static function listActiveEntities() //CHANGED MVW 03/08/14 //FIXME limit
   {
-    $query = Entity::find()->where(['is_active'=>1])->limit(1000)->all();
+    $query = Entity::find()->where(['is_active'=>1])->limit(4000)->all();
     return ArrayHelper::map($query , 'id', 'fullName');
   }
 }

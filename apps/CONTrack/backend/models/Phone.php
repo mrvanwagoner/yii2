@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use yii\helpers\ArrayHelper; //CHANGED MVW 03/08/14
+
 /**
  * This is the model class for table "tbl_entity_phone".
  *
@@ -99,4 +101,22 @@ class Phone extends \yii\db\ActiveRecord
 	{
 		return $this->hasOne(Entity::className(), ['id' => 'updated_by_entity_id']);
 	}
+
+  public static function listActivePhones() //CHANGED MVW 03/20/14
+  {
+    $query = Phone::find()->where(['is_active'=>1])->all();//FIXME , 'type' => !'Mobile' || !'Fax'
+    return ArrayHelper::map($query , 'id', 'phone');
+  }
+
+  public static function listActiveMobiles() //CHANGED MVW 03/20/14
+  {
+    $query = Phone::find()->where(['is_active'=>1])->all();// FIXME If a phone is either or it wont' show. , 'type' => 'Mobile'
+    return ArrayHelper::map($query , 'id', 'phone');
+  }
+
+  public static function listActiveFaxes() //CHANGED MVW 03/20/14
+  {
+    $query = Phone::find()->where(['is_active'=>1])->all();// FIXME If a phone is either or it wont' show. , 'type' => 'Fax'
+    return ArrayHelper::map($query , 'id', 'phone');
+  }
 }
