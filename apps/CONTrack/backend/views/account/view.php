@@ -27,23 +27,23 @@ $this->params['breadcrumbs'][] = $this->title;
 		]); ?>
 	</p>
 
-	<?php echo DetailView::widget([
+	<?php echo DetailView::widget([ //CHANGED MVW 03/06/14
 		'model' => $model,
 		'attributes' => [
 			'id',
 			'is_active',
-			'tenant_id',
-			'tenant_dbu',
+      // 'tenant_id',
+      // 'tenant_dbu',
 			'type',
 			'account_number',
 			'date_established',
 			'description',
 			'location',
-			'account_picklist_id',
-			'status_transaction_picklist_id',
+      // 'account_picklist_id',
+      // 'status_transaction_picklist_id',
 			'parent_account_id',
 			'is_track_transactions',
-			'provider_entity_id',
+      // 'provider_entity_id',
 			'gl_code_id',
 			'project_id',
 			'ref_number',
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			'date_maturity',
 			'face_amount',
 			'current_value',
-			'address_id',
+      // 'address_id',
 			'is_paid_by_close',
 			'rate_interest',
 			'payment_min',

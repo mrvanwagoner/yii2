@@ -99,7 +99,7 @@ AppAsset::register($this);
 				['label' => 'Project', 'icon'=>'th-list', 'url'=>'/admin/project'],
 				['label' => 'Addresses', 'icon'=>'tree-deciduous', 'url'=>'/admin/address'],
 				['label' => 'Buildings', 'icon'=>'tower', 'url'=>'/admin/building'],
-				['label' => 'Project Team', 'icon'=>'user', 'url'=>'/admin/project-team'],
+				['label' => 'Project Team', 'icon'=>'user', 'url'=>'/admin/team'],
 				['label' => 'Tasks', 'icon'=>'list-alt', 'url'=>'/admin/task'], //'icon'=>'list-alt', 'calendar'
 			],
 		],

@@ -129,9 +129,9 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 
 		<?= $form->field($model, 'model')->textInput(['maxlength' => 45]) ?>
 
-		<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
-
     <H2>System Info</H2><!-- CHANGED MVW 03/08/14 -->
+
+		<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
  
 		<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 

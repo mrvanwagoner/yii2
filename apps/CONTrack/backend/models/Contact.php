@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use yii\helpers\ArrayHelper; //CHANGED MVW 03/07/14
+
 /**
  * This is the model class for table "tbl_contact".
  *
@@ -384,4 +386,10 @@ class Contact extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(ContactRole::className(), ['contact_id' => 'id']);
 	}
+
+  public Static function listMyContacts() //CHANGED MVW 03/20/14. //FIXME This needs work. Make dynamic based on User
+  {
+    $query = Contact::find()->where(['is_active'=>1, 'tenant_id'=>2, 'description' => !'empty'])->all();//, 'tenant_id'=>2 || 3 || 5, 'description' => !'empty'
+    return ArrayHelper::map($query , 'id', 'description');
+  }
 }

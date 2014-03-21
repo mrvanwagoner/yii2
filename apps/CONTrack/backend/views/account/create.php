@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var backend\models\Account $model
  */
 
-$this->title = 'Create Account';
+$this->title = 'ADD Account'; //CHANGED MVW 03/20/14
 $this->params['breadcrumbs'][] = ['label' => 'Accounts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

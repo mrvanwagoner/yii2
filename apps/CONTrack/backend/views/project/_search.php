@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 <div class="project-search">
 
-	<?php $form = ActiveForm::begin([
+	<?php $form = ActiveForm::begin([ //CHANGED MVW 03/20/14
 		'action' => ['index'],
 		'method' => 'get',
 	]); ?>
@@ -21,25 +21,25 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'is_active') ?>
 
-		<?= $form->field($model, 'tenant_id') ?>
+    <!-- <?= $form->field($model, 'tenant_id') ?> -->
 
-		<?= $form->field($model, 'tenant_dbu') ?>
+    <!-- <?= $form->field($model, 'tenant_dbu') ?> -->
 
 		<?= $form->field($model, 'type') ?>
 
 		<?php // echo $form->field($model, 'is_template') ?>
 
-		<?php // echo $form->field($model, 'project_number') ?>
+		<?php  echo $form->field($model, 'project_number') ?>
 
-		<?php // echo $form->field($model, 'description') ?>
+		<?php  echo $form->field($model, 'description') ?>
 
 		<?php // echo $form->field($model, 'comment') ?>
 
 		<?php // echo $form->field($model, 'x_address_id') ?>
 
-		<?php // echo $form->field($model, 'construction_classification_id') ?>
+		<?php  echo $form->field($model, 'construction_classification_id') ?>
 
-		<?php // echo $form->field($model, 'project_status_picklist_id') ?>
+		<?php  echo $form->field($model, 'project_status_picklist_id') ?>
 
 		<?php // echo $form->field($model, 'sponsor_entity_id') ?>
 
