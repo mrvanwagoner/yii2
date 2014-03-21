@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use yii\helpers\ArrayHelper; //CHANGED MVW 03/08/14
+
 /**
  * This is the model class for table "tbl_entity_email".
  *
@@ -90,4 +92,10 @@ class Email extends \yii\db\ActiveRecord
 	{
 		return $this->hasMany(EntityHasEmail::className(), ['email_id' => 'id']);
 	}
+
+  public static function listActiveEmails() //CHANGED MVW 03/20/14
+  {
+    $query = Email::find()->where(['is_active'=>1])->all();
+    return ArrayHelper::map($query , 'id', 'description');
+  }
 }

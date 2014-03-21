@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 <div class="contact-search">
 
-	<?php $form = ActiveForm::begin([
+	<?php $form = ActiveForm::begin([ //CHANGED MVW 03/20/14
 		'action' => ['index'],
 		'method' => 'get',
 	]); ?>
@@ -21,19 +21,19 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'is_active') ?>
 
-		<?= $form->field($model, 'tenant_id') ?>
+    <!-- <?= $form->field($model, 'tenant_id') ?> -->
 
-		<?= $form->field($model, 'tenant_dbu') ?>
+    <!-- <?= $form->field($model, 'tenant_dbu') ?> -->
 
 		<?= $form->field($model, 'entity_id') ?>
 
-		<?php // echo $form->field($model, 'type') ?>
+		<?php  echo $form->field($model, 'type') ?>
 
-		<?php // echo $form->field($model, 'description') ?>
+		<?php  echo $form->field($model, 'description') ?>
 
-		<?php // echo $form->field($model, 'type_picklist_id') ?>
+		<?php  echo $form->field($model, 'type_picklist_id') ?>
 
-		<?php // echo $form->field($model, 'status_picklist_id') ?>
+		<?php  echo $form->field($model, 'status_picklist_id') ?>
 
 		<?php // echo $form->field($model, 'address_id') ?>
 
@@ -107,9 +107,9 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'percent_close_out') ?>
 
-		<?php // echo $form->field($model, 'ok_to_email') ?>
+		<?php // echo $form->field($model, 'is_ok_to_email') ?>
 
-		<?php // echo $form->field($model, 'ok_to_text') ?>
+		<?php // echo $form->field($model, 'is_ok_to_text') ?>
 
 		<?php // echo $form->field($model, 'comment_differentiation') ?>
 

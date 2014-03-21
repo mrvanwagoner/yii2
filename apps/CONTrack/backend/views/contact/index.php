@@ -9,7 +9,7 @@ use yii\grid\GridView;
  * @var backend\models\search\ContactSearch $searchModel
  */
 
-$this->title = 'Contacts';
+$this->title = 'Contact List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contact-index">
@@ -46,11 +46,14 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,    
 		'filterModel' => $searchModel,
-    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/11/14
+    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/10/14: 'table table-condensed', 'table table-striped', 'table-bordered'
 		'columns' => [
-      ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/11/14
-			['class' => 'yii\grid\SerialColumn'],
-
+      ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code. // FIXME you may configure additional properties in this array (not sure what...)
+      /* ~~~
+      * var keys = $('#grid').yiiGridView('getSelectedRows');
+      * // keys is an array consisting of the keys associated with the selected rows
+      * ~~~ */
+			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/11/14: A sequentially numbered column
       // 'id',
 			'is_active',
       // 'tenant_id',
@@ -96,8 +99,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'is_named_insured',
 			// 'date_first_contact',
 			// 'percent_close_out',
-			// 'ok_to_email:email',
-			// 'ok_to_text',
+			// 'is_ok_to_email:email',
+			// 'is_ok_to_text',
 			// 'comment_differentiation',
 			// 'builder_type',
 			// 'Jobs_per_year',

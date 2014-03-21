@@ -56,8 +56,8 @@ class ContactSearch extends Model
 	public $is_named_insured;
 	public $date_first_contact;
 	public $percent_close_out;
-	public $ok_to_email;
-	public $ok_to_text;
+	public $is_ok_to_email;
+	public $is_ok_to_text;
 	public $comment_differentiation;
 	public $builder_type;
 	public $Jobs_per_year;
@@ -78,7 +78,7 @@ class ContactSearch extends Model
 	public function rules()
 	{
 		return [
-			[['id', 'is_active', 'tenant_id', 'entity_id', 'type_picklist_id', 'status_picklist_id', 'address_id', 'phone_id', 'mobile_phone_id', 'fax_phone_id', 'email_id', 'contact_method_person_task_picklist_id', 'is_employee', 'trainer_entity_id', 'is_full_time', 'is_eligible_for_rehire', 'grade', 'sponsor_entity_id', 'is_preferred', 'sales_rep_entity_id', 'service_rep_entity_id', 'lead_picklist_id', 'provider_terms_picklist_id', 'payment_method_provider_task_picklist_id', 'refer_score', 'is_named_insured', 'ok_to_email', 'ok_to_text', 'Jobs_per_year', 'is_spec_builder', 'number_of_models', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
+			[['id', 'is_active', 'tenant_id', 'entity_id', 'type_picklist_id', 'status_picklist_id', 'address_id', 'phone_id', 'mobile_phone_id', 'fax_phone_id', 'email_id', 'contact_method_person_task_picklist_id', 'is_employee', 'trainer_entity_id', 'is_full_time', 'is_eligible_for_rehire', 'grade', 'sponsor_entity_id', 'is_preferred', 'sales_rep_entity_id', 'service_rep_entity_id', 'lead_picklist_id', 'provider_terms_picklist_id', 'payment_method_provider_task_picklist_id', 'refer_score', 'is_named_insured', 'is_ok_to_email', 'is_ok_to_text', 'Jobs_per_year', 'is_spec_builder', 'number_of_models', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
 			[['tenant_dbu', 'type', 'description', 'date_hire', 'date_modified', 'date_rehire', 'date_terminated', 'salary', 'wage', 'date_grade_assigned', 'account_number', 'date_sales_rep_assigned', 'date_service_rep_assigned', 'refer_comment', 'date_first_contact', 'comment_differentiation', 'builder_type', 'avg_value', 'loan_in_name', 'current_lender_source', 'sales_source', 'note', 'create_time', 'update_time'], 'safe'],
 			[['commission_percent', 'commission_amount', 'credit_limit', 'percent_close_out', 'terms_points', 'terms_rate'], 'number'],
 		];
@@ -135,8 +135,8 @@ class ContactSearch extends Model
 			'is_named_insured' => 'Is Named Insured',
 			'date_first_contact' => 'Date First Contact',
 			'percent_close_out' => 'Percent Close Out',
-			'ok_to_email' => 'Ok To Email',
-			'ok_to_text' => 'Ok To Text',
+			'is_ok_to_email' => 'Ok To Email',
+			'is_ok_to_text' => 'Ok To Text',
 			'comment_differentiation' => 'Comment Differentiation',
 			'builder_type' => 'Builder Type',
 			'Jobs_per_year' => 'Jobs Per Year',
@@ -212,8 +212,8 @@ class ContactSearch extends Model
 		$this->addCondition($query, 'is_named_insured');
 		$this->addCondition($query, 'date_first_contact');
 		$this->addCondition($query, 'percent_close_out');
-		$this->addCondition($query, 'ok_to_email');
-		$this->addCondition($query, 'ok_to_text');
+		$this->addCondition($query, 'is_ok_to_email');
+		$this->addCondition($query, 'is_ok_to_text');
 		$this->addCondition($query, 'comment_differentiation', true);
 		$this->addCondition($query, 'builder_type', true);
 		$this->addCondition($query, 'Jobs_per_year');

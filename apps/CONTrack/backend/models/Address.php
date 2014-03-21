@@ -224,7 +224,6 @@ class Address extends \yii\db\ActiveRecord
     return $this->address1.', '.$this->city.', '.$this->state.', '.$this->postal_code;
   }
 
-
   public static function listActiveAddresses() //CHANGED MVW 03/08/14
   {
     $query = Address::find()->where(['is_active'=>1])->all();

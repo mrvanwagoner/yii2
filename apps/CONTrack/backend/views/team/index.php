@@ -9,7 +9,7 @@ use yii\grid\GridView;
  * @var backend\models\search\TeamSearch $searchModel
  */
 
-$this->title = 'Project Teams'; //CHANGED MVW 03/20/14. FIXME Available only to System Admin? Otherwise available through Projects 
+$this->title = 'Project Team'; //CHANGED MVW 03/20/14. FIXME Available only to System Admin? Otherwise available through Projects 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="team-index">

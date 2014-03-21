@@ -24,9 +24,11 @@ use backend\models\Contact; //CHANGED MVW 03/20/14
 
 		<?= $form->field($model, 'type')->dropDownList(Custom::listEnum($model, 'type'), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-		<?= $form->field($model, 'entity_id')->dropDownList(Entity::listActiveEntities(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
+    <!-- <?= $form->field($model, 'entity_id')->dropDownList(Entity::listActiveEntities(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?> -->
 
-		<?= $form->field($model, 'type_picklist_id')->dropDownList(Custom::picklist('Type', null),['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 //FIXME based on entity type ?>
+		<?= $form->field($model, 'entity_id')->dropDownList(Contact::listMyContacts(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
+
+		<?= $form->field($model, 'type_picklist_id')->dropDownList(Custom::picklist('Type', null),['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 //FIXME Make sure list is providing correct info ?>
 
 		<?= $form->field($model, 'has_access')->checkbox() //CHANGED MVW 03/08/14 ?>
 

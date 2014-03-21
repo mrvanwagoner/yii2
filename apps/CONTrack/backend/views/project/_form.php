@@ -390,7 +390,7 @@ use yii\helpers\ArrayHelper;
 
     <!-- <?= $form->field($model, 'purpose_picklist_id')->textInput(['maxlength' => 11]) ?> -->
 
-    <!-- <?= $form->field($model, 'property_use')->textInput() ?> -->
+    <!-- <?= $form->field($model, 'property_use')->dropDownList(Custom::listEnum($model, 'property_use'), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?> -->
 
     <?= $form->field($model, 'loan_number')->textInput(['maxlength' => 255]) ?>
 
@@ -398,9 +398,9 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'loan_classification_id')->dropDownList(Classification::listActiveLoanClassifications(),['prompt'=>'Select from list...']) //CHANGED MVW 03/20/14 ?>
 
-    <!-- <?= $form->field($model, 'can_pull_credit')->textInput() ?> -->
+    <!-- <?= $form->field($model, 'can_pull_credit')->dropDownList(Custom::listEnum($model, 'can_pull_credit'), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?> -->
 
-    <!-- <?= $form->field($model, 'can_lock_loan')->textInput() ?> -->
+    <!-- <?= $form->field($model, 'can_lock_loan')->dropDownList(Custom::listEnum($model, 'can_lock_loan'), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?> -->
 
     <?= $form->field($model, 'appraised_value')->textInput(['maxlength' => 19]) ?>
 

@@ -9,7 +9,7 @@ use yii\grid\GridView;
  * @var backend\models\search\AccountSearch $searchModel
  */
 
-$this->title = 'Accounts';
+$this->title = 'Account List'; //CHANGED MVW 03/20/14
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="account-index">

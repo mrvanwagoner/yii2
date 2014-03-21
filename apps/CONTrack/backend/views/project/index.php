@@ -9,7 +9,7 @@ use yii\grid\GridView;
  * @var backend\models\search\ProjectSearch $searchModel
  */
 
-$this->title = 'Projects';
+$this->title = 'Project List'; //CHANGED MVW 03/20/14
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-index">

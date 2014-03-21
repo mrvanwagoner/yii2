@@ -10,7 +10,6 @@ use yii\helpers\Html;
 $this->title = 'Project: ' ; //CHANGED MVW 03/20/14: from id  //CHANGED VJT 03/20/14 removed . $model->description
 $this->params['breadcrumbs'][] = ['label' => 'Projects', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->description, 'url' => ['view', 'id' => $model->id]]; //CHANGED MVW 03/20/14: from id
-
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="project-update">
