@@ -55,7 +55,7 @@ $object = Yii::createObject([
     'class' => 'MyClass',
     'property1' => 'abc',
     'property2' => 'cde',
-], $param1, $param2);
+], [$param1, $param2]);
 ```
 
 
@@ -114,9 +114,11 @@ There are several classes provided by framework:
 - FileHelper
 - Html
 - HtmlPurifier
+- Image
 - Inflector
 - Json
 - Markdown
 - Security
 - StringHelper
+- Url
 - VarDumper
