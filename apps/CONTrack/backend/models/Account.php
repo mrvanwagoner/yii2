@@ -89,13 +89,14 @@ class Account extends \yii\db\ActiveRecord
 			[['tenant_dbu'], 'string', 'max' => 16],
 			[['account_number', 'ref_number', 'year', 'make', 'model'], 'string', 'max' => 45],
 			[['description', 'location'], 'string', 'max' => 255]
+			[['budget_impact'], 'default', 'value' => null],//CHANGED MVW 03/08/14: Needed so ENUM can be created or updated to NULL
 		];
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	public function attributeLabels()
+	public function attributeLabels() //CHANGED MVW 03/08/13
 	{
 		return [
 			'id' => 'ID',

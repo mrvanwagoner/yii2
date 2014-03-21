@@ -476,20 +476,20 @@ class Project extends \yii\db\ActiveRecord
 
   public static function listActiveProjects() //CHANGED MVW 03/20/14
   {
-    $query = (new \yii\db\Query())
-      ->select('id','description')
-      ->from('tbl_project')
-      ->where([
-        'is_active' => 1,
-        'description' => !'empty',
-        // 'type' => 'Person',
-        // 'is_tenant' => 1,
-        ])
-      ->distinct(true) //FIXME Need to select id and description but unique on description
-      ->OrderBy('description')
-      ->all();
+    // $query = (new \yii\db\Query())
+    //   ->select('id','description')
+    //   ->from('tbl_project')
+    //   ->where([
+    //     'is_active' => 1,
+    //     'description' => !'empty',
+    //     // 'type' => 'Person',
+    //     // 'is_tenant' => 1,
+    //     ])
+    //   ->distinct(true) //FIXME Need to select id and description but unique on description
+    //   ->OrderBy('description')
+    //   ->all();
 
-    // $query = Project::find()->where(['is_active'=>1])->all(); //CHANGED MVW 03/20/14: This does what the above does
+    $query = Project::find()->where(['is_active'=>1])->all(); //CHANGED MVW 03/20/14: This does what the above does
     return ArrayHelper::map($query , 'id', 'description');
   }
 }

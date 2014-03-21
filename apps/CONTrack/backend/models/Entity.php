@@ -180,7 +180,7 @@ class Entity extends \yii\db\ActiveRecord
 	/**
 	 * @inheritdoc
 	 */
-	public function attributeLabels()
+	public function attributeLabels() //CHANGED MVW 03/08/13
 	{
 		return [
 			'id' => 'ID',
@@ -707,22 +707,9 @@ class Entity extends \yii\db\ActiveRecord
     return ArrayHelper::map($query , 'id', 'fullName');
   }
 
-  public static function listActiveEntities() //CHANGED MVW 03/08/14
+  public Static function listActiveEntities() //CHANGED MVW 03/08/14 //FIXME limit
   {
-    $query = (new \yii\db\Query())
-      ->select('id','name', 'contact')
-      ->from('tbl_entity')
-      ->where([
-        'is_active' => 1,
-        // 'description' => !'empty',
-        // 'type' => 'Person',
-        // 'is_tenant' => 1,
-        ])
-      // ->distinct(true) //FIXME Need to select id and description but unique on description
-      ->OrderBy('name')
-      ->all();
-
-    // $query = Entity::find()->where(['is_active'=>1])->all(); //CHANGED MVW 03/20/14: This does what the above does
+    $query = Entity::find()->where(['is_active'=>1])->limit(1000)->all();
     return ArrayHelper::map($query , 'id', 'fullName');
   }
 }

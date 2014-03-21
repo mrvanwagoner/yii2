@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
  * @var backend\models\Project $model
  */
 
-$this->title = $model->description; //CHANGED MVW 03/20/14: from id
+$this->title = $model->type; //CHANGED MVW 03/20/14: from id
 $this->params['breadcrumbs'][] = ['label' => 'Projects', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -27,11 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
 		]); ?>
 	</p>
 
-	<?php echo DetailView::widget([
+	<?php echo DetailView::widget([ //CHANGED MVW 03/20/14
 		'model' => $model,
 		'attributes' => [
       // 'id',
-      // 'is_active',
+      'is_active',
       // 'tenant_id',
       // 'tenant_dbu',
       // 'is_template',

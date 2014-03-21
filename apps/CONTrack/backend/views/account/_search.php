@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 <div class="account-search">
 
-	<?php $form = ActiveForm::begin([
+	<?php $form = ActiveForm::begin([ //CHANGED MVW 03/20/14
 		'action' => ['index'],
 		'method' => 'get',
 	]); ?>
@@ -21,21 +21,21 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'is_active') ?>
 
-		<?= $form->field($model, 'tenant_id') ?>
+    <!-- <?= $form->field($model, 'tenant_id') ?> -->
 
-		<?= $form->field($model, 'tenant_dbu') ?>
+    <!-- <?= $form->field($model, 'tenant_dbu') ?> -->
 
 		<?= $form->field($model, 'type') ?>
 
-		<?php // echo $form->field($model, 'account_number') ?>
+    <?php  echo $form->field($model, 'account_number') ?>
 
 		<?php // echo $form->field($model, 'date_established') ?>
 
-		<?php // echo $form->field($model, 'description') ?>
+		<?php  echo $form->field($model, 'description') ?>
 
 		<?php // echo $form->field($model, 'location') ?>
 
-		<?php // echo $form->field($model, 'account_picklist_id') ?>
+		<?php  echo $form->field($model, 'account_picklist_id') ?>
 
 		<?php // echo $form->field($model, 'transaction_status_picklist_id') ?>
 
