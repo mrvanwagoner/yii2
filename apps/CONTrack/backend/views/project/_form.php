@@ -7,6 +7,8 @@ use backend\models\Entity;//CHANGED MVW 03//06/14
 use backend\models\Classification; //CHANGED MVW 03/20/14
 use backend\models\Document;//CHANGED MVW 03//06/14
 use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 
 
 /**
@@ -19,7 +21,76 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 <div class="project-form col-lg-6">
 
 	<?php $form = ActiveForm::begin(); ?>
-    
+ 
+ <div>   
+
+<?= yii\bootstrap\Tabs::widget([
+
+	'items' => [
+	[
+	'label' => 'One',
+	'content' => 'Anim pariatur cliche...',
+	'active' => true
+	],
+	[
+	'label' => 'Two',
+	'content' => 'Anim pariatur cliche...',
+	'options' => ['id' => 'myveryownID'],
+	],
+	[
+	'label' => 'Dropdown',
+	'items' => [
+	[
+	'label' => 'DropdownA',
+	'content' => 'DropdownA, Anim pariatur cliche...',
+	],
+	[
+	'label' => 'DropdownB',
+	'content' => 'DropdownB, Anim pariatur cliche...',
+	],
+	],
+	],
+	],
+	]);
+
+?>
+
+<?= yii\jui\Accordion::widget([
+    'items' => [
+        [
+            'header' => '<i class="fa fa-folder-open fa-fw"></i> Project Info',
+            'content' => 
+				// [
+					'content, more content, and more'
+					// $form->field($model, 'project_number')->textInput(['maxlength' => 45]),
+					// $form->field($model, 'description')->textInput(['maxlength' => 255]),
+					// $form->field($model, 'comment')->textarea(['rows' => 6]), 
+					// $form->field($model, 'type')->dropDownList(Custom::listEnum($model, 'type'), ['prompt'=>'Select from list...']), 
+					// $form->field($model, 'construction_classification_id')->dropDownList(Classification::listActiveConstructionClassifications(),['prompt'=>'Select from list...']),
+					// $form->field($model, 'project_status_picklist_id')->dropDownList(Custom::picklist('Status', 'is_project'),['prompt'=>'Select from list...'])
+				// ],
+        ],
+        [
+            'header' => 'Section 2',
+            'headerOptions' => ['tag' => 'h1'],
+            'content' => 'Sed non urna. Phasellus eu ligula. Vestibulum sit amet purus...',
+            'options' => ['tag' => 'div'],
+        ],
+    ],
+    'options' => ['tag' => 'div'],
+    'itemOptions' => ['tag' => 'div'],
+    'headerOptions' => ['tag' => 'h2'],
+    'clientOptions' => ['collapsible' => false],
+]);
+  
+  ?>
+
+</div>
+  
+  
+  
+  
+  
     
     
     
@@ -38,7 +109,7 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
                                         <li><a href="#">Draws</a>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><a href="/admin/project-team/">Project Team</a>
+                                        <li><a href="/admin/team/">Project Team</a>
                                         </li>
                                     </ul>
                                   </div>
@@ -106,7 +177,7 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
  
      <div class="panel panel-default">   
     	<div class="panel-heading">
-            <i class="fa fa-money fa-fw"></i> Schedule Info
+            <i class="fa fa-calendar-o fa-fw"></i> Schedule Info
             	<!--<div class="pull-right">
                                 <div class="btn-group">
                                     <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
@@ -279,7 +350,7 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 		<div class="form-group">
 			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?> 
             
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/admin/budget/" class="btn btn-success" role="button">Budgets</a> <a href="/admin/draw/" class="btn btn-success" role="button">Draws</a> <a href="/admin/project-team/" class="btn btn-success" role="button">Project Team</a> 
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/admin/budget/" class="btn btn-success" role="button">Budgets</a> <a href="/admin/draw/" class="btn btn-success" role="button">Draws</a> <a href="/admin/team/" class="btn btn-success" role="button">Project Team</a> 
 		</div>
 
 	<?php ActiveForm::end(); ?>
@@ -428,7 +499,7 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
    
     <div class="panel panel-default">   
     	<div class="panel-heading">
-            <i class="fa fa-money fa-fw"></i> Draw Info
+            <i class="fa fa-pencil-square fa-fw"></i> Draw Info
             	<div class="pull-right">
                                 <div class="btn-group">
                                     <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
@@ -441,7 +512,7 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
                                         <li><a href="#">Draws</a>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><a href="/admin/project-team/">Project Team</a>
+                                        <li><a href="/admin/team/">Project Team</a>
                                         </li>
                                     </ul>
                                   </div>
