@@ -103,12 +103,13 @@ class EntitySearch extends Model
 	public $created_by_entity_id;
 	public $update_time;
 	public $updated_by_entity_id;
+  public $fullName; //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
 
 	public function rules()
 	{
 		return [
 			[['id', 'is_active', 'is_tenant', 'is_user', 'is_provider', 'is_customer', 'tenant_type_picklist_id', 'is_tenant_enabled', 'is_track_customers', 'is_track_providers', 'is_track_employees', 'is_track_projects', 'is_track_transactions', 'is_track_campaigns', 'is_track_content', 'is_branded', 'logo_document_id', 'is_user_enabled', 'current_role_id', 'x_sign_in_count', 'is_provider_approved', 'is_1099_eligible', 'is_material_only', 'is_track_license', 'is_track_insurance', 'sponsor_entity_id', 'credit_picklist_id', 'order_picklist_id', 'is_renter', 'years_school', 'retirement_age', 'ethnicity_picklist_id', 'is_us_citizen', 'is_us_veteran', 'is_disabled', 'customer_need_picklist_id', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
-			[['type', 'name', 'contact', 'aka', 'dba', 'middle_name', 'suffix', 'previous_name', 'signature', 'db_username', 'db_password', 'slogan', 'username', 'auth_key', 'password_hash', 'password_reset_token', 'salt', 'last_sign_in_time', 'x_reset_password_sent_time', 'x_remember_created_time', 'x_current_sign_in_time', 'x_current_sign_in_ip', 'x_last_sign_in_ip', 'organization_type', 'credit_score', 'employment_status', 'occupation', 'employer', 'position', 'years_employed', 'date_bankruptcy', 'date_birth', 'date_anniversary', 'gender', 'marital_status', 'military_status', 'description_disability', 'dependents', 'dependent_ages', 'folder_location', 'note', 'create_time', 'update_time'], 'safe'],
+			[['type', 'name', 'contact', 'aka', 'dba', 'middle_name', 'suffix', 'previous_name', 'signature', 'db_username', 'db_password', 'slogan', 'username', 'auth_key', 'password_hash', 'password_reset_token', 'salt', 'last_sign_in_time', 'x_reset_password_sent_time', 'x_remember_created_time', 'x_current_sign_in_time', 'x_current_sign_in_ip', 'x_last_sign_in_ip', 'organization_type', 'credit_score', 'employment_status', 'occupation', 'employer', 'position', 'years_employed', 'date_bankruptcy', 'date_birth', 'date_anniversary', 'gender', 'marital_status', 'military_status', 'description_disability', 'dependents', 'dependent_ages', 'folder_location', 'note', 'create_time', 'update_time','fullName'], 'safe'], //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
 			[['total_income', 'housing_expense', 'liquid_assets', 'investments', 'personal_property', 'real_property', 'total_assets', 'current_liabilities', 'long_term_liabilities', 'total_liabilities', 'equity'], 'number'],
 		];
 	}
@@ -116,45 +117,46 @@ class EntitySearch extends Model
 	/**
 	 * @inheritdoc
 	 */
-	public function attributeLabels()
+	public function attributeLabels() //CHANGED MVW 03/22/14: Copied from Model
 	{
 		return [
 			'id' => 'ID',
-			'is_active' => 'Is Active',
+			'is_active' => 'Active?',
 			'type' => 'Type',
 			'name' => 'Name',
 			'contact' => 'Contact',
-			'aka' => 'Aka',
-			'dba' => 'Dba',
+      'fullName' => 'Full Name', //CHANGED MVW 03/22/14: Added to allow Filter/Search
+			'aka' => 'AKA',
+			'dba' => 'DBA',
 			'middle_name' => 'Middle Name',
 			'suffix' => 'Suffix',
 			'previous_name' => 'Previous Name',
 			'signature' => 'Signature',
-			'is_tenant' => 'Is Tenant',
-			'is_user' => 'Is User',
-			'is_provider' => 'Is Provider',
-			'is_customer' => 'Is Customer',
-			'tenant_type_picklist_id' => 'Tenant Type Picklist ID',
-			'is_tenant_enabled' => 'Is Tenant Enabled',
-			'db_username' => 'Db Username',
-			'db_password' => 'Db Password',
-			'is_track_customers' => 'Is Track Customers',
-			'is_track_providers' => 'Is Track Providers',
-			'is_track_employees' => 'Is Track Employees',
-			'is_track_projects' => 'Is Track Projects',
-			'is_track_transactions' => 'Is Track Transactions',
-			'is_track_campaigns' => 'Is Track Campaigns',
-			'is_track_content' => 'Is Track Content',
-			'is_branded' => 'Is Branded',
+			'is_tenant' => 'Is Tenant?',
+			'is_user' => 'Is User?',
+			'is_provider' => 'Is Provider?',
+			'is_customer' => 'Is Customer?',
+			'tenant_type_picklist_id' => 'Tenant Type',
+			'is_tenant_enabled' => 'Is Tenant Enabled?',
+			'db_username' => 'DB Username',
+			'db_password' => 'DB Password',
+			'is_track_customers' => 'Track Customers?',
+			'is_track_providers' => 'Track Providers?',
+			'is_track_employees' => 'Track Employees?',
+			'is_track_projects' => 'Track Projects?',
+			'is_track_transactions' => 'Track Transactions?/',
+			'is_track_campaigns' => 'Track Campaigns?',
+			'is_track_content' => 'Track Content?',
+			'is_branded' => 'Is Tenant Branded?',
 			'slogan' => 'Slogan',
-			'logo_document_id' => 'Logo Document ID',
-			'is_user_enabled' => 'Is User Enabled',
+			'logo_document_id' => 'Company Logo Document',
+			'is_user_enabled' => 'Is User Enabled?',
 			'username' => 'Username',
 			'auth_key' => 'Auth Key',
-			'password_hash' => 'Password Hash',
-			'password_reset_token' => 'Password Reset  Token',
+			'password_hash' => 'Password',
+			'password_reset_token' => 'Password Reset Token',
 			'salt' => 'Salt',
-			'current_role_id' => 'Current Role ID',
+			'current_role_id' => 'Current Role',
 			'last_sign_in_time' => 'Last Sign In Time',
 			'x_reset_password_sent_time' => 'X Reset Password Sent Time',
 			'x_remember_created_time' => 'X Remember Created Time',
@@ -162,14 +164,14 @@ class EntitySearch extends Model
 			'x_current_sign_in_time' => 'X Current Sign In Time',
 			'x_current_sign_in_ip' => 'X Current Sign In Ip',
 			'x_last_sign_in_ip' => 'X Last Sign In Ip',
-			'is_provider_approved' => 'Is Provider Approved',
+			'is_provider_approved' => 'Is Approved Provider?',
 			'organization_type' => 'Organization Type',
-			'is_1099_eligible' => 'Is 1099 Eligible',
-			'is_material_only' => 'Is Material Only',
-			'is_track_license' => 'Is Track License',
-			'is_track_insurance' => 'Is Track Insurance',
-			'sponsor_entity_id' => 'Sponsor Entity ID',
-			'credit_picklist_id' => 'Credit Picklist ID',
+			'is_1099_eligible' => 'Is 1099 Eligible?',
+			'is_material_only' => 'Is Material Only?',
+			'is_track_license' => 'Track License?',
+			'is_track_insurance' => 'Track Insurance?',
+			'sponsor_entity_id' => 'Sponsor ID',
+			'credit_picklist_id' => 'Credit',
 			'credit_score' => 'Credit Score',
 			'total_income' => 'Total Income',
 			'housing_expense' => 'Housing Expense',
@@ -182,8 +184,8 @@ class EntitySearch extends Model
 			'long_term_liabilities' => 'Long Term Liabilities',
 			'total_liabilities' => 'Total Liabilities',
 			'equity' => 'Equity',
-			'order_picklist_id' => 'Order Picklist ID',
-			'is_renter' => 'Is Renter',
+			'order_picklist_id' => 'Debt Payoff Order',
+			'is_renter' => 'Is Renting',
 			'years_school' => 'Years School',
 			'employment_status' => 'Employment Status',
 			'occupation' => 'Occupation',
@@ -196,21 +198,21 @@ class EntitySearch extends Model
 			'date_anniversary' => 'Date Anniversary',
 			'gender' => 'Gender',
 			'marital_status' => 'Marital Status',
-			'ethnicity_picklist_id' => 'Ethnicity Picklist ID',
-			'is_us_citizen' => 'Is Us Citizen',
+			'ethnicity_picklist_id' => 'Ethnicity',
+			'is_us_citizen' => 'Is Us Citizen?',
 			'military_status' => 'Military Status',
-			'is_us_veteran' => 'Is Us Veteran',
-			'is_disabled' => 'Is Disabled',
+			'is_us_veteran' => 'Is Us Veteran?',
+			'is_disabled' => 'Is Disabled?',
 			'description_disability' => 'Description Disability',
 			'dependents' => 'Dependents',
 			'dependent_ages' => 'Dependent Ages',
-			'customer_need_picklist_id' => 'Customer Need Picklist ID',
+			'customer_need_picklist_id' => 'Customer Need',
 			'folder_location' => 'Folder Location',
 			'note' => 'Note',
-			'create_time' => 'Create Time',
-			'created_by_entity_id' => 'Created By Entity ID',
-			'update_time' => 'Update Time',
-			'updated_by_entity_id' => 'Updated By Entity ID',
+			'create_time' => 'Created',
+			'created_by_entity_id' => 'Created By',
+			'update_time' => 'Update',
+			'updated_by_entity_id' => 'Updated By',
 		];
 	}
 
@@ -220,6 +222,109 @@ class EntitySearch extends Model
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,
 		]);
+
+    $dataProvider->setSort([ //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
+      'attributes' => [ //CHANGED MVW 03/22/14: Copied list of attributes from index.php then edited
+        'id',
+        'is_active',
+        'type',
+        'name',
+        'contact',
+        'fullName' => [ //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
+          'asc' => ['name' => SORT_ASC, 'contact' => SORT_ASC],
+          'desc' => ['name' => SORT_DESC, 'contact' => SORT_DESC],
+          'label' => 'Full Name',
+          'default' => SORT_ASC
+        ],
+        'aka',
+        'dba',
+        'middle_name',
+        'suffix',
+        'previous_name',
+        'signature:ntext',
+        'is_tenant',
+        'is_user',
+        'is_provider',
+        'is_customer',
+        'tenant_type_picklist_id',
+        'is_tenant_enabled',
+        'db_username',
+        'db_password',
+        'is_track_customers',
+        'is_track_providers',
+        'is_track_employees',
+        'is_track_projects',
+        'is_track_transactions',
+        'is_track_campaigns',
+        'is_track_content',
+        'is_branded',
+        'slogan',
+        'logo_document_id',
+        'is_user_enabled',
+        'username',
+        'auth_key',
+        'password_hash',
+        'password_reset_token',
+        'salt',
+        'current_role_id',
+        'last_sign_in_time',
+        'x_reset_password_sent_time',
+        'x_remember_created_time',
+        'x_sign_in_count',
+        'x_current_sign_in_time',
+        'x_current_sign_in_ip',
+        'x_last_sign_in_ip',
+        'is_provider_approved',
+        'organization_type',
+        'is_1099_eligible',
+        'is_material_only',
+        'is_track_license',
+        'is_track_insurance',
+        'sponsor_entity_id',
+        'credit_picklist_id',
+        'credit_score',
+        'total_income',
+        'housing_expense',
+        'liquid_assets',
+        'investments',
+        'personal_property',
+        'real_property',
+        'total_assets',
+        'current_liabilities',
+        'long_term_liabilities',
+        'total_liabilities',
+        'equity',
+        'order_picklist_id',
+        'is_renter',
+        'years_school',
+        'employment_status',
+        'occupation',
+        'employer',
+        'position',
+        'years_employed',
+        'retirement_age',
+        'date_bankruptcy',
+        'date_birth',
+        'date_anniversary',
+        'gender',
+        'marital_status',
+        'ethnicity_picklist_id',
+        'is_us_citizen',
+        'military_status',
+        'is_us_veteran',
+        'is_disabled',
+        'description_disability',
+        'dependents',
+        'dependent_ages',
+        'customer_need_picklist_id',
+        'folder_location',
+        'note:ntext',
+        'create_time',
+        'created_by_entity_id',
+        'update_time',
+        'updated_by_entity_id',
+      ]
+    ]);
 
 		if (!($this->load($params) && $this->validate())) {
 			return $dataProvider;
@@ -317,6 +422,8 @@ class EntitySearch extends Model
 		$this->addCondition($query, 'created_by_entity_id');
 		$this->addCondition($query, 'update_time');
 		$this->addCondition($query, 'updated_by_entity_id');
+    $query->andWhere('contact LIKE "%' . $this->fullName . '%" ' . 'OR name LIKE "%' . $this->fullName . '%"'); //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
+
 		return $dataProvider;
 	}
 
@@ -332,6 +439,9 @@ class EntitySearch extends Model
 		if (trim($value) === '') {
 			return;
 		}
+
+    $attribute = "tbl_entity.$attribute"; //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
+
 		if ($partialMatch) {
 			$query->andWhere(['like', $attribute, $value]);
 		} else {

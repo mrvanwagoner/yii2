@@ -85,43 +85,44 @@ class Code extends \yii\db\ActiveRecord
 	/**
 	 * @inheritdoc
 	 */
-	public function attributeLabels()
+	public function attributeLabels() //CHANGED MVW 03/22/14
 	{
 		return [
 			'id' => 'ID',
-			'is_active' => 'Is Active',
+			'is_active' => 'Active?',
 			'tenant_id' => 'Tenant ID',
-			'tenant_dbu' => 'Tenant Dbu',
+			'tenant_dbu' => 'Tenant DBU',
 			'type' => 'Type',
 			'code_number' => 'Code Number',
 			'description' => 'Description',
 			'hierarchy' => 'Hierarchy',
 			'tag_aka' => 'Tag Aka',
 			'prior_number' => 'Prior Number',
-			'standard_code_id' => 'Standard Code ID',
-			'phase_picklist_id' => 'Phase Picklist ID',
-			'is_cost' => 'Is Cost',
+			'standardCode.code_number' => 'Standard Code Number',
+			'standardCode.description' => 'Standard Code Description',
+			'phasePicklist.description' => 'Phase',
+			'is_cost' => 'Is Cost?',
 			'percent_of_cost' => 'Percent Of Cost',
 			'percent_variance' => 'Percent Variance',
-			'formula_id' => 'Formula ID',
+			'formula.description' => 'Formula',
 			'order_qty' => 'Order Qty',
-			'unit_picklist_id' => 'Unit Picklist ID',
+			'unitPicklist.description' => 'UM',
 			'hours' => 'Hours',
 			'crew_size' => 'Crew Size',
 			'material_cost' => 'Material Cost',
 			'labor_cost' => 'Labor Cost',
 			'other_cost' => 'Other Cost',
 			'sub_cost' => 'Sub Cost',
-			'is_add_tax' => 'Is Add Tax',
+			'is_add_tax' => 'Add Tax?',
 			'cost_total' => 'Cost Total',
-			'provider_entity_id' => 'Provider Entity ID',
+			'providerEntity.fullName' => 'Provider',
 			'realease' => 'Realease',
 			'postal_code' => 'Postal Code',
 			'note' => 'Note',
 			'create_time' => 'Create Time',
-			'created_by_entity_id' => 'Created By Entity ID',
+			'createdByEntity.fullName' => 'Created By',
 			'update_time' => 'Update Time',
-			'updated_by_entity_id' => 'Updated By Entity ID',
+			'updatedByEntity.fullName' => 'Updated By',
 		];
 	}
 
@@ -224,6 +225,12 @@ class Code extends \yii\db\ActiveRecord
   public static function listActiveGlCodes() //CHANGED MVW 03/08/14
   {
     $query = Code::find()->where(['is_active'=>1, 'description' => !'empty', 'type' => 'Ledger'])->all();
+    return ArrayHelper::map($query , 'id', 'description');
+  }
+
+  public static function listActiveCostCodes() //CHANGED MVW 03/21/14
+  {
+    $query = Code::find()->where(['is_active'=>1, 'description' => !'empty', 'type' => 'MasterFormat'])->all();
     return ArrayHelper::map($query , 'id', 'description');
   }
 }

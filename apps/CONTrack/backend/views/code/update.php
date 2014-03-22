@@ -7,9 +7,9 @@ use yii\helpers\Html;
  * @var backend\models\Code $model
  */
 
-$this->title = 'Update Code: ' . $model->id;
+$this->title = 'Update Code: ' . $model->description; //CHANGED MVW 03/20/14: from id
 $this->params['breadcrumbs'][] = ['label' => 'Codes', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->description, 'url' => ['view', 'id' => $model->id]]; //CHANGED MVW 03/20/14: from id
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="code-update">

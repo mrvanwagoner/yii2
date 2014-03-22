@@ -84,8 +84,9 @@ $this->params['breadcrumbs'][] = $this->title;
       // 'id',
       'is_active',
       'type',
-      'name',
-      'contact',
+      // 'name',
+      // 'contact',
+      'fullName', //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
       // 'aka',
 			// 'dba',
 			// 'middle_name',//FIXME show conditionally
@@ -130,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'is_material_only',
 			// 'is_track_license',
 			// 'is_track_insurance',
-			// 'sponsor_entity_id',
+      // 'sponsor_entity_id',
 			// 'credit_picklist_id',
 			// 'credit_score',
 			// 'total_income',

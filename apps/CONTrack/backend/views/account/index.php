@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\i18n;
 
 /**
  * @var yii\web\View $this
@@ -9,7 +10,7 @@ use yii\grid\GridView;
  * @var backend\models\search\AccountSearch $searchModel
  */
 
-$this->title = 'Account List'; //CHANGED MVW 03/20/14
+$this->title = 'Account List'; //CHANGED MVW 03/20/14: Changed from 'Accounts'
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="account-index">
@@ -44,60 +45,86 @@ $this->params['breadcrumbs'][] = $this->title;
       echo $this->render('_search', ['model' => $searchModel]); //FIXME Reset button only works prior to search not when reopened
    ?>
     </div><!-- search-form -->
-	</p>
-<!-- End of Search Button -->
+	</p><!-- End of Search Button -->
 
 	<p>
 		<?= Html::a('Create Account', ['create'], ['class' => 'btn btn-success']) ?>
 	</p>
 
-
-	<?php echo GridView::widget([ //CHANGED MVW 03/10/14: See http://yii2-api.yupe.ru/class-yii.grid.GridView.html#$caption
+	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
-    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/10/14: 'table table-condensed', 'table table-striped', 'table-bordered'
 		'columns' => [
-      ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code. // FIXME you may configure additional properties in this array (not sure what...)
+      ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code.
       /* ~~~
       * var keys = $('#grid').yiiGridView('getSelectedRows');
       * // keys is an array consisting of the keys associated with the selected rows
       * ~~~ */
 			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/11/14: A sequentially numbered column
-      // 'id',
-      'is_active',
+
+			'id',
+			'is_active',
       // 'tenant_id',
       // 'tenant_dbu',
-			'type',
+			'project_id',
+      'projectDescription', //FIXME MVW 03/22/14: To allow search on relationship field. See http://www.yiiframework.com/wiki/281/searching-and-sorting-by-related-model-in-cgridview/ also see http://www.mrsoundless.com/php/yii/searching-and-sorting-a-column-from-a-related-table-in-a-cgridview/
+      'type',
       'account_number',
-      "date_established:date",
-      'description',
-      'location',
+      'craft_number',
+      'client_number',
+      'date_established', //FIXME Figure out how to format grids
+      [
+        // 'name'=>'date_established',
+        // // 'header'=>'Date',
+        // //'value'=>'date("d M Y",strtotime($data["work_date"]))'
+        // 'value'=>'Yii::app()->dateFormatter->format("d MMM y",strtotime($data->date))'
+      ],
+			// 'description',
+			// 'location',
+			// 'original_amount',
+			// 'budget_impact',
+			// 'cost_code_id',
 			// 'account_picklist_id',
 			// 'transaction_status_picklist_id',
-      'parent_account_id',
-      // "is_track_transactions:checkbox",
-			// 'provider_entity_id',
-			// 'gl_code_id',
-			// 'project_id',
-			// 'ref_number',
-      // "date_ref:date",
-			// 'date_ref',
-			// 'budget_impact',
-      // "gross_amount:number",
-      // "adjustment:currency",
-      // "net_amount:currency",
-			// 'is_reported',
 			// 'comment_budget:ntext',
+			// 'is_estimate',
+			// 'is_track_draws',
+			// 'is_track_transactions',
+			// 'analyze',
+			// 'budget_account_id',
+			// 'breakdown_account_id',
+			// 'contract_account_id',
+			// 'project_documents_picklist_id',
+			// 'percent_retainage',
+			// 'percent_variance',
+			// 'ref_number',
+			// 'date_ref',
+			// 'date_requested',
+			// 'date_received',
+			// 'revision',
+			// 'retainage',
+			// 'net_amount',
+			// 'completed',
+			// 'previous_payment',
+			// 'provider_entity_id',
+			// 'draw_account_id',
+			// 'date_paid',
+			// 'check_number',
+			// 'gl_code_id',
+			// 'inspector_entity_id',
+			// 'route_project_id',
+			// 'date_inspected',
+			// 'percent_previous',
+			// 'percent_current',
+			// 'comment_inspection:ntext',
+			// 'is_reported',
 			// 'is_bold',
-			// 'beginning_balance',
-			// 'current_balance',
+			// 'owner_entity_id',
 			// 'is_asset',
 			// 'is_liability',
-      // "date_maturity:date",
-			// 'face_amount',
-			// 'current_value',
-			// 'address_id',
 			// 'is_paid_by_close',
+			// 'address_id',
+			// 'date_maturity',
 			// 'rate_interest',
 			// 'payment_min',
 			// 'months_to_pay',
@@ -111,7 +138,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'updated_by_entity_id',
 
 			['class' => 'yii\grid\ActionColumn', 'header'=>'Actions'] //CHANGED MVW 03/11/14: View, Update, Delete icons
-    ],
- 	]); ?>
+		],
+	]); ?>
 
 </div>

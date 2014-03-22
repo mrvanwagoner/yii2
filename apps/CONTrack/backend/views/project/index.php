@@ -44,8 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
       echo $this->render('_search', ['model' => $searchModel]); //FIXME Reset button only works prior to search not when reopened
    ?>
     </div><!-- search-form -->
-	</p>
-<!-- End of Search Button -->
+	</p><!-- End of Search Button -->
 
 	<p>
 		<?= Html::a('Create Project', ['create'], ['class' => 'btn btn-success']) ?>

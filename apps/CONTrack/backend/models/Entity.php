@@ -166,7 +166,7 @@ class Entity extends \yii\db\ActiveRecord
 		return [
 			[['is_active', 'is_tenant', 'is_user', 'is_provider', 'is_customer', 'tenant_type_picklist_id', 'is_tenant_enabled', 'is_track_customers', 'is_track_providers', 'is_track_employees', 'is_track_projects', 'is_track_transactions', 'is_track_campaigns', 'is_track_content', 'is_branded', 'logo_document_id', 'is_user_enabled', 'current_role_id', 'x_sign_in_count', 'is_provider_approved', 'is_1099_eligible', 'is_material_only', 'is_track_license', 'is_track_insurance', 'sponsor_entity_id', 'credit_picklist_id', 'order_picklist_id', 'is_renter', 'years_school', 'retirement_age', 'ethnicity_picklist_id', 'is_us_citizen', 'is_us_veteran', 'is_disabled', 'customer_need_picklist_id', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
 			[['type', 'signature', 'organization_type', 'employment_status', 'gender', 'marital_status', 'military_status', 'note'], 'string'],
-			[['last_sign_in_time', 'x_reset_password_sent_time', 'x_remember_created_time', 'x_current_sign_in_time', 'date_bankruptcy', 'date_birth', 'date_anniversary', 'create_time', 'update_time'], 'safe'],
+			[['last_sign_in_time', 'x_reset_password_sent_time', 'x_remember_created_time', 'x_current_sign_in_time', 'date_bankruptcy', 'date_birth', 'date_anniversary', 'create_time', 'update_time','fullName'], 'safe'], //CHANGED MVW 03/22/14: Added fullName to allow Filter/Search
 			[['total_income', 'housing_expense', 'liquid_assets', 'investments', 'personal_property', 'real_property', 'total_assets', 'current_liabilities', 'long_term_liabilities', 'total_liabilities', 'equity'], 'number'],
 			[['name', 'contact', 'aka', 'dba', 'middle_name', 'suffix', 'previous_name', 'slogan', 'username', 'password_hash', 'password_reset_token', 'x_current_sign_in_ip', 'x_last_sign_in_ip', 'credit_score', 'occupation', 'employer', 'position', 'years_employed', 'description_disability', 'dependents', 'dependent_ages', 'folder_location'], 'string', 'max' => 255],
 			[['db_username'], 'string', 'max' => 16],
@@ -180,7 +180,7 @@ class Entity extends \yii\db\ActiveRecord
 	/**
 	 * @inheritdoc
 	 */
-	public function attributeLabels() //CHANGED MVW 03/08/13
+	public function attributeLabels() //CHANGED MVW 03/08/14
 	{
 		return [
 			'id' => 'ID',
@@ -188,6 +188,7 @@ class Entity extends \yii\db\ActiveRecord
 			'type' => 'Type',
 			'name' => 'Name',
 			'contact' => 'Contact',
+      'fullName' => 'Full Name', //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
 			'aka' => 'AKA',
 			'dba' => 'DBA',
 			'middle_name' => 'Middle Name',
@@ -232,7 +233,7 @@ class Entity extends \yii\db\ActiveRecord
 			'is_material_only' => 'Is Material Only?',
 			'is_track_license' => 'Track License?',
 			'is_track_insurance' => 'Track Insurance?',
-			'sponsor_entity_id' => 'Sponsor',
+      'sponsor_entity_id' => 'Sponsor ID',
 			'credit_picklist_id' => 'Credit',
 			'credit_score' => 'Credit Score',
 			'total_income' => 'Total Income',
@@ -449,10 +450,10 @@ class Entity extends \yii\db\ActiveRecord
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getSponsorEntity()
-	{
-		return $this->hasOne(Entity::className(), ['id' => 'sponsor_entity_id']);
-	}
+  public function getSponsorEntity()
+  {
+    return $this->hasOne(Entity::className(), ['id' => 'sponsor_entity_id']);
+  }
 
 	/**
 	 * @return \yii\db\ActiveQuery

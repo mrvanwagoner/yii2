@@ -20,7 +20,7 @@ use backend\models\Contact; //CHANGED MVW 03/20/14
 
 		<?= $form->field($model, 'is_active')->checkbox() //CHANGED MVW 03/08/14 ?>
 
-		<?= $form->field($model, 'project_id')->dropDownList(Project::listActiveProjects(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
+		<?= $form->field($model, 'project_id')->dropDownList(Project::listActiveProjects(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 /FIXME shuold pull Project ID ?>
 
 		<?= $form->field($model, 'type')->dropDownList(Custom::listEnum($model, 'type'), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 

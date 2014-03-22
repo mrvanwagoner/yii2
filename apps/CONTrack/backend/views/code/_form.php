@@ -16,9 +16,9 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'is_active')->textInput() ?>
 
-		<?= $form->field($model, 'tenant_id')->textInput(['maxlength' => 11]) ?>
+    <!-- <?= $form->field($model, 'tenant_id')->textInput(['maxlength' => 11]) ?> -->
 
-		<?= $form->field($model, 'standard_code_id')->textInput(['maxlength' => 11]) ?>
+    <!-- <?= $form->field($model, 'standard_code_id')->textInput(['maxlength' => 11]) ?> -->
 
 		<?= $form->field($model, 'phase_picklist_id')->textInput(['maxlength' => 11]) ?>
 

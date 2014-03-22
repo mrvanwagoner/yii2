@@ -219,7 +219,7 @@ class Address extends \yii\db\ActiveRecord
 	}
 
   //CHANGED MVW 03/08/14: Extended address. i.e. to be used in drop down list.   public function getFullName() 
-  public function getFullAddress()
+  public function getFullAddress() //CHANGED MVW 03/08/14
   {
     return $this->address1.', '.$this->city.', '.$this->state.', '.$this->postal_code;
   }

@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var backend\models\Account $model
  */
 
-$this->title = 'Add Account'; //CHANGED MVW 03/20/14
+$this->title = 'Add Account'; //CHANGED MVW 03/22/14 //FIXME Conditional based on type
 $this->params['breadcrumbs'][] = ['label' => 'Accounts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

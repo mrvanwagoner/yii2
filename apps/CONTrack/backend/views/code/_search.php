@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 <div class="code-search">
 
-	<?php $form = ActiveForm::begin([
+	<?php $form = ActiveForm::begin([ //CHANGED MVW 03/22/14
 		'action' => ['index'],
 		'method' => 'get',
 	]); ?>
@@ -21,9 +21,9 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'is_active') ?>
 
-		<?= $form->field($model, 'tenant_id') ?>
+    <!-- <?= $form->field($model, 'tenant_id') ?> -->
 
-		<?= $form->field($model, 'tenant_dbu') ?>
+    <!-- <?= $form->field($model, 'tenant_dbu') ?> -->
 
 		<?= $form->field($model, 'type') ?>
 

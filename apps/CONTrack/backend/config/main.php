@@ -11,9 +11,8 @@ return [
 	'basePath' => dirname(__DIR__),
 	'preload' => ['log'],
 	'controllerNamespace' => 'backend\controllers',
-  //CHANGED MVW 02/25/14: Added Gii. See https://github.com/yiisoft/yii2/blob/master/docs/guide/gii.md
 	'modules' => [
-    'gii' => [
+    'gii' => [ //CHANGED MVW 02/25/14: Added Gii. See https://github.com/yiisoft/yii2/blob/master/docs/guide/gii.md
       'class' => 'yii\gii\Module',
     ],
 	],
@@ -34,23 +33,23 @@ return [
 		'errorHandler' => [
 			'errorAction' => 'site/error',
 		],
-    //CHANGED MVW 02/25/14: Added UrlManager. See https://github.com/yiisoft/yii2/blob/master/docs/guide/url.md
-    'urlManager' => [
+    'urlManager' => [ //CHANGED MVW 02/25/14: Added UrlManager. See https://github.com/yiisoft/yii2/blob/master/docs/guide/url.md
       'enablePrettyUrl' => true,
       'showScriptName' => false,
-    ],
-    //CHANGED MVW 03/08/14: Added UrlManager for Frontend. See https://github.com/yiisoft/yii2/issues/1578.
+    ], 
+    'urlManagerFrontEnd' => [ //CHANGED MVW 03/08/14: Added UrlManager for Frontend. See https://github.com/yiisoft/yii2/issues/1578.
       //To use: Yii::$app->urlManagerFrontEnd->createUrl();
-    'urlManagerFrontEnd' => [
       'enablePrettyUrl' => true,
       'showScriptName' => false,
     ],
-    //CHANGED MVW 02/25/14: Works with CONTrack/.htaccess, common/components/Request.php, and frontend/config/main.php. See http://aaronfrancis.com/blog/2014/1/9/hosting-an-advanced-yii2-application-on-heroku
-    'request'=>[
+    'request' => [ //CHANGED MVW 02/25/14: Works with CONTrack/.htaccess, common/components/Request.php, and frontend/config/main.php. See http://aaronfrancis.com/blog/2014/1/9/hosting-an-advanced-yii2-application-on-heroku
         'class' => 'common\components\Request',
         'web'=> '/backend/web',
         'adminUrl' => '/admin'
     ],
+    'formatter' => [ //CHANGED MVW 03/22/14: Added so fields can be formatted for currency etc.
+      'class' => 'yii\i18n\Formatter'
+    ]
 	],
 	'params' => 
 			['icon-framework' => 'fa',  // Font Awesome Icon framework

@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 <div class="account-search">
 
-	<?php $form = ActiveForm::begin([ //CHANGED MVW 03/20/14
+	<?php $form = ActiveForm::begin([ //CHANGED MVW 03/22/14
 		'action' => ['index'],
 		'method' => 'get',
 	]); ?>
@@ -25,65 +25,111 @@ use yii\widgets\ActiveForm;
 
     <!-- <?= $form->field($model, 'tenant_dbu') ?> -->
 
-		<?= $form->field($model, 'type') ?>
+		<?= $form->field($model, 'project_id') ?>
 
-    <?php  echo $form->field($model, 'account_number') ?>
+    <?php //$form->field($model, 'projectDescription') ?>
+
+		<?php echo $form->field($model, 'type') ?>
+
+		<?php echo $form->field($model, 'account_number') ?>
+
+		<?php // echo $form->field($model, 'craft_number') ?>
+
+		<?php // echo $form->field($model, 'client_number') ?>
 
 		<?php // echo $form->field($model, 'date_established') ?>
 
-		<?php  echo $form->field($model, 'description') ?>
+		<?php echo $form->field($model, 'description') ?>
 
 		<?php // echo $form->field($model, 'location') ?>
 
-		<?php  echo $form->field($model, 'account_picklist_id') ?>
+		<?php // echo $form->field($model, 'original_amount') ?>
+
+		<?php // echo $form->field($model, 'budget_impact') ?>
+
+		<?php // echo $form->field($model, 'cost_code_id') ?>
+
+		<?php // echo $form->field($model, 'account_picklist_id') ?>
 
 		<?php // echo $form->field($model, 'transaction_status_picklist_id') ?>
 
-		<?php // echo $form->field($model, 'parent_account_id') ?>
+		<?php // echo $form->field($model, 'comment_budget') ?>
+
+		<?php // echo $form->field($model, 'is_estimate') ?>
+
+		<?php // echo $form->field($model, 'is_track_draws') ?>
 
 		<?php // echo $form->field($model, 'is_track_transactions') ?>
 
-		<?php // echo $form->field($model, 'provider_entity_id') ?>
+		<?php // echo $form->field($model, 'analyze') ?>
 
-		<?php // echo $form->field($model, 'gl_code_id') ?>
+		<?php // echo $form->field($model, 'budget_account_id') ?>
 
-		<?php // echo $form->field($model, 'project_id') ?>
+		<?php // echo $form->field($model, 'breakdown_account_id') ?>
+
+		<?php // echo $form->field($model, 'contract_account_id') ?>
+
+		<?php // echo $form->field($model, 'project_documents_picklist_id') ?>
+
+		<?php // echo $form->field($model, 'percent_retainage') ?>
+
+		<?php // echo $form->field($model, 'percent_variance') ?>
 
 		<?php // echo $form->field($model, 'ref_number') ?>
 
 		<?php // echo $form->field($model, 'date_ref') ?>
 
-		<?php // echo $form->field($model, 'budget_impact') ?>
+		<?php // echo $form->field($model, 'date_requested') ?>
 
-		<?php // echo $form->field($model, 'gross_amount') ?>
+		<?php // echo $form->field($model, 'date_received') ?>
 
-		<?php // echo $form->field($model, 'adjustment') ?>
+		<?php // echo $form->field($model, 'revision') ?>
+
+		<?php // echo $form->field($model, 'retainage') ?>
 
 		<?php // echo $form->field($model, 'net_amount') ?>
 
-		<?php // echo $form->field($model, 'is_reported') ?>
+		<?php // echo $form->field($model, 'completed') ?>
 
-		<?php // echo $form->field($model, 'comment_budget') ?>
+		<?php // echo $form->field($model, 'previous_payment') ?>
+
+		<?php // echo $form->field($model, 'provider_entity_id') ?>
+
+		<?php // echo $form->field($model, 'draw_account_id') ?>
+
+		<?php // echo $form->field($model, 'date_paid') ?>
+
+		<?php // echo $form->field($model, 'check_number') ?>
+
+		<?php // echo $form->field($model, 'gl_code_id') ?>
+
+		<?php // echo $form->field($model, 'inspector_entity_id') ?>
+
+		<?php // echo $form->field($model, 'route_project_id') ?>
+
+		<?php // echo $form->field($model, 'date_inspected') ?>
+
+		<?php // echo $form->field($model, 'percent_previous') ?>
+
+		<?php // echo $form->field($model, 'percent_current') ?>
+
+		<?php // echo $form->field($model, 'comment_inspection') ?>
+
+		<?php // echo $form->field($model, 'is_reported') ?>
 
 		<?php // echo $form->field($model, 'is_bold') ?>
 
-		<?php // echo $form->field($model, 'beginning_balance') ?>
-
-		<?php // echo $form->field($model, 'current_balance') ?>
+		<?php // echo $form->field($model, 'owner_entity_id') ?>
 
 		<?php // echo $form->field($model, 'is_asset') ?>
 
 		<?php // echo $form->field($model, 'is_liability') ?>
 
-		<?php // echo $form->field($model, 'date_maturity') ?>
-
-		<?php // echo $form->field($model, 'face_amount') ?>
-
-		<?php // echo $form->field($model, 'current_value') ?>
+		<?php // echo $form->field($model, 'is_paid_by_close') ?>
 
 		<?php // echo $form->field($model, 'address_id') ?>
 
-		<?php // echo $form->field($model, 'is_paid_by_close') ?>
+		<?php // echo $form->field($model, 'date_maturity') ?>
 
 		<?php // echo $form->field($model, 'rate_interest') ?>
 

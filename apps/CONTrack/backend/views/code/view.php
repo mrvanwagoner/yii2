@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
  * @var backend\models\Code $model
  */
 
-$this->title = $model->id;
+$this->title = $model->description; //CHANGED MVW 03/20/14: from id
 $this->params['breadcrumbs'][] = ['label' => 'Codes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -27,27 +27,28 @@ $this->params['breadcrumbs'][] = $this->title;
 		]); ?>
 	</p>
 
-	<?php echo DetailView::widget([
+	<?php echo DetailView::widget([ //CHANGED MVW 03/22/14
 		'model' => $model,
 		'attributes' => [
 			'id',
 			'is_active',
-			'tenant_id',
-			'tenant_dbu',
+      // 'tenant_id',
+      // 'tenant_dbu',
 			'type',
 			'code_number',
 			'description',
 			'hierarchy',
 			'tag_aka',
 			'prior_number',
-			'standard_code_id',
-			'phase_picklist_id',
+			'standardCode.code_number',
+			'standardCode.description',
+			'phasePicklist.description',
 			'is_cost',
 			'percent_of_cost',
 			'percent_variance',
-			'formula_id',
+			'formula.description',
 			'order_qty',
-			'unit_picklist_id',
+			'unitPicklist.description',
 			'hours',
 			'crew_size',
 			'material_cost',
@@ -56,14 +57,14 @@ $this->params['breadcrumbs'][] = $this->title;
 			'sub_cost',
 			'is_add_tax',
 			'cost_total',
-			'provider_entity_id',
+			'providerEntity.fullName',
 			'realease',
 			'postal_code',
 			'note:ntext',
 			'create_time',
-			'created_by_entity_id',
+			'createdByEntity.fullName',
 			'update_time',
-			'updated_by_entity_id',
+			'updatedByEntity.fullName',
 		],
 	]); ?>
 
