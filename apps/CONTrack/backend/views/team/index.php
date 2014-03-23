@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
-    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered'], //CHANGED MVW 03/10/14: 'table table-condensed', 'table table-striped', 'table-bordered'
+    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered table-hover'], //CHANGED MVW 03/10/14: 'table table-condensed', 'table table-striped', 'table-bordered'
 		'columns' => [
       ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code. // FIXME you may configure additional properties in this array (not sure what...)
       /* ~~~
