@@ -6,7 +6,8 @@ use common\components\Custom;//CHANGED MVW 03//06/14
 use backend\models\Entity;//CHANGED MVW 03//06/14
 use backend\models\Document;//CHANGED MVW 03//06/14
 use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
-
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 /**
  * @var yii\web\View $this
  * @var backend\models\Entity $model
@@ -15,9 +16,75 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
  */
 ?>
 
-<div class="entity-form">
+<!--<div class="entity-form">-->
+
+	<?php /*?><?php $form = ActiveForm::begin(); ?><?php */?>
+
+
+<?php /*?><?= yii\bootstrap\Tabs::widget([
+'items' => [
+[
+'label' => 'One',
+'content' => yii\base\View::render('_tenant-info.php')
+                        
+
+
+,
+'active' => true
+],
+[
+'label' => 'Two',
+'content' => 'Anim pariatur cliche...',
+'headerOptions' => ['h3'],
+'options' => ['id' => 'myveryownID'],
+],
+[
+'label' => 'Dropdown',
+'items' => [
+[
+'label' => 'DropdownA',
+'content' => 'DropdownA, Anim pariatur cliche...',
+],
+[
+'label' => 'DropdownB',
+'content' => 'DropdownB, Anim pariatur cliche...',
+],
+],
+],
+],
+]);
+?><?php */?>
+
+
+
+<div class="entity-form col-lg-6">
 
 	<?php $form = ActiveForm::begin(); ?>
+    
+    <div class="panel panel-default">   
+          <div class="panel-heading">
+            <i class="fa fa-building-o fa-fw"></i> Update Entity
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
+                            Actions
+                            <span class="caret"></span>
+                        </button>
+                        <ul role="menu" class="dropdown-menu pull-right">
+                            <li><a href="#">Budget</a>
+                            </li>
+                            <li><a href="#">Draws</a>
+                            </li>
+                            <li><a href="/admin/contact/">Contacts</a></li>
+                            <li><a href="/admin/project/">Project</a>
+                            </li>
+                        </ul>
+                     </div>
+                 </div>
+          </div><!-- end panel-heading -->
+
+          <div class="panel-body">
+
 
 		<?= $form->field($model, 'is_active')->checkbox() //CHANGED MVW 03/06/14 ?>
 
@@ -45,6 +112,7 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 
 		<?= $form->field($model, 'sponsor_entity_id')->dropDownList(Entity::listActiveTenants(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
+
 		<?= $form->field($model, 'is_tenant')->checkbox() //CHANGED MVW 03/06/14 ?>
 
 		<?= $form->field($model, 'is_user')->checkbox() //CHANGED MVW 03/06/14 ?>
@@ -55,12 +123,12 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 
 		<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
 
-    <H2>Contact Info</H2><!-- CHANGED MYVW 03/08/14. FIXME Add form. See http://www.yiiframework.com/wiki/384/creating-and-updating-model-and-its-related-models-in-one-form-inc-image/-->
-    <H3>Type</H3>
+    <!--<H2>Contact Info</H2>--><!-- CHANGED MYVW 03/08/14. FIXME Add form. See http://www.yiiframework.com/wiki/384/creating-and-updating-model-and-its-related-models-in-one-form-inc-image/-->
+    <!--<H3>Type</H3>
     <H3>Phone</H3>
     <H3>Email</H3>
     <H3>Address</H3>
-    <H3>URL</H3>
+    <H3>URL</H3>-->
 
 		<?php if ($model->type == 'Person' && $model->is_customer) //CHANGED MVW 03/06/14
     { // Is Person AND is Customer
@@ -153,29 +221,27 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
       echo '<H3>Campaign Triggers</H3>';
     } ?>
 
-    <?php if ($model->is_tenant) //CHANGED MVW 03/07/14
-    { // Is Tenant
-      echo '<H2>Tenant Info</H2>';
-      echo $form->field($model, 'tenant_type_picklist_id')->dropDownList(Custom::picklist('Type', 'is_tenant'),['prompt'=>'Select from list...']);
-      echo $form->field($model, 'is_tenant_enabled')->checkbox();
-      echo $form->field($model, 'db_username')->textInput(['maxlength' => 16]);
-      echo $form->field($model, 'db_password')->passwordInput(); //['maxlength' => 1024]
-      echo $form->field($model, 'is_track_customers')->checkbox();
-      echo $form->field($model, 'is_track_providers')->checkbox();
-      echo $form->field($model, 'is_track_employees')->checkbox();
-      echo $form->field($model, 'is_track_projects')->checkbox();
-      echo $form->field($model, 'is_track_transactions')->checkbox();
-      echo $form->field($model, 'is_track_campaigns')->checkbox();
-      echo $form->field($model, 'is_track_content')->checkbox();
-      echo $form->field($model, 'is_branded')->checkbox();
-      echo $form->field($model, 'slogan')->textInput(['maxlength' => 255]);
-      echo $form->field($model, 'logo_document_id')->dropDownList(Document::listFileDocuments(), ['prompt'=>'Select from list...']); //FIXME Create button to go to Document to upload file
-      echo $form->field($model, 'folder_location')->textInput(['maxlength' => 255]);
-    } ?>
+
+
+      	</div><!-- end panel-body -->
+     </div><!-- end panel --> 
+    
+</div><!-- end col-lg-6 -->
+
+<div class="entity-form col-lg-6">
+     <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-user fa-fw"></i> User Info
+
+    	</div><!-- end panel-heading -->
+
+ 	 	<div class="panel-body">
+
+
 
     <?php if ($model->is_user) //CHANGED MVW 03/07/14
     {
-      echo '<H2>User Info</H2>';
+      /*echo '<H2>User Info</H2>';*/
       echo $form->field($model, 'is_user_enabled')->checkbox();
       echo $form->field($model, 'username')->textInput(['maxlength' => 255]);
       echo $form->field($model, 'auth_key')->textInput(['maxlength' => 32]);
@@ -184,17 +250,31 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
       echo $form->field($model, 'password_reset_token')->textInput(['maxlength' => 255]);
       echo $form->field($model, 'salt')->textInput(['maxlength' => 40]);
       echo $form->field($model, 'last_sign_in_time')->textInput();
-      echo $form->field($model, 'x_reset_password_sent_time')->textInput();
+/*      echo $form->field($model, 'x_reset_password_sent_time')->textInput();
       echo $form->field($model, 'x_remember_created_time')->textInput();
       echo $form->field($model, 'x_sign_in_count')->textInput();
       echo $form->field($model, 'x_current_sign_in_time')->textInput();
       echo $form->field($model, 'x_current_sign_in_ip')->textInput(['maxlength' => 255]);
-      echo $form->field($model, 'x_last_sign_in_ip')->textInput(['maxlength' => 255]);
+      echo $form->field($model, 'x_last_sign_in_ip')->textInput(['maxlength' => 255]);*/
     } ?>
+
+
+        </div><!-- end panel-body -->
+      </div><!-- end panel --> 
+    
+ 
+     <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-truck fa-fw"></i> Provider Info
+
+    	</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">
+
 
 		<?php if ($model->is_provider)  //CHANGED MVW 03/08/14
     {
-      echo '<H2>Provider Info</H2>';
+     /* echo '<H2>Provider Info</H2>';*/
       echo $form->field($model, 'is_provider_approved')->checkbox();
       echo $form->field($model, 'is_1099_eligible')->checkbox();
       echo $form->field($model, 'is_material_only')->checkbox();
@@ -204,20 +284,76 @@ use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
       echo '<H3>Insurance</H3>';
     } ?>
 
-    <H2>System Info</H2><!-- CHANGED MVW 03/08/14 -->
+    <!--<H2>System Info</H2>--><!-- CHANGED MVW 03/08/14 -->
  
-		<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
+		<!--<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
 		<?= $form->field($model, 'create_time')->textInput() //FIXME Autoupdate ?>
 
 		<?= $form->field($model, 'updated_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-		<?= $form->field($model, 'update_time')->textInput() //FIXME Autoupdate ?>
+		<?= $form->field($model, 'update_time')->textInput() //FIXME Autoupdate ?>-->
+      </div><!-- end panel-body -->
+     </div><!-- end panel --> 
 
-		<div class="form-group">
+</div> <!-- end col-lg-6 --> 
+
+
+
+<div class="entity-form col-lg-12">
+     <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-users fa-fw"></i> Tenant Info
+
+    	</div><!-- end panel-heading -->
+
+ 	 	<div class="panel-body">
+
+
+
+<hr />
+    <?php if ($model->is_tenant) //CHANGED MVW 03/07/14
+    { // Is Tenant
+      /*echo '<H2>Tenant Info</H2>';*/
+	  echo '<div class="col-lg-6">';
+
+      echo $form->field($model, 'tenant_type_picklist_id')->dropDownList(Custom::picklist('Type', 'is_tenant'),['prompt'=>'Select from list...']);
+
+      echo $form->field($model, 'db_username')->textInput(['maxlength' => 16]);
+      echo $form->field($model, 'db_password')->passwordInput(); //['maxlength' => 1024]
+
+      echo $form->field($model, 'is_tenant_enabled')->checkbox();
+      echo $form->field($model, 'is_track_customers')->checkbox();
+      echo $form->field($model, 'is_track_providers')->checkbox();
+      echo $form->field($model, 'is_track_employees')->checkbox();
+      echo $form->field($model, 'is_track_projects')->checkbox();
+
+
+	  echo '</div>';
+	  echo '<div class="col-lg-6">';
+
+
+
+
+      echo $form->field($model, 'slogan')->textInput(['maxlength' => 255]);
+      echo $form->field($model, 'logo_document_id')->dropDownList(Document::listFileDocuments(), ['prompt'=>'Select from list...']); //FIXME Create button to go to Document to upload file
+      echo $form->field($model, 'folder_location')->textInput(['maxlength' => 255]);
+    } 
+	  echo $form->field($model, 'is_track_transactions')->checkbox();
+      echo $form->field($model, 'is_track_campaigns')->checkbox();
+      echo $form->field($model, 'is_track_content')->checkbox();
+      echo $form->field($model, 'is_branded')->checkbox();
+?>
+
+
+
+        </div><!-- end panel-body -->
+      </div><!-- end panel --> 
+</div><!-- end col-lg-12 --> 
+
+			<div class="form-group">
 			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-		</div>
 
 	<?php ActiveForm::end(); ?>
-
 </div>
+

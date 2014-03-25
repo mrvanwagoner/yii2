@@ -10,9 +10,33 @@ use yii\widgets\ActiveForm;
  */
 ?>
 
-<div class="building-form">
+
+<div class="building-form col-lg-6">
 
 	<?php $form = ActiveForm::begin(); ?>
+   <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-folder-house fa-fw"></i> Building Info
+            	<div class="pull-right">
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu pull-right">
+                                        <li><a href="#">Budget</a>
+                                        </li>
+                                        <li><a href="#">Draws</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="/admin/team/">Project Team</a>
+                                        </li>
+                                    </ul>
+                                  </div>
+                       </div>
+    			</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">
 
 		<?= $form->field($model, 'is_active')->textInput() ?>
 
@@ -111,7 +135,11 @@ use yii\widgets\ActiveForm;
 		<div class="form-group">
 			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 		</div>
+         	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+   
+
 
 	<?php ActiveForm::end(); ?>
 
-</div>
+</div><!-- end col-lg-6 -->
