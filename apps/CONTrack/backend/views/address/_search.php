@@ -79,7 +79,7 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'description_amenities') ?>
 
-		<?php // echo $form->field($model, 'number_buildings') ?>
+		<?php // echo $form->field($model, 'number_of_buildings') ?>
 
 		<?php // echo $form->field($model, 'sf_site') ?>
 

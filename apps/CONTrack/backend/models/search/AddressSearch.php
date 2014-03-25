@@ -42,7 +42,7 @@ class AddressSearch extends Model
 	public $description_site;
 	public $description_building;
 	public $description_amenities;
-	public $number_buildings;
+	public $number_of_buildings;
 	public $sf_site;
 	public $sf_site_disrupted;
 	public $sf_site_landscaped;
@@ -62,7 +62,7 @@ class AddressSearch extends Model
 	public function rules()
 	{
 		return [
-			[['id', 'is_active', 'is_standardized', 'is_deliverable', 'site_classification_id', 'is_flood_zone', 'years_occupied', 'number_buildings', 'sf_site', 'sf_site_disrupted', 'sf_site_landscaped', 'sf_paving', 'sf_road', 'lf_road', 'sf_site_concrete', 'sf_sidewalk', 'parking_stalls', 'parking_stalls_hc', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
+			[['id', 'is_active', 'is_standardized', 'is_deliverable', 'site_classification_id', 'is_flood_zone', 'years_occupied', 'number_of_buildings', 'sf_site', 'sf_site_disrupted', 'sf_site_landscaped', 'sf_paving', 'sf_road', 'lf_road', 'sf_site_concrete', 'sf_sidewalk', 'parking_stalls', 'parking_stalls_hc', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
 			[['type', 'description', 'address1', 'address2', 'city', 'state', 'postal_code', 'zip_plus_4', 'county', 'default_city', 'country', 'delivery_point_barcode', 'latitude', 'longitude', 'directions', 'property_url', 'legal_description', 'lot_number', 'parcel_number', 'date_in_service', 'description_site', 'description_building', 'description_amenities', 'note', 'create_time', 'update_time'], 'safe'],
 			[['property_value'], 'number'],
 		];
@@ -105,7 +105,7 @@ class AddressSearch extends Model
 			'description_site' => 'Description Site',
 			'description_building' => 'Description Building',
 			'description_amenities' => 'Description Amenities',
-			'number_buildings' => 'Number Buildings',
+			'number_of_buildings' => 'Number of Buildings',
 			'sf_site' => 'Sf Site',
 			'sf_site_disrupted' => 'Sf Site Disrupted',
 			'sf_site_landscaped' => 'Sf Site Landscaped',
@@ -166,7 +166,7 @@ class AddressSearch extends Model
 		$this->addCondition($query, 'description_site', true);
 		$this->addCondition($query, 'description_building', true);
 		$this->addCondition($query, 'description_amenities', true);
-		$this->addCondition($query, 'number_buildings');
+		$this->addCondition($query, 'number_of_buildings');
 		$this->addCondition($query, 'sf_site');
 		$this->addCondition($query, 'sf_site_disrupted');
 		$this->addCondition($query, 'sf_site_landscaped');

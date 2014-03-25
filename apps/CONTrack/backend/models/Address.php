@@ -38,7 +38,7 @@ use yii\helpers\ArrayHelper; //CHANGED MVW 03/08/14
  * @property string $description_site
  * @property string $description_building
  * @property string $description_amenities
- * @property integer $number_buildings
+ * @property integer $number_of_buildings
  * @property integer $sf_site
  * @property integer $sf_site_disrupted
  * @property integer $sf_site_landscaped
@@ -80,7 +80,7 @@ class Address extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['is_active', 'is_standardized', 'is_deliverable', 'site_classification_id', 'is_flood_zone', 'years_occupied', 'number_buildings', 'sf_site', 'sf_site_disrupted', 'sf_site_landscaped', 'sf_paving', 'sf_road', 'lf_road', 'sf_site_concrete', 'sf_sidewalk', 'parking_stalls', 'parking_stalls_hc', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
+			[['is_active', 'is_standardized', 'is_deliverable', 'site_classification_id', 'is_flood_zone', 'years_occupied', 'number_of_buildings', 'sf_site', 'sf_site_disrupted', 'sf_site_landscaped', 'sf_paving', 'sf_road', 'lf_road', 'sf_site_concrete', 'sf_sidewalk', 'parking_stalls', 'parking_stalls_hc', 'created_by_entity_id', 'updated_by_entity_id'], 'integer'],
 			[['type', 'note'], 'string'],
 			[['date_in_service', 'create_time', 'update_time'], 'safe'],
 			[['property_value'], 'number'],
@@ -135,7 +135,7 @@ class Address extends \yii\db\ActiveRecord
 			'description_site' => 'Description Site',
 			'description_building' => 'Description Building',
 			'description_amenities' => 'Description Amenities',
-			'number_buildings' => 'Number Buildings',
+			'number_of_buildings' => 'Number of Buildings',
 			'sf_site' => 'Sf Site',
 			'sf_site_disrupted' => 'Sf Site Disrupted',
 			'sf_site_landscaped' => 'Sf Site Landscaped',

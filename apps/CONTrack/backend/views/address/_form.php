@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'years_occupied')->textInput() ?>
 
-		<?= $form->field($model, 'number_buildings')->textInput() ?>
+		<?= $form->field($model, 'number_of_buildings')->textInput() ?>
 
 		<?= $form->field($model, 'sf_site')->textInput() ?>
 

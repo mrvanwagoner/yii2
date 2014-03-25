@@ -181,9 +181,9 @@ class AccountSearch extends Model
         'tenant_dbu',
   			'project_id',
         'projectDescription' => [
-          'asc' => ['tbl_country.country_name' => SORT_ASC],
-          'desc' => ['tbl_country.country_name' => SORT_DESC],
-          'label' => 'Country Name'
+          'asc' => ['tbl_project.description' => SORT_ASC],
+          'desc' => ['tbl_project.description' => SORT_DESC],
+          'label' => 'Project Description'
         ],
         'type',
         'account_number',
@@ -252,6 +252,8 @@ class AccountSearch extends Model
     ]);
 
 		if (!($this->load($params) && $this->validate())) {
+      $query->joinWith(['project']); //CHANGED MVW 03/22/14: Allows eager loading with Project data to enable sorting by Project on initial loading of the grid. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10. 
+
 			return $dataProvider;
 		}
 
@@ -323,10 +325,11 @@ class AccountSearch extends Model
 		$this->addCondition($query, 'created_by_entity_id');
 		$this->addCondition($query, 'update_time');
 		$this->addCondition($query, 'updated_by_entity_id');
+
     $query->joinWith(['project' => function ($q) { //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
       $q->where('tbl_project.description LIKE "%' . $this->projectDescription . '%"');
     }]);
- 
+
 		return $dataProvider;
 	}
 
