@@ -178,23 +178,7 @@ use yii\helpers\ArrayHelper;
      <div class="panel panel-default">   
     	<div class="panel-heading">
             <i class="fa fa-calendar-o fa-fw"></i> Schedule Info
-            	<!--<div class="pull-right">
-                                <div class="btn-group">
-                                    <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" type="button">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul role="menu" class="dropdown-menu pull-right">
-                                        <li><a href="#">Budget</a>
-                                        </li>
-                                        <li><a href="#">Draws</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="/admin/project-team/">Project Team</a>
-                                        </li>
-                                    </ul>
-                                  </div>
-                       </div>-->
+
     			</div><!-- end panel-heading -->
 
  	 <div class="panel-body">

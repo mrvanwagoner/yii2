@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+/*use yii\grid\GridView;*/
+use kartik\grid\GridView;
 use yii\i18n;
 
 /**
@@ -54,6 +55,12 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
+		'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered table-hover'],
+		'panel' => [
+		'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-list-alt"></i> Project List</h3>',
+		'type'=>'primary',
+		'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset Table', ['index'], ['class' => 'btn btn-info']),
+		'showFooter'=>false],
 		'columns' => [
       ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code.
       /* ~~~
@@ -63,7 +70,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/11/14: A sequentially numbered column
 
 			'id',
-			'is_active',
+		/*	'is_active',*///CHANGED vjt 03/25/14: hid to display other format below
+[
+    'class'=>'kartik\grid\BooleanColumn',
+    'attribute'=>'is_active', 
+],
       // 'tenant_id',
       // 'tenant_dbu',
 			'project_id',
@@ -73,12 +84,12 @@ $this->params['breadcrumbs'][] = $this->title;
       'craft_number',
       'client_number',
       'date_established', //FIXME Figure out how to format grids
-      [
+//      [
         // 'name'=>'date_established',
         // // 'header'=>'Date',
         // //'value'=>'date("d M Y",strtotime($data["work_date"]))'
         // 'value'=>'Yii::app()->dateFormatter->format("d MMM y",strtotime($data->date))'
-      ],
+//      ],
 			// 'description',
 			// 'location',
 			// 'original_amount',
@@ -137,7 +148,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'update_time',
 			// 'updated_by_entity_id',
 
-			['class' => 'yii\grid\ActionColumn', 'header'=>'Actions'] //CHANGED MVW 03/11/14: View, Update, Delete icons
+			['class' => 'kartik\grid\ActionColumn', 'header'=>'Actions', 'width'=>'100px']
+			//['class' => 'yii\grid\ActionColumn', 'header'=>'Actions', 'width'=>'100px'] //CHANGED MVW 03/11/14: View, Update, Delete icons
 		],
 	]); ?>
 
