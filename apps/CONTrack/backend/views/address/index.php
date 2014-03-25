@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'description_site',
 			// 'description_building',
 			// 'description_amenities',
-			// 'number_buildings',
+			// 'number_of_buildings',
 			// 'sf_site',
 			// 'sf_site_disrupted',
 			// 'sf_site_landscaped',
