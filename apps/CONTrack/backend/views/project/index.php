@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+/*use yii\grid\GridView;*/
+use kartik\grid\GridView;
 
 /**
  * @var yii\web\View $this
@@ -50,20 +51,32 @@ $this->params['breadcrumbs'][] = $this->title;
 		<?= Html::a('Create Project', ['create'], ['class' => 'btn btn-success']) ?>
 	</p>
 
+<?php /*?><?php echo GridView::widget([<?php */?>
+
 	<?php echo GridView::widget([ //CHANGED MVW 03/10/14: See http://yii2-api.yupe.ru/class-yii.grid.GridView.html#$caption
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
 		'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered table-hover'],
-		'columns' => [
-      ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code. // FIXME you may configure additional properties in this array (not sure what...)
+		'panel' => [
+		'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-list-alt"></i> Project List</h3>',
+		'type'=>'primary',
+		'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset Table', ['index'], ['class' => 'btn btn-info']),
+		'showFooter'=>false],
+		'columns' => 
+[
+      	['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code. // FIXME you may configure additional properties in this array (not sure what...)
       /* ~~~
       * var keys = $('#grid').yiiGridView('getSelectedRows');
       * // keys is an array consisting of the keys associated with the selected rows
       * ~~~ */
-			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/11/14: A sequentially numbered column
+		['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/11/14: A sequentially numbered column
 
       // 'id',
-			'is_active',
+		/*	'is_active',*///CHANGED vjt 03/25/14: hid to display other format below
+[
+    'class'=>'kartik\grid\BooleanColumn',
+    'attribute'=>'is_active', 
+],
       // 'tenant_id',
       // 'tenant_dbu',
 			'type',
@@ -182,8 +195,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'created_by_entity_id',
 			// 'update_time',
 			// 'updated_by_entity_id',
-
-			['class' => 'yii\grid\ActionColumn', 'header'=>'Actions'] //CHANGED MVW 03/11/14: View, Update, Delete icons
+			['class' => 'kartik\grid\ActionColumn', 'header'=>'Actions', 'width'=>'100px']
+			//['class' => 'yii\grid\ActionColumn', 'header'=>'Actions', 'width'=>'100px'] //CHANGED MVW 03/11/14: View, Update, Delete icons
 		],
 	]); ?>
 
