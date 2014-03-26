@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+/*use yii\grid\GridView;*/
+use kartik\grid\GridView;
 use backend\models\Entity;//CHANGED MVW 03//06/14
 
 /**
@@ -73,7 +74,12 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?php echo GridView::widget([ //CHANGED MVW 03/10/14: See http://yii2-api.yupe.ru/class-yii.grid.GridView.html#$caption
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
-    'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered table-hover'], //CHANGED MVW 03/10/14: 'table table-condensed', 'table table-striped', 'table-bordered'
+		'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered table-hover'],
+		'panel' => [
+		'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-list-alt"></i> Project List</h3>',
+		'type'=>'primary',
+		'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset Table', ['index'], ['class' => 'btn btn-info']),
+		'showFooter'=>false],
 		'columns' => [
       ['class' => 'yii\grid\CheckboxColumn', 'header'=>'Select'], //CHANGED MVW 03/10/1: Adds a checkbox column to select certain records. Requires Javascript code. // FIXME you may configure additional properties in this array (not sure what...)
       /* ~~~
@@ -82,7 +88,10 @@ $this->params['breadcrumbs'][] = $this->title;
       * ~~~ */
 			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/11/14: A sequentially numbered column
       // 'id',
-      'is_active',
+[
+    'class'=>'kartik\grid\BooleanColumn',
+    'attribute'=>'is_active', 
+],
       'type',
       // 'name',
       // 'contact',
@@ -93,10 +102,34 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'suffix',
 			// 'previous_name',
 			// 'signature:ntext',
-      'is_tenant',
-      'is_user',
-      'is_provider',
-      'is_customer',
+      //'is_tenant',
+ [
+'class' => '\kartik\grid\BooleanColumn',
+'attribute' => 'is_tenant',
+'trueLabel' => 'Yes',
+'falseLabel' => 'No'
+],	  
+      //'is_user',
+	   [
+'class' => '\kartik\grid\BooleanColumn',
+'attribute' => 'is_user',
+'trueLabel' => 'Yes',
+'falseLabel' => 'No'
+],
+      //'is_provider',
+	     [
+'class' => '\kartik\grid\BooleanColumn',
+'attribute' => 'is_provider',
+'trueLabel' => 'Yes',
+'falseLabel' => 'No'
+],
+     // 'is_customer',
+	     [
+'class' => '\kartik\grid\BooleanColumn',
+'attribute' => 'is_customer',
+'trueLabel' => 'Yes',
+'falseLabel' => 'No'
+],
 			// 'tenant_type_picklist_id',
 			// 'is_tenant_enabled',
 			// 'db_username',
@@ -175,7 +208,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'update_time',
 			// 'updated_by_entity_id',
 
-			['class' => 'yii\grid\ActionColumn', 'header'=>'Actions'] //CHANGED MVW 03/11/14: View, Update, Delete icons
+			['class' => 'kartik\grid\ActionColumn', 'header'=>'Actions', 'width'=>'100px']
 		],
 	]); ?>
 

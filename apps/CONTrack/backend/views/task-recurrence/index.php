@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+/*use yii\grid\GridView;*/
+use kartik\grid\GridView;
 
 /**
  * @var yii\web\View $this
@@ -25,11 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
+		'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered table-hover'],
+		'panel' => [
+		'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-list-alt"></i> Project List</h3>',
+		'type'=>'primary',
+		'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset Table', ['index'], ['class' => 'btn btn-info']),
+		'showFooter'=>false],		
 		'columns' => [
 			['class' => 'yii\grid\SerialColumn'],
 
-			'id',
-			'is_active',
+			['attribute' => 'id', 'width' => '80px'],
+[
+    'class'=>'kartik\grid\BooleanColumn',
+    'attribute'=>'is_active', 
+],
 			'task_id',
 			'campaign_id',
 			'schedule_picklist_id',
@@ -94,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			// 'update_time',
 			// 'updated_by_entity_id',
 
-			['class' => 'yii\grid\ActionColumn'],
+			['class' => 'kartik\grid\ActionColumn', 'header'=>'Actions', 'width'=>'100px']
 		],
 	]); ?>
 
