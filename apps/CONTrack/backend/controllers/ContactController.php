@@ -8,7 +8,7 @@ use backend\models\search\ContactSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\VerbFilter;
-use yii\data\ActiveDataProvider;
+
 /**
  * ContactController implements the CRUD actions for Contact model.
  */
@@ -33,13 +33,7 @@ class ContactController extends Controller
 	public function actionIndex()
 	{
 		$searchModel = new ContactSearch;
-    // $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
-    $dataProvider = new ActiveDataProvider([ //CHANGED MVW 03/14/14: To change the number of rows shown per page
-      'query' => Contact::find(),
-       'pagination' => [
-         'pageSize' => 10,
-       ],
-    ]);
+    $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
 		return $this->render('index', [
 			'dataProvider' => $dataProvider,

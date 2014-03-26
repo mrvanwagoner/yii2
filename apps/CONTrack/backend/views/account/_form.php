@@ -41,13 +41,10 @@ use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
     // ]
   ); ?>
 
-		<?= $form->field($model, 'is_active')->checkbox() //CHANGED MVW 03/08/14 ?>
-
-    <!-- <?= $form->field($model, 'tenant_id')->textInput(['maxlength' => 11]) //FIXME Only visible to System Admin and System Staff ?> -->
-
-    <!-- <?= $form->field($model, 'tenant_dbu')->textInput(['maxlength' => 16]) //FIXME Only visible to System Admin and System Staff ?> -->
 
 		<?= $form->field($model, 'project_id')->dropDownList(Project::listActiveProjects(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
+
+		<?= $form->field($model, 'draw_account_id')->dropDownList(Account::listActiveDrawAccounts(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
 		<?= $form->field($model, 'type')->dropDownList(Custom::listEnum($model, 'type'), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
@@ -88,12 +85,6 @@ use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
 		<?= $form->field($model, 'transaction_status_picklist_id')->dropDownList(Custom::picklist('Status', 'is_transaction'),['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
 
 		<?= $form->field($model, 'comment_budget')->textarea(['rows' => 6]) ?>
-
-		<?= $form->field($model, 'is_estimate')->textInput() ?>
-
-		<?= $form->field($model, 'is_track_draws')->checkbox() //CHANGED MVW 03/08/14 ?>
-
-		<?= $form->field($model, 'is_track_transactions')->checkbox() //CHANGED MVW 03/08/14 ?>
 
 		<?= $form->field($model, 'analyze')->dropDownList(Custom::listEnum($model, 'analyze'), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
@@ -174,8 +165,6 @@ use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
     <H2>Payment Info</H2><!-- CHANGED MVW 03/08/14 -->
 
 		<?= $form->field($model, 'provider_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
-
-		<?= $form->field($model, 'draw_account_id')->dropDownList(Account::listActiveDrawAccounts(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
 		<?= $form->field($model, 'date_paid')->widget(DatePicker::classname(), [
       // 'name' => 'date_received'

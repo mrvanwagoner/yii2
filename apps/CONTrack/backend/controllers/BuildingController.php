@@ -33,7 +33,7 @@ class BuildingController extends Controller
 	public function actionIndex()
 	{
 		$searchModel = new BuildingSearch;
-		$dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+    $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
 		return $this->render('index', [
 			'dataProvider' => $dataProvider,

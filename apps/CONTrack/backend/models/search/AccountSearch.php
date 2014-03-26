@@ -262,7 +262,11 @@ class AccountSearch extends Model
 		$this->addCondition($query, 'tenant_id');
 		$this->addCondition($query, 'tenant_dbu', true);
 		$this->addCondition($query, 'project_id');
-    // $this->addCondition($query, 'projectDescription', true); //FIXME Sort/Filter on relational field. See http://www.mrsoundless.com/php/yii/searching-and-sorting-a-column-from-a-related-table-in-a-cgridview/
+
+    // $query->joinWith(['project' => function ($q) { //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
+    //   $q->where('tbl_project.description LIKE "%' . $this->projectDescription . '%"');
+    // }]);
+    
 		$this->addCondition($query, 'type', true);
 		$this->addCondition($query, 'account_number', true);
 		$this->addCondition($query, 'craft_number', true);
@@ -326,9 +330,9 @@ class AccountSearch extends Model
 		$this->addCondition($query, 'update_time');
 		$this->addCondition($query, 'updated_by_entity_id');
 
-    $query->joinWith(['project' => function ($q) { //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
-      $q->where('tbl_project.description LIKE "%' . $this->projectDescription . '%"');
-    }]);
+    // $query->joinWith(['project' => function ($q) { //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
+    //   $q->where('tbl_project.description LIKE "%' . $this->projectDescription . '%"');
+    // }]);
 
 		return $dataProvider;
 	}

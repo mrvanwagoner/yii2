@@ -136,7 +136,8 @@ class Account extends \yii\db\ActiveRecord
 			'tenant_id' => 'Tenant ID',
 			'tenant_dbu' => 'Tenant DBU',
       'project_id' => 'Project ID',
-      'projectDescription' => 'Project Description',//CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
+      // 'projectDescription' => 'Project Description',//CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
+      'project.description' => "Project Description",
 			'type' => 'Type',
 			'account_number' => 'Account Number',
 			'craft_number' => 'Craft Number',

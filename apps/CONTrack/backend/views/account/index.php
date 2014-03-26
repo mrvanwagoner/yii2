@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		'filterModel' => $searchModel,
 		'tableOptions'=>['class'=>'table table-condensed table table-striped table-bordered table-hover'],
 		'panel' => [
-		'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-list-alt"></i> Project List</h3>',
+		'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-list-alt"></i> Account List</h3>',
 		'type'=>'primary',
 		'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset Table', ['index'], ['class' => 'btn btn-info']),
 		'showFooter'=>false],
@@ -69,16 +69,15 @@ $this->params['breadcrumbs'][] = $this->title;
       * ~~~ */
 			['class' => 'yii\grid\SerialColumn'], //CHANGED MVW 03/11/14: A sequentially numbered column
 
-			'id',
+      // 'id',
 		/*	'is_active',*///CHANGED vjt 03/25/14: hid to display other format below
-[
-    'class'=>'kartik\grid\BooleanColumn',
-    'attribute'=>'is_active', 
-],
+      [
+        'class'=>'kartik\grid\BooleanColumn', 'attribute'=>'is_active', 
+      ],
       // 'tenant_id',
       // 'tenant_dbu',
 			'project_id',
-      'projectDescription', //FIXME MVW 03/22/14: To allow filter/sort/search on relationship field. See http://www.yiiframework.com/wiki/281/searching-and-sorting-by-related-model-in-cgridview/ also see http://www.mrsoundless.com/php/yii/searching-and-sorting-a-column-from-a-related-table-in-a-cgridview/
+      ['attribute' => 'projectDescription', 'width' => '300px'], //FIXME MVW 03/22/14: To allow filter/sort/search on relationship field. See http://www.yiiframework.com/wiki/281/searching-and-sorting-by-related-model-in-cgridview/ also see http://www.mrsoundless.com/php/yii/searching-and-sorting-a-column-from-a-related-table-in-a-cgridview/
       'type',
       'account_number',
       'craft_number',

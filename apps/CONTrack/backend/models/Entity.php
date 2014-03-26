@@ -458,6 +458,15 @@ class Entity extends \yii\db\ActiveRecord
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
+  public function getSponsor() //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
+  {
+    return $this->hasOne(self::classname(), ['parent_id' => 'id'])->from(self::tableName() . ' AS parent');
+  }
+
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
 	public function getTenantTypePicklist()
 	{
 		return $this->hasOne(Picklist::className(), ['id' => 'tenant_type_picklist_id']);
@@ -718,5 +727,10 @@ class Entity extends \yii\db\ActiveRecord
   {
     $query = Entity::find()->where(['is_active'=>1])->limit(4000)->all();
     return ArrayHelper::map($query , 'id', 'fullName');
+  }
+
+  public function getSponsorName() //CHANGED MVW 03/22/14: Added to allow Filter/Search. See http://www.yiiframework.com/wiki/621/filter-sort-by-calculated-related-fields-in-gridview-yii-2-0/#hh10
+  {
+    return $this->sponsor->fullName;
   }
 }

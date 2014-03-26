@@ -8,6 +8,7 @@ use backend\models\search\AccountSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\VerbFilter;
+use yii\data\ActiveDataProvider; //CHANGED MVW 03/25/14: To change the number of rows shown per page
 
 /**
  * AccountController implements the CRUD actions for Account model.
@@ -33,7 +34,14 @@ class AccountController extends Controller
 	public function actionIndex()
 	{
 		$searchModel = new AccountSearch;
-		$dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+    $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+    // $dataProvider = new ActiveDataProvider([ //FIXME MVW 03/25/14: Changed default pageSize in Pagination.php
+    //   $query,// 'query' => $query,
+    //   // 'query' => Account::find(),
+    //    'pagination' => [
+    //      'pageSize' => 15,
+    //    ],
+    // ]);
 
 		return $this->render('index', [
 			'dataProvider' => $dataProvider,
@@ -115,6 +123,24 @@ class AccountController extends Controller
 			return $model;
 		} else {
 			throw new NotFoundHttpException('The requested page does not exist.');
+		}
+	}
+
+	/**
+	 * Creates a new Check.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 * @return mixed
+	 */
+	public function actionCheck()
+	{
+		$model = $this->findModel(68);
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			return $this->redirect(['view', 'id' => $model->id]);
+		} else {
+			return $this->render('check', [
+				'model' => $model,
+			]);
 		}
 	}
 }

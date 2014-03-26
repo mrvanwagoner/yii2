@@ -51,8 +51,6 @@ $this->params['breadcrumbs'][] = $this->title;
 		<?= Html::a('Create Project', ['create'], ['class' => 'btn btn-success']) ?>
 	</p>
 
-<?php /*?><?php echo GridView::widget([<?php */?>
-
 	<?php echo GridView::widget([ //CHANGED MVW 03/10/14: See http://yii2-api.yupe.ru/class-yii.grid.GridView.html#$caption
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
@@ -73,10 +71,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
       // 'id',
 		/*	'is_active',*///CHANGED vjt 03/25/14: hid to display other format below
-[
-    'class'=>'kartik\grid\BooleanColumn',
-    'attribute'=>'is_active', 
-],
+      [
+        'class'=>'kartik\grid\BooleanColumn', 'attribute'=>'is_active', 
+      ],
       // 'tenant_id',
       // 'tenant_dbu',
 			'type',

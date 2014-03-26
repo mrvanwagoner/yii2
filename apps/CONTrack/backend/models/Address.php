@@ -218,8 +218,7 @@ class Address extends \yii\db\ActiveRecord
 		return $this->hasMany(ProjectHasAddress::className(), ['address_id' => 'id']);
 	}
 
-  //CHANGED MVW 03/08/14: Extended address. i.e. to be used in drop down list.   public function getFullName() 
-  public function getFullAddress() //CHANGED MVW 03/08/14
+  public function getFullAddress() //CHANGED MVW 03/08/14: Extended address. i.e. to be used in drop down list.   public function getFullName() 
   {
     return $this->address1.', '.$this->city.', '.$this->state.', '.$this->postal_code;
   }
@@ -228,5 +227,19 @@ class Address extends \yii\db\ActiveRecord
   {
     $query = Address::find()->where(['is_active'=>1])->all();
     return ArrayHelper::map($query , 'id', 'fullAddress');
+  }
+
+  public static function getAddress($id) //CHANGED MVW 03/08/14: Extended address. i.e. to be used in drop down list.   public function getFullName() 
+  {
+    // $address = Address::find(9);
+    $address = Address::find($id);
+    return $address->address1.', '.$address->address2;
+  }
+
+  public static function getCityStatePostalCode($id) //CHANGED MVW 03/08/14: Extended address. i.e. to be used in drop down list.   public function getFullName() 
+  {
+    // $address = Address::find(9);
+    $address = Address::find($id);
+    return $address->city.', '.$address->state.', '.$address->postal_code;
   }
 }

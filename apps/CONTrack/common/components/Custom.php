@@ -64,5 +64,4 @@ class Custom extends Component
   //   // return json_encode($results);
   //   return json_encode($query);
   // }
-
 }
