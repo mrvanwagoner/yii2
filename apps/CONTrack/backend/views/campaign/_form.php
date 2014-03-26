@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 
 /**
  * @var yii\web\View $this
@@ -10,9 +12,17 @@ use yii\widgets\ActiveForm;
  */
 ?>
 
-<div class="campaign-form">
+<div class="campaign-form col-lg-12">
 
 	<?php $form = ActiveForm::begin(); ?>
+        <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-folder-open fa-fw"></i> Campaign Info
+            	
+    	</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">
+     <div class="col-lg-6">
 
 		<?= $form->field($model, 'is_active')->textInput() ?>
 
@@ -40,13 +50,15 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'sent_occurences')->textInput() ?>
 
-		<?= $form->field($model, 'current_step')->textInput() ?>
+		<?= $form->field($model, 'current_step')->textInput() ?> 
 
 		<?= $form->field($model, 'x_filter_id')->textInput(['maxlength' => 11]) ?>
 
 		<?= $form->field($model, 'created_by_entity_id')->textInput(['maxlength' => 11]) ?>
 
 		<?= $form->field($model, 'updated_by_entity_id')->textInput(['maxlength' => 11]) ?>
+        </div><!-- end col-lg-6 -->
+        <div class="col-lg-6">
 
 		<?= $form->field($model, 'description')->textInput(['maxlength' => 255]) ?>
 
@@ -71,6 +83,7 @@ use yii\widgets\ActiveForm;
 		<?= $form->field($model, 'number_of_occurences')->textInput(['maxlength' => 19]) ?>
 
 		<?= $form->field($model, 'tenant_dbu')->textInput(['maxlength' => 16]) ?>
+        </div><!-- emd col-lg-6 -->
 
 		<div class="form-group">
 			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -78,4 +91,9 @@ use yii\widgets\ActiveForm;
 
 	<?php ActiveForm::end(); ?>
 
-</div>
+         	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+   
+
+ 
+</div><!-- end col-lg-12 --> 

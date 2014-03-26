@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 
 /**
  * @var yii\web\View $this
@@ -10,9 +12,43 @@ use yii\widgets\ActiveForm;
  */
 ?>
 
-<div class="address-form">
+<div class="address-form col-lg-12">
 
 	<?php $form = ActiveForm::begin(); ?>
+        <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-folder-open fa-fw"></i> Address Info
+            	
+    	</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">
+     <div class="address-form col-lg-6">
+    
+    	<?= $form->field($model, 'address1')->textInput(['maxlength' => 50]) ?>
+
+		<?= $form->field($model, 'address2')->textInput(['maxlength' => 50]) ?>
+
+		<?= $form->field($model, 'city')->textInput(['maxlength' => 50]) ?>
+
+		<?= $form->field($model, 'state')->textInput(['maxlength' => 2]) ?>
+
+		<?= $form->field($model, 'postal_code')->textInput(['maxlength' => 5]) ?>
+
+		<?= $form->field($model, 'zip_plus_4')->textInput(['maxlength' => 4]) ?>
+
+		<?= $form->field($model, 'county')->textInput(['maxlength' => 30]) ?>
+
+		<?= $form->field($model, 'default_city')->textInput(['maxlength' => 128]) ?>
+
+		<?= $form->field($model, 'country')->textInput(['maxlength' => 15]) ?>
+
+		<?= $form->field($model, 'delivery_point_barcode')->textInput(['maxlength' => 14]) ?>
+
+		<?= $form->field($model, 'latitude')->textInput(['maxlength' => 24]) ?>
+
+		<?= $form->field($model, 'longitude')->textInput(['maxlength' => 24]) ?>
+
+		<?= $form->field($model, 'directions')->textInput(['maxlength' => 155]) ?>
 
 		<?= $form->field($model, 'is_active')->textInput() ?>
 
@@ -35,6 +71,8 @@ use yii\widgets\ActiveForm;
 		<?= $form->field($model, 'sf_site_landscaped')->textInput() ?>
 
 		<?= $form->field($model, 'sf_paving')->textInput() ?>
+          </div><!-- end col-lg-6 --> 
+         <div class="address-form col-lg-6">
 
 		<?= $form->field($model, 'sf_road')->textInput() ?>
 
@@ -80,31 +118,7 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'description_amenities')->textInput(['maxlength' => 255]) ?>
 
-		<?= $form->field($model, 'address1')->textInput(['maxlength' => 50]) ?>
-
-		<?= $form->field($model, 'address2')->textInput(['maxlength' => 50]) ?>
-
-		<?= $form->field($model, 'city')->textInput(['maxlength' => 50]) ?>
-
-		<?= $form->field($model, 'state')->textInput(['maxlength' => 2]) ?>
-
-		<?= $form->field($model, 'postal_code')->textInput(['maxlength' => 5]) ?>
-
-		<?= $form->field($model, 'zip_plus_4')->textInput(['maxlength' => 4]) ?>
-
-		<?= $form->field($model, 'county')->textInput(['maxlength' => 30]) ?>
-
-		<?= $form->field($model, 'default_city')->textInput(['maxlength' => 128]) ?>
-
-		<?= $form->field($model, 'country')->textInput(['maxlength' => 15]) ?>
-
-		<?= $form->field($model, 'delivery_point_barcode')->textInput(['maxlength' => 14]) ?>
-
-		<?= $form->field($model, 'latitude')->textInput(['maxlength' => 24]) ?>
-
-		<?= $form->field($model, 'longitude')->textInput(['maxlength' => 24]) ?>
-
-		<?= $form->field($model, 'directions')->textInput(['maxlength' => 155]) ?>
+		</div><!-- emd col-lg-6 -->
 
 		<div class="form-group">
 			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -112,4 +126,9 @@ use yii\widgets\ActiveForm;
 
 	<?php ActiveForm::end(); ?>
 
-</div>
+         	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+   
+
+ 
+</div><!-- end col-lg-6 --> 

@@ -8,6 +8,8 @@ use backend\models\Contact;//CHANGED MVW 03/08/14
 use backend\models\Entity; //CHANGED MVW 03/08/14
 use backend\models\Phone; //CHANGED MVW 03/20/14
 use backend\models\Email; //CHANGED MVW 03/20/14
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 
 /**
  * @var yii\web\View $this
@@ -67,7 +69,7 @@ use backend\models\Email; //CHANGED MVW 03/20/14
 
 		<?= $form->field($model, 'is_employee')->checkbox() //CHANGED MVW 03/08/14 ?>
 
-</div>
+</div><!-- emd col-lg-6 -->
 <div class="contact-form col-lg-6">
 
 		<?= $form->field($model, 'address_id')->dropDownList(Address::listActiveAddresses(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
@@ -182,6 +184,7 @@ use backend\models\Email; //CHANGED MVW 03/20/14
 		<?= $form->field($model, 'updated_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
 		<?= $form->field($model, 'update_time')->textInput() //FIXME Autoupdate ?>-->
+        </div><!-- emd col-lg-6 -->
 
 		<div class="form-group pull-right">
 			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

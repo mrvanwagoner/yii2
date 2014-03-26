@@ -11,6 +11,8 @@ use backend\models\Project; //CHANGED MVW 03/08/14
 use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
 // use kartik\widgets\ActiveField; //CHANGED MVW 03/22/14
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 
 /**
  * @var yii\web\View $this
@@ -19,7 +21,7 @@ use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
  */
 ?>
 
-<div class="account-form">
+<div class="account-form col-lg-6">
 
 	<?php $form = ActiveForm::begin( // CHANGED MWW 03/22/14: Pick from the following for layouts. See http://demos.krajee.com/widget-details/active-form
     // Vertical Form (Default)
@@ -29,9 +31,11 @@ use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
     // ]
     // Horizontal Form
     [
-      'id' => 'login-form-horizontal', 
-      'type' => ActiveForm::TYPE_HORIZONTAL,
-      'formConfig' => ['labelSpan' => 2, 'deviceSize' => ActiveForm::SIZE_TINY] //TINY, SMALL, MEDIUM, LARGE
+      //'id' => 'login-form-horizontal', 
+      //'type' => ActiveForm::TYPE_HORIZONTAL,
+	  'id' => 'login-form-vertical', 
+      'type' => ActiveForm::TYPE_VERTICAL,
+      //'formConfig' => ['labelSpan' => 2, 'deviceSize' => ActiveForm::SIZE_TINY] //TINY, SMALL, MEDIUM, LARGE
     ]
     // Inline Form
     // [
@@ -40,6 +44,15 @@ use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
     //   'formConfig' => ['showErrors' => true, 'showLabels' => true]
     // ]
   ); ?>
+
+
+    <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-folder-open fa-fw"></i> Account Info
+            	
+    	</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">
 
 		<?= $form->field($model, 'is_active')->checkbox() //CHANGED MVW 03/08/14 ?>
 
@@ -103,7 +116,63 @@ use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
 
 		<?= $form->field($model, 'contract_account_id')->dropDownList(Account::listActiveContractAccounts(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
-    <H2>Draw Info</H2><!-- CHANGED MVW 03/08/14 -->
+ 	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+    
+ 
+     <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-credit-card fa-fw"></i> Payment Info
+
+    			</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">
+      <!--<H2>Payment Info</H2>--><!-- CHANGED MVW 03/08/14 -->
+
+		<?= $form->field($model, 'provider_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
+
+		<?= $form->field($model, 'draw_account_id')->dropDownList(Account::listActiveDrawAccounts(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
+
+		<?= $form->field($model, 'date_paid')->widget(DatePicker::classname(), [
+      // 'name' => 'date_received'
+      'type' => DatePicker::TYPE_COMPONENT_APPEND,
+      // 'value' => '01/29/2014',
+      'size' => 'md',//'sm','md','lg'
+      'options' => [
+        'placeholder' => 'Enter date...',
+        // 'readonly' => true,
+      ],
+      'pluginOptions' => [
+        'autoclose'=>true,
+        // 'format' => 'dd-M-yyyy'
+        'format' => 'yyyy-mm-dd'
+      ]
+    ]); ?>
+
+		<?= $form->field($model, 'check_number')->textInput(['maxlength' => 45]) ?>
+
+		<?= $form->field($model, 'gl_code_id')->dropDownList(Code::listActiveGlCodes(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
+
+        
+ 	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+   
+   		<div class="form-group">
+			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+		</div>
+
+    
+ </div><!-- end col-lg-6 -->
+    
+<div class="col-lg-6">
+     <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-money fa-fw"></i> Draw Info
+
+    			</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">     
+     <!-- <H2>Draw Info</H2>--><!-- CHANGED MVW 03/08/14 -->
 
 		<?= $form->field($model, 'project_documents_picklist_id')->dropDownList(Custom::picklist('Documents', 'is_project'),['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
 
@@ -169,35 +238,23 @@ use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
 
 		<?= $form->field($model, 'completed')->textInput(['maxlength' => 19]) ?>
 
-		<?= $form->field($model, 'previous_payment')->textInput(['maxlength' => 19]) ?>
+		<?= $form->field($model, 'previous_payment')->textInput(['maxlength' => 19]) ?>      
 
-    <H2>Payment Info</H2><!-- CHANGED MVW 03/08/14 -->
+   
+        
+         	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+    
+ 
+     <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-camera fa-fw"></i> Inspection Info
 
-		<?= $form->field($model, 'provider_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
+    			</div><!-- end panel-heading -->
 
-		<?= $form->field($model, 'draw_account_id')->dropDownList(Account::listActiveDrawAccounts(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
+ 	 <div class="panel-body">
 
-		<?= $form->field($model, 'date_paid')->widget(DatePicker::classname(), [
-      // 'name' => 'date_received'
-      'type' => DatePicker::TYPE_COMPONENT_APPEND,
-      // 'value' => '01/29/2014',
-      'size' => 'md',//'sm','md','lg'
-      'options' => [
-        'placeholder' => 'Enter date...',
-        // 'readonly' => true,
-      ],
-      'pluginOptions' => [
-        'autoclose'=>true,
-        // 'format' => 'dd-M-yyyy'
-        'format' => 'yyyy-mm-dd'
-      ]
-    ]); ?>
-
-		<?= $form->field($model, 'check_number')->textInput(['maxlength' => 45]) ?>
-
-		<?= $form->field($model, 'gl_code_id')->dropDownList(Code::listActiveGlCodes(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
-
-    <H2>Inspection Info</H2><!-- CHANGED MVW 03/08/14 -->
+    <!--<H2>Inspection Info</H2>--><!-- CHANGED MVW 03/08/14 -->
 
 		<?= $form->field($model, 'inspector_entity_id')->dropDownList(Entity::listActiveEntities(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14. //FIXME Should come from Contact List of Providers ?>
 
@@ -269,9 +326,9 @@ use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
 
     <!-- <?= $form->field($model, 'model')->textInput(['maxlength' => 45]) ?> -->
 
-    <H2>System Info</H2><!-- CHANGED MVW 03/08/14 -->
+ <!--   <H2>System Info</H2>--><!-- CHANGED MVW 03/08/14 -->
 
-		<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
+<!--		<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
  
 		<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
@@ -281,10 +338,13 @@ use kartik\widgets\ActiveForm; //CHANGED MVW 03/22/14
 
 		<?= $form->field($model, 'update_time')->textInput() //FIXME Autoupdate ?>
 
-		<div class="form-group">
-			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-		</div>
+-->
+
+         	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+   
+
+ 
+</div><!-- end col-lg-6 --> 
 
 	<?php ActiveForm::end(); ?>
-
-</div>
