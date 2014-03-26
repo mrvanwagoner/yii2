@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 
 /**
  * @var yii\web\View $this
@@ -10,9 +12,16 @@ use yii\widgets\ActiveForm;
  */
 ?>
 
-<div class="correspondence-form">
+<div class="correspodence-form col-lg-6">
 
 	<?php $form = ActiveForm::begin(); ?>
+        <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-folder-open fa-fw"></i> Correspondence Info
+            	
+    	</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">
 
 		<?= $form->field($model, 'is_active')->textInput() ?>
 
@@ -47,5 +56,7 @@ use yii\widgets\ActiveForm;
 		</div>
 
 	<?php ActiveForm::end(); ?>
+             	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
 
-</div>
+</div><!-- emd col-lg-6 -->

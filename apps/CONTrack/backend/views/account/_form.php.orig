@@ -45,6 +45,8 @@ use yii\helpers\ArrayHelper;
     // ]
   ); ?>
 
+<<<<<<< HEAD
+=======
 
     <div class="panel panel-default">   
     	<div class="panel-heading">
@@ -59,8 +61,11 @@ use yii\helpers\ArrayHelper;
     <!-- <?= $form->field($model, 'tenant_id')->textInput(['maxlength' => 11]) //FIXME Only visible to System Admin and System Staff ?> -->
 
     <!-- <?= $form->field($model, 'tenant_dbu')->textInput(['maxlength' => 16]) //FIXME Only visible to System Admin and System Staff ?> -->
+>>>>>>> 87fc33099cf32bd1e88ec7a91b20c66d4cf95800
 
 		<?= $form->field($model, 'project_id')->dropDownList(Project::listActiveProjects(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
+
+		<?= $form->field($model, 'draw_account_id')->dropDownList(Account::listActiveDrawAccounts(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
 		<?= $form->field($model, 'type')->dropDownList(Custom::listEnum($model, 'type'), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
@@ -101,12 +106,6 @@ use yii\helpers\ArrayHelper;
 		<?= $form->field($model, 'transaction_status_picklist_id')->dropDownList(Custom::picklist('Status', 'is_transaction'),['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
 
 		<?= $form->field($model, 'comment_budget')->textarea(['rows' => 6]) ?>
-
-		<?= $form->field($model, 'is_estimate')->textInput() ?>
-
-		<?= $form->field($model, 'is_track_draws')->checkbox() //CHANGED MVW 03/08/14 ?>
-
-		<?= $form->field($model, 'is_track_transactions')->checkbox() //CHANGED MVW 03/08/14 ?>
 
 		<?= $form->field($model, 'analyze')->dropDownList(Custom::listEnum($model, 'analyze'), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
@@ -238,6 +237,29 @@ use yii\helpers\ArrayHelper;
 
 		<?= $form->field($model, 'completed')->textInput(['maxlength' => 19]) ?>
 
+<<<<<<< HEAD
+		<?= $form->field($model, 'previous_payment')->textInput(['maxlength' => 19]) ?>
+
+    <H2>Payment Info</H2><!-- CHANGED MVW 03/08/14 -->
+
+		<?= $form->field($model, 'provider_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/08/14 ?>
+
+		<?= $form->field($model, 'date_paid')->widget(DatePicker::classname(), [
+      // 'name' => 'date_received'
+      'type' => DatePicker::TYPE_COMPONENT_APPEND,
+      // 'value' => '01/29/2014',
+      'size' => 'md',//'sm','md','lg'
+      'options' => [
+        'placeholder' => 'Enter date...',
+        // 'readonly' => true,
+      ],
+      'pluginOptions' => [
+        'autoclose'=>true,
+        // 'format' => 'dd-M-yyyy'
+        'format' => 'yyyy-mm-dd'
+      ]
+    ]); ?>
+=======
 		<?= $form->field($model, 'previous_payment')->textInput(['maxlength' => 19]) ?>      
 
    
@@ -249,6 +271,7 @@ use yii\helpers\ArrayHelper;
      <div class="panel panel-default">   
     	<div class="panel-heading">
             <i class="fa fa-camera fa-fw"></i> Inspection Info
+>>>>>>> 87fc33099cf32bd1e88ec7a91b20c66d4cf95800
 
     			</div><!-- end panel-heading -->
 

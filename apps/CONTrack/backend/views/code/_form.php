@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 
 /**
  * @var yii\web\View $this
@@ -10,9 +12,19 @@ use yii\widgets\ActiveForm;
  */
 ?>
 
-<div class="code-form">
+<div class="code-form col-lg-12">
 
 	<?php $form = ActiveForm::begin(); ?>
+    
+
+         <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-folder-open fa-fw"></i> Code Info
+            	
+    	</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">
+          <div class="project-form col-lg-6">
 
 		<?= $form->field($model, 'is_active')->textInput() ?>
 
@@ -47,6 +59,8 @@ use yii\widgets\ActiveForm;
 		<?= $form->field($model, 'percent_variance')->textInput(['maxlength' => 5]) ?>
 
 		<?= $form->field($model, 'order_qty')->textInput(['maxlength' => 19]) ?>
+       </div><!-- emd col-lg-6 -->
+        <div class="project-form col-lg-6">
 
 		<?= $form->field($model, 'hours')->textInput(['maxlength' => 19]) ?>
 
@@ -79,6 +93,7 @@ use yii\widgets\ActiveForm;
 		<?= $form->field($model, 'realease')->textInput(['maxlength' => 255]) ?>
 
 		<?= $form->field($model, 'postal_code')->textInput(['maxlength' => 10]) ?>
+        </div><!-- emd col-lg-6 -->
 
 		<div class="form-group">
 			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -86,4 +101,9 @@ use yii\widgets\ActiveForm;
 
 	<?php ActiveForm::end(); ?>
 
-</div>
+         	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+   
+
+ 
+</div><!-- end col-lg-12 --> 

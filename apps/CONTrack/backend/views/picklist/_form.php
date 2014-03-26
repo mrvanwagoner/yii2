@@ -11,9 +11,17 @@ use backend\models\Entity;
  */
 ?>
 
-<div class="picklist-form">
+<div class="Picklist-form col-lg-12">
 
 	<?php $form = ActiveForm::begin(); ?>
+        <div class="panel panel-default">   
+    	<div class="panel-heading">
+            <i class="fa fa-folder-open fa-fw"></i> Picklist Info
+            	
+    	</div><!-- end panel-heading -->
+
+ 	 <div class="panel-body">
+     <div class="Picklist-form col-lg-6">
 
 		<?= $form->field($model, 'is_active')->checkbox() ?>
 
@@ -44,6 +52,17 @@ use backend\models\Entity;
 		<?= $form->field($model, 'is_commercial')->checkbox() ?>
 
 		<?= $form->field($model, 'is_residential')->checkbox() ?>
+        <?= $form->field($model, 'tenant_dbu')->textInput(['maxlength' => 16]) ?>
+
+		<?= $form->field($model, 'type')->textInput(['maxlength' => 255]) ?>
+
+		<?= $form->field($model, 'location')->textInput(['maxlength' => 255]) ?>
+
+		<?= $form->field($model, 'hierarchy')->textInput(['maxlength' => 255]) ?>
+
+		<?= $form->field($model, 'sort_order')->textInput(['maxlength' => 255]) ?>
+        </div><!-- emd col-lg-6 -->
+        <div class="Picklist-form col-lg-6">
 
 		<?= $form->field($model, 'created_by_entity_id')->dropDownList(Entity::listActiveUsers(), ['prompt'=>'Select from list...']) //CHANGED MVW 03/06/14 ?>
 
@@ -58,16 +77,8 @@ use backend\models\Entity;
 		<?= $form->field($model, 'comment')->textarea(['rows' => 6]) ?>
 
 		<?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
+		</div><!-- emd col-lg-6 -->
 
-		<?= $form->field($model, 'tenant_dbu')->textInput(['maxlength' => 16]) ?>
-
-		<?= $form->field($model, 'type')->textInput(['maxlength' => 255]) ?>
-
-		<?= $form->field($model, 'location')->textInput(['maxlength' => 255]) ?>
-
-		<?= $form->field($model, 'hierarchy')->textInput(['maxlength' => 255]) ?>
-
-		<?= $form->field($model, 'sort_order')->textInput(['maxlength' => 255]) ?>
 
 		<div class="form-group">
 			<?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -75,4 +86,7 @@ use backend\models\Entity;
 
 	<?php ActiveForm::end(); ?>
 
-</div>
+             	</div><!-- end panel-body -->
+   </div><!-- end panel --> 
+
+</div><!-- emd col-lg-12 -->

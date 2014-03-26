@@ -8,6 +8,7 @@ use backend\models\Document;//CHANGED MVW 03//06/14
 use kartik\widgets\DatePicker; //CHANGED MVW 03/08/14
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
+
 /**
  * @var yii\web\View $this
  * @var backend\models\Entity $model
